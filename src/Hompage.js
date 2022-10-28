@@ -23,8 +23,8 @@ function Homepage() {
             <div className='h-20' />
 
             <div className='grid hover:content-around place-content-center'>
-                <button className='text-2xl bg-green-500 hover:bg-green-700 text-black font-bold py-4 w-40 hover:rounded animate-bounce'>
-                    <a href='/step-1'>Start</a>
+                <button className='text-2xl bg-green-500 hover:bg-green-700 text-black font-bold py-4 w-40 rounded animate-bounce'>
+                    <a href='/step-1'>Inizia</a>
                 </button>
             </div>
 
