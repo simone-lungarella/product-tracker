@@ -1,56 +1,97 @@
 import { Field, Form, Formik } from 'formik';
-import React from 'react';
+import { React, useState } from 'react';
 
-function PhaseOne() {
+function PhaseFour() {
 
-    const [insertedValues, setInsertedValues] = React.useState([]);
+    const [insertedValues, setInsertedValues] = useState([]);
 
     return (
         <div className='bg-green-50 h-screen'>
 
             <div className='grid place-content-center h-20 bg-green-500 w-full'>
                 <div className='text-center text-white text-2xl font-bold'>
-                    <h1 className='text-4xl font-bold' >1. Tracciabilità piante e semi</h1>
+                    <h1 className='text-4xl font-bold' >4. Tracciabilità prodotto finito</h1>
                 </div>
             </div>
             <div className='grid place-content-center h-1 bg-green-800 w-full' />
             <div className='h-10' />
 
+            <div className='grid grid-cols-2 md:grid-cols-4 gap-4 p-4' >
+
+                <label htmlFor='date'>
+                    Data di produzione
+                </label>
+                <div className="relative">
+                    <div className="flex absolute inset-y-0 left-0 items-center pl-3">
+                        <svg aria-hidden="true" className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <input className='bg-green-50 border border-green-300 text-green-900 sm:text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full pl-10 p-2.5' id='date' name='date' type='date' />
+                </div>
+                <label htmlFor='name'>
+                    Tipo di prodotto
+                </label>
+                <input className='border-2 border-green-500 rounded-lg h-10 p-2.5' id='name' name='name' />
+                <div className='h-10' />
+            </div>
+
             <Formik
                 initialValues={{
-                    plants: '',
+                    ingredient: '',
+                    quantity: 0,
                     lot: '',
-                    isCompliant: false,
-                    kg: 0,
+                    supplier: '',
                 }}
                 onSubmit={(values, { resetForm }) => {
-                    if (values.plants !== '' && values.lot !== '') {
+                    if (values.name !== '' && values.type !== '' && values.date !== '' && values.lot !== '') {
                         setInsertedValues([...insertedValues, values]);
                         resetForm();
                     }
-                }}
-            >
+                }} >
                 <Form>
                     <div className='grid grid-cols-2 md:grid-cols-4 gap-4 p-4' >
-                        <label htmlFor='plants'>
-                            Piante o semi acquistati
+                        <label htmlFor='ingredient'>
+                            Ingrediente utilizzato
                         </label>
-                        <Field className='border-2 border-green-500 rounded-lg h-10 p-2.5' id='plants' name='plants' />
+                        <input className='border-2 border-green-500 rounded-lg h-10 p-2.5' id='ingredient' name='ingredient' />
+                        <label htmlFor='quantity'>
+                            Quantità
+                        </label>
+                        <Field type='number' className='text-sm rounded-lg focus:ring-green-500 block w-full p-2.5 border-2 border-green-500 rounded-lg h-10' id='quantity' name='quantity' />
                         <label htmlFor='lot'>
                             Lotto
                         </label>
-                        <Field className='border-2 border-green-500 rounded-lg h-10 p-2.5' id='lot' name='lot' />
-
-                        <label htmlFor='isCompliant'>
-                            Conforme
+                        <Field className='text-sm rounded-lg focus:ring-green-500 block w-full p-2.5 border-2 border-green-500 rounded-lg h-10' id='quantity' name='quantity' />
+                        <label htmlFor='supplier'>
+                            Fornitore
                         </label>
-                        <Field type="checkbox" className='border-green-500 text-green-600 bg-gray-100 form-checkbox focus:ring-green-500 rounded-lg h-10 w-10' id='isCompliant' name='isCompliant' />
-                        
-                        <label htmlFor='kg'>
-                            Kg o colli acquistati
-                        </label>
-                        <Field type='number' className='text-sm rounded-lg focus:ring-green-500 block w-full p-2.5 border-2 border-green-500 rounded-lg h-10' id='kg' name='kg' />
+                        <Field className='text-sm rounded-lg focus:ring-green-500 block w-full p-2.5 border-2 border-green-500 rounded-lg h-10' id='supplier' name='supplier' />
                     </div>
+
+                    <div className='text-center text-xs text-green-600 uppercase'>
+                        <h1 className='text-xl font-bold' >Trattamento termico ingrediente</h1>
+                    </div>
+
+                    <div className='grid grid-cols-2 md:grid-cols-4 gap-4 p-4' >
+                        {/* <label htmlFor='ingredient'>
+                            Ingrediente utilizzato
+                        </label>
+                        <input className='border-2 border-green-500 rounded-lg h-10 p-2.5' id='ingredient' name='ingredient' />
+                        <label htmlFor='quantity'>
+                            Quantità
+                        </label>
+                        <Field type='number' className='text-sm rounded-lg focus:ring-green-500 block w-full p-2.5 border-2 border-green-500 rounded-lg h-10' id='quantity' name='quantity' />
+                        <label htmlFor='lot'>
+                            Lotto
+                        </label>
+                        <Field className='text-sm rounded-lg focus:ring-green-500 block w-full p-2.5 border-2 border-green-500 rounded-lg h-10' id='quantity' name='quantity' />
+                        <label htmlFor='supplier'>
+                            Fornitore
+                        </label>
+                        <Field className='text-sm rounded-lg focus:ring-green-500 block w-full p-2.5 border-2 border-green-500 rounded-lg h-10' id='supplier' name='supplier' /> */}
+                    </div>
+
                     <div className='mt-8 p-5 flex flex-row-reverse'>
                         <button type='submit' className='text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer 
                             hover:bg-green-300  
@@ -71,16 +112,22 @@ function PhaseOne() {
                     <thead className="text-xs text-green-600 uppercase bg-gray-800">
                         <tr>
                             <th scope="col" className="py-3 px-6">
-                                Piante o semi acquistati
+                                Data lavorazione
                             </th>
                             <th scope="col" className="py-3 px-6">
-                                Lotto
+                                Materia prima lavorato
                             </th>
                             <th scope="col" className="py-3 px-6">
-                                Conforme
+                                Lotto materia prima
                             </th>
                             <th scope="col" className="py-3 px-6">
-                                Kg o colli acquistati
+                                Prodotto ottenuto
+                            </th>
+                            <th scope="col" className="py-3 px-6">
+                                Kg prodotto finito ottenuti
+                            </th>
+                            <th scope="col" className="py-3 px-6">
+                                Lotto prodotto finito
                             </th>
                             <th scope="col" className="py-3 px-6">
                                 Azioni
@@ -92,16 +139,22 @@ function PhaseOne() {
                             return (
                                 <tr key={index} className={index % 2 === 0 ? 'bg-gray-200 border-b border-gray-200' : 'border-b border-gray-200 bg-gray-100'}>
                                     <td className="py-3 px-6">
-                                        {value.plants}
+                                        {value.date}
+                                    </td>
+                                    <td className="py-3 px-6">
+                                        {value.name}
                                     </td>
                                     <td className="py-3 px-6">
                                         {value.lot}
                                     </td>
                                     <td className="py-3 px-6">
-                                        {value.isCompliant ? 'Si' : 'No'}
+                                        {value.product}
                                     </td>
                                     <td className="py-3 px-6">
-                                        {value.kg}
+                                        {value.quantity}
+                                    </td>
+                                    <td className="py-3 px-6">
+                                        {value.productLot}
                                     </td>
                                     <td className="py-3 px-6">
                                         <button className="text-red-500 hover:text-red-700 font-bold py-1 px-3 rounded"
@@ -132,7 +185,7 @@ function PhaseOne() {
                             text-green-700 
                             border duration-200 ease-in-out 
                             border-green-600 transition" >
-                            <a href='/'>
+                            <a href='/step-3'>
                                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                                 </svg>
@@ -146,7 +199,7 @@ function PhaseOne() {
                             text-green-700 
                             border duration-200 ease-in-out 
                             border-green-600 transition">
-                            <a href='/step-2'>
+                            <a href='/step-5'>
                                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                                 </svg>
@@ -170,4 +223,4 @@ function PhaseOne() {
     );
 }
 
-export default PhaseOne;
+export default PhaseFour;

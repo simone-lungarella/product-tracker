@@ -25,14 +25,21 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: #15ff00;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(0, 0, 0);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
