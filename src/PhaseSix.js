@@ -10,7 +10,7 @@ function PhaseSix() {
 
             <div className='grid place-content-center h-20 bg-green-500 w-full'>
                 <div className='text-center text-white text-2xl font-bold'>
-                    <h1 className='text-4xl font-bold' >12. Tracciabilità prodotto finito</h1>
+                    <h1 className='text-4xl font-bold' >Tracciabilità prodotto finito</h1>
                 </div>
             </div>
             <div className='grid place-content-center h-1 bg-green-800 w-full' />
@@ -82,7 +82,7 @@ function PhaseSix() {
             </Formik>
 
             <div className="overflow-x-auto relative">
-                <table className="w-full text-sm text-left text-black mb-20">
+                <table className="w-full text-sm text-center text-black mb-20">
                     <thead className="text-xs text-green-600 uppercase bg-gray-800">
                         <tr>
                             <th scope="col" className="py-3 px-6">
@@ -113,34 +113,48 @@ function PhaseSix() {
                             return (
                                 <tr key={index} className={index % 2 === 0 ? 'bg-gray-200 border-b border-gray-200' : 'border-b border-gray-200 bg-gray-100'}>
                                     <td className="py-3 px-6">
-                                        {value.date}
+                                        <div className="flex justify-center items-center">
+                                            <span className="font-bold text-green-700">{value.date}</span>
+                                        </div>
                                     </td>
                                     <td className="py-3 px-6">
-                                        {value.name}
+                                        <div className="flex justify-center items-center">
+                                            <span className="font-bold text-green-700">{value.name}</span>
+                                        </div>
                                     </td>
                                     <td className="py-3 px-6">
-                                        {value.lot}
+                                        <div className="flex justify-center items-center">
+                                            <span className="font-bold text-green-700">{value.lot}</span>
+                                        </div>
                                     </td>
                                     <td className="py-3 px-6">
-                                        {value.product}
+                                        <div className="flex justify-center items-center">
+                                            <span className="font-bold text-green-700">{value.product}</span>
+                                        </div>
                                     </td>
                                     <td className="py-3 px-6">
-                                        {value.quantity}
+                                        <div className="flex justify-center items-center">
+                                            <span className="font-bold text-green-700">{value.quantity}</span>
+                                        </div>
                                     </td>
                                     <td className="py-3 px-6">
-                                        {value.productLot}
+                                        <div className="flex justify-center items-center">
+                                            <span className="font-bold text-green-700">{value.productLot}</span>
+                                        </div>
                                     </td>
                                     <td className="py-3 px-6">
-                                        <button className="text-red-500 hover:text-red-700 font-bold py-1 px-3 rounded"
-                                            onClick={() => {
-                                                const newInsertedValues = [...insertedValues];
-                                                newInsertedValues.splice(index, 1);
-                                                setInsertedValues(newInsertedValues);
-                                            }} >
-                                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                                            </svg>
-                                        </button>
+                                        <div className="flex justify-center items-center">
+                                            <button className="text-red-500 hover:text-red-700 font-bold py-1 px-3 rounded"
+                                                onClick={() => {
+                                                    const newInsertedValues = [...insertedValues];
+                                                    newInsertedValues.splice(index, 1);
+                                                    setInsertedValues(newInsertedValues);
+                                                }} >
+                                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                             )

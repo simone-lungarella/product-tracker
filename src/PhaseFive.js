@@ -37,6 +37,7 @@ function PhaseFive() {
     })
 
     const [insertedValues, setInsertedValues] = useState(valuesToInsert);
+    const [lastCopiedDescription, setLastCopiedDescription] = useState('');
 
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedDay, setSelectedDay] = useState(1);
@@ -46,7 +47,7 @@ function PhaseFive() {
 
             <div className='grid place-content-center h-20 bg-green-500 w-full'>
                 <div className='text-center text-white text-2xl font-bold'>
-                    <h1 className='text-4xl font-bold' >5. Controllo Pulizie</h1>
+                    <h1 className='text-4xl font-bold' >Controllo Pulizie</h1>
                 </div>
             </div>
             <div className='grid place-content-center h-1 bg-green-800 w-full' />
@@ -138,7 +139,7 @@ function PhaseFive() {
             }
 
             <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
-                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <table className="w-full text-sm text-center text-gray-500">
                     <thead className="text-xl text-green-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" className="py-3 px-6">
@@ -157,14 +158,14 @@ function PhaseFive() {
                             return (
                                 <tr key={index} className={index % 2 === 0 ? 'bg-gray-200 border-b border-gray-200 hover:bg-gray-50 hover:border-green-700' : 'bg-gray-100 border-gray-200 hover:border-green-700 border-b hover:bg-gray-50 bg-gray-100'}>
                                     <td className="py-3 px-6">
-                                        <div className="flex items-center ml-10">
+                                        <div className="flex justify-center items-center">
                                             <div className="mr-2">
                                                 <span className="font-bold text-green-700">{value.day}</span>
                                             </div>
                                         </div>
                                     </td>
                                     <td className="py-3 px-6">
-                                        <div className="flex items-center">
+                                        <div className="flex justify-center items-center">
                                             <div className="mr-2">
                                                 {value.description && value.description.map((description, index) => {
                                                     if (index === value.description.length - 1) {
@@ -181,8 +182,8 @@ function PhaseFive() {
                                         </div>
                                     </td>
                                     <td className="py-3 px-6">
-                                        <div className="flex">
-                                            <div className="mr-2">
+                                        <div className="flex justify-center items-center">
+                                            <div className="mr-2 grid place-items-center grid-cols-3">
                                                 <button className='text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 cursor-pointer text-green-800 duration-200 ease-in-out'
                                                     onClick={() => {
                                                         setModalOpen(true);
@@ -190,6 +191,28 @@ function PhaseFive() {
                                                     }} >
                                                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                                                    </svg>
+                                                </button>
+                                                <button className='text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 cursor-pointer text-green-800 duration-200 ease-in-out'
+                                                    onClick={
+                                                        () => {
+                                                            setLastCopiedDescription(value.description);
+                                                        }
+                                                    } >
+                                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                                    </svg>
+                                                </button>
+                                                <button className='text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 cursor-pointer text-green-800 duration-200 ease-in-out'
+                                                    onClick={
+                                                        () => {
+                                                            let newInsertedValues = [...insertedValues];
+                                                            newInsertedValues[index].description = lastCopiedDescription;
+                                                            setInsertedValues(newInsertedValues);
+                                                        }
+                                                    } >
+                                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
                                                     </svg>
                                                 </button>
                                             </div>

@@ -10,7 +10,7 @@ function PhaseFour() {
 
             <div className='grid place-content-center h-20 bg-green-500 w-full'>
                 <div className='text-center text-white text-2xl font-bold'>
-                    <h1 className='text-4xl font-bold' >4. Tracciabilità prodotto finito</h1>
+                    <h1 className='text-4xl font-bold' >Tracciabilità prodotto finito</h1>
                 </div>
             </div>
             <div className='grid place-content-center h-1 bg-green-800 w-full' />
