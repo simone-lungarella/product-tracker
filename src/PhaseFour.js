@@ -1,12 +1,16 @@
 import { Field, Form, Formik } from 'formik';
 import { React, useState } from 'react';
+import * as Yup from 'yup';
 
 function PhaseFour() {
 
-    const [insertedValues, setInsertedValues] = useState([]);
+    const [ingredients, setIngredients] = useState([]);
+    const [productInfo, setProductInfo] = useState({});
+
+    const [productEditable, setProductEditable] = useState(true);
 
     return (
-        <div className='bg-green-50 h-screen'>
+        <div className={productEditable ? 'bg-green-50 h-screen' : 'bg-green-50 h-full'}>
 
             <div className='grid place-content-center h-20 bg-green-500 w-full'>
                 <div className='text-center text-white text-2xl font-bold'>
@@ -16,165 +20,296 @@ function PhaseFour() {
             <div className='grid place-content-center h-1 bg-green-800 w-full' />
             <div className='h-10' />
 
-            <div className='grid grid-cols-2 md:grid-cols-4 gap-4 p-4' >
-
-                <label htmlFor='date'>
-                    Data di produzione
-                </label>
-                <div className="relative">
-                    <div className="flex absolute inset-y-0 left-0 items-center pl-3">
-                        <svg aria-hidden="true" className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd"></path>
-                        </svg>
-                    </div>
-                    <input className='bg-green-50 border border-green-300 text-green-900 sm:text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full pl-10 p-2.5' id='date' name='date' type='date' />
-                </div>
-                <label htmlFor='name'>
-                    Tipo di prodotto
-                </label>
-                <input className='border-2 border-green-500 rounded-lg h-10 p-2.5' id='name' name='name' />
-                <div className='h-10' />
-            </div>
-
             <Formik
                 initialValues={{
-                    ingredient: '',
-                    quantity: 0,
-                    lot: '',
-                    supplier: '',
+                    date: '',
+                    name: '',
+                    cookingType: 'Cottura',
+                    cookingTime: 0,
+                    temperature: 0,
+                    coverLot: '',
+                    size: '',
+                    productLot: '',
+                    numberPacks: 0,
+                    expirationDate: '',
+                    lotBottles: '',
+                    notes: '',
                 }}
-                onSubmit={(values, { resetForm }) => {
-                    if (values.name !== '' && values.type !== '' && values.date !== '' && values.lot !== '') {
-                        setInsertedValues([...insertedValues, values]);
-                        resetForm();
-                    }
-                }} >
-                <Form>
-                    <div className='grid grid-cols-2 md:grid-cols-4 gap-4 p-4' >
-                        <label htmlFor='ingredient'>
-                            Ingrediente utilizzato
-                        </label>
-                        <input className='border-2 border-green-500 rounded-lg h-10 p-2.5' id='ingredient' name='ingredient' />
-                        <label htmlFor='quantity'>
-                            Quantità
-                        </label>
-                        <Field type='number' className='text-sm rounded-lg focus:ring-green-500 block w-full p-2.5 border-2 border-green-500 rounded-lg h-10' id='quantity' name='quantity' />
-                        <label htmlFor='lot'>
-                            Lotto
-                        </label>
-                        <Field className='text-sm rounded-lg focus:ring-green-500 block w-full p-2.5 border-2 border-green-500 rounded-lg h-10' id='quantity' name='quantity' />
-                        <label htmlFor='supplier'>
-                            Fornitore
-                        </label>
-                        <Field className='text-sm rounded-lg focus:ring-green-500 block w-full p-2.5 border-2 border-green-500 rounded-lg h-10' id='supplier' name='supplier' />
-                    </div>
+                validationSchema={Yup.object({
+                    date: Yup.date().required('Data obbligatoria'),
+                    name: Yup.string().required('Tipo obbligatorio'),
+                    productLot: Yup.string().required('Lotto prodotto obbligatorio'),
+                })}
+            >
+                {({ errors, touched, values }) => (
+                    <Form>
+                        <div className='grid grid-cols-2 md:grid-cols-4 gap-4 p-4' >
+                            <label htmlFor='date'>
+                                Data di produzione
+                            </label>
+                            <div className="relative">
+                                <div className="flex absolute inset-y-0 left-0 items-center pl-3">
+                                    <svg aria-hidden="true" className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <Field disabled={!productEditable} className='bg-green-50 border border-green-300 text-green-900 sm:text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full pl-10 p-2.5' id='date' name='date' type='date' />
+                            </div>
+                            <label htmlFor='name'>
+                                Tipo di prodotto
+                            </label>
+                            <Field disabled={!productEditable} className='border-2 border-green-500 rounded-lg h-10 p-2.5' id='name' name='name' placeholder="Tipo prodotto" />
+                            <label htmlFor='cookingType'>
+                                Trattamento termico
+                            </label>
+                            <Field
+                                className='border-2 border-green-500 rounded-lg h-15 p-2.5 disabled:bg-green-50'
+                                component="select"
+                                id="cookingType"
+                                name="cookingType"
+                                disabled={!productEditable}>
+                                <option value="Cottura">Cottura</option>
+                                <option value="Scottatura">Scottatura</option>
+                                <option value="Essiccazione">Essiccazione</option>
+                            </Field>
+                            <label htmlFor='cookingTime'>
+                                Tempo di cottura
+                            </label>
+                            <Field type="number" className='border-2 border-green-500 rounded-lg h-10 p-2.5 disabled:bg-green-50' id='cookingTime' name='cookingTime' disabled={!productEditable} />
+                            <label htmlFor='temperature'>
+                                Temperatura
+                            </label>
+                            <Field type="number" className='border-2 border-green-500 rounded-lg h-10 p-2.5 disabled:bg-green-50' id='temperature' name='temperature' disabled={!productEditable} />
+                            <label htmlFor='coverLot'>
+                                Lotto tappi o coperchi
+                            </label>
+                            <Field className='border-2 border-green-500 rounded-lg h-10 p-2.5 disabled:bg-green-50' id='coverLot' name='coverLot' placeholder="Lotto" disabled={!productEditable} />
+                            <label htmlFor='size'>
+                                Formato da g/ml
+                            </label>
+                            <Field className='border-2 border-green-500 rounded-lg h-10 p-2.5 disabled:bg-green-50' id='size' name='size' placeholder="Formato" disabled={!productEditable} />
+                            <label htmlFor='productLot'>
+                                Lotto prodotto finito
+                            </label>
+                            <Field className='border-2 border-green-500 rounded-lg h-10 p-2.5 disabled:bg-green-50' id='productLot' name='productLot' placeholder="Lotto prodotto" disabled={!productEditable} />
+                            <label htmlFor='numberPacks'>
+                                N. confezioni ottenute
+                            </label>
+                            <Field type="number" className='border-2 border-green-500 rounded-lg h-10 p-2.5 disabled:bg-green-50' id='numberPacks' name='numberPacks' disabled={!productEditable} />
+                            <label htmlFor='expirationDate'>
+                                Data di scadenza
+                            </label>
+                            <div className="relative">
+                                <div className="flex absolute inset-y-0 left-0 items-center pl-3">
+                                    <svg aria-hidden="true" className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <Field className='bg-green-50 border border-green-300 text-green-900 sm:text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full pl-10 p-2.5' id='expirationDate' name='expirationDate' type='date' disabled={!productEditable} />
+                            </div>
+                            <label htmlFor='lotBottles'>
+                                Lotto bottiglie o vasetti
+                            </label>
+                            <Field className='border-2 border-green-500 rounded-lg h-10 p-2.5' id='lotBottles' name='lotBottles' placeholder="Lotto bottiglie" disabled={!productEditable} />
+                            <label htmlFor='notes'>
+                                Note
+                            </label>
+                            <textarea id="notes" rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500" placeholder="Note..." disabled={!productEditable} />
+                        </div>
+                        <div className='flex justify-center mt-20'>
 
-                    <div className='text-center text-xs text-green-600 uppercase'>
-                        <h1 className='text-xl font-bold' >Trattamento termico ingrediente</h1>
-                    </div>
+                            {!productEditable &&
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                </svg>
+                            }
+                            {productEditable &&
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"></path>
+                                </svg>
+                            }
+                            <div className='w-5' />
+                            <label htmlFor="toggle" className="inline-flex relative items-center cursor-pointer">
+                                <input type="checkbox" id="toggle" className="sr-only peer" onChange={
+                                    () => {
+                                        setProductEditable(!productEditable);
+                                        if (productEditable) {
+                                            console.log("Locking form, saving product info");
+                                            setProductInfo(values);
+                                        }
+                                    }
+                                } />
+                                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] 
+                                    after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600">
+                                </div>
+                            </label>
 
-                    <div className='grid grid-cols-2 md:grid-cols-4 gap-4 p-4' >
-                        {/* <label htmlFor='ingredient'>
-                            Ingrediente utilizzato
-                        </label>
-                        <input className='border-2 border-green-500 rounded-lg h-10 p-2.5' id='ingredient' name='ingredient' />
-                        <label htmlFor='quantity'>
-                            Quantità
-                        </label>
-                        <Field type='number' className='text-sm rounded-lg focus:ring-green-500 block w-full p-2.5 border-2 border-green-500 rounded-lg h-10' id='quantity' name='quantity' />
-                        <label htmlFor='lot'>
-                            Lotto
-                        </label>
-                        <Field className='text-sm rounded-lg focus:ring-green-500 block w-full p-2.5 border-2 border-green-500 rounded-lg h-10' id='quantity' name='quantity' />
-                        <label htmlFor='supplier'>
-                            Fornitore
-                        </label>
-                        <Field className='text-sm rounded-lg focus:ring-green-500 block w-full p-2.5 border-2 border-green-500 rounded-lg h-10' id='supplier' name='supplier' /> */}
-                    </div>
-
-                    <div className='mt-8 p-5 flex flex-row-reverse'>
-                        <button type='submit' className='text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer 
-                            hover:bg-green-300  
-                            bg-green-200 
-                            text-green-800 
-                            border duration-200 ease-in-out 
-                            border-green-700 transition'>
-                            <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </button>
-                    </div>
-                </Form>
+                            {/* <button type='submit' className={editable ? 'text-base hover:scale-110 focus:outline-none flex justify-center px-3 py-3 rounded font-bold cursor-pointer hover:bg-green-300 bg-green-200 text-green-800 border duration-200 ease-in-out border-green-700 transition'
+                                : ''}>
+                                Conferma
+                            </button> */}
+                        </div>
+                    </Form>)}
             </Formik>
 
-            <div className="overflow-x-auto relative">
-                <table className="w-full text-sm text-left text-black mb-20">
-                    <thead className="text-xs text-green-600 uppercase bg-gray-800">
-                        <tr>
-                            <th scope="col" className="py-3 px-6">
-                                Data lavorazione
-                            </th>
-                            <th scope="col" className="py-3 px-6">
-                                Materia prima lavorato
-                            </th>
-                            <th scope="col" className="py-3 px-6">
-                                Lotto materia prima
-                            </th>
-                            <th scope="col" className="py-3 px-6">
-                                Prodotto ottenuto
-                            </th>
-                            <th scope="col" className="py-3 px-6">
-                                Kg prodotto finito ottenuti
-                            </th>
-                            <th scope="col" className="py-3 px-6">
-                                Lotto prodotto finito
-                            </th>
-                            <th scope="col" className="py-3 px-6">
-                                Azioni
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {insertedValues.map((value, index) => {
-                            return (
-                                <tr key={index} className={index % 2 === 0 ? 'bg-gray-200 border-b border-gray-200' : 'border-b border-gray-200 bg-gray-100'}>
-                                    <td className="py-3 px-6">
-                                        {value.date}
-                                    </td>
-                                    <td className="py-3 px-6">
-                                        {value.name}
-                                    </td>
-                                    <td className="py-3 px-6">
-                                        {value.lot}
-                                    </td>
-                                    <td className="py-3 px-6">
-                                        {value.product}
-                                    </td>
-                                    <td className="py-3 px-6">
-                                        {value.quantity}
-                                    </td>
-                                    <td className="py-3 px-6">
-                                        {value.productLot}
-                                    </td>
-                                    <td className="py-3 px-6">
-                                        <button className="text-red-500 hover:text-red-700 font-bold py-1 px-3 rounded"
-                                            onClick={() => {
-                                                const newInsertedValues = [...insertedValues];
-                                                newInsertedValues.splice(index, 1);
-                                                setInsertedValues(newInsertedValues);
-                                            }}
-                                        >
-                                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                                            </svg>
-                                        </button>
-                                    </td>
-                                </tr>
-                            )
+            {!productEditable &&
+                <div>
+                    <div className='h-10' />
+                    <div className='grid place-content-center h-1 bg-green-800 w-full' />
+                    <div className='text-center text-white text-2xl font-bold'>
+                        <h1 className='text-2xl font-bold text-green-800 uppercase' >Ingredienti</h1>
+                    </div>
+                    <div className='h-10' />
+
+                    <Formik
+                        initialValues={{
+                            ingredient: '',
+                            quantity: 0,
+                            lot: '',
+                            supplier: '',
+                        }}
+                        onSubmit={(values, { resetForm }) => {
+                            if (values.ingredient !== '' && values.lot !== '' && values.supplier !== '' && values.quantity !== '') {
+                                setIngredients([...ingredients, values]);
+                                resetForm();
+                            }
+                        }}
+                        validationSchema={Yup.object({
+                            ingredient: Yup.string().required('Descrizione obbligatoria'),
+                            quantity: Yup.string().required('Quantità obbligatoria'),
+                            lot: Yup.string().required('Lotto obbligatorio'),
+                            supplier: Yup.string().required('Fornitore obbligatorio'),
                         })}
-                    </tbody>
-                </table>
-            </div>
+                    >
+                        {({ errors, touched }) => (
+                            <Form>
+                                <div className='grid grid-cols-2 md:grid-cols-4 gap-4 p-4' >
+                                    <label htmlFor='ingredient'>
+                                        Ingrediente utilizzato
+                                    </label>
+                                    <div className='grid grid-cols-1' >
+                                        <Field className='text-sm rounded-lg focus:ring-green-500 block w-full p-2.5 border-2 border-green-500 rounded-lg h-10' id='ingredient' name='ingredient' placeholder="Ingrediente" />
+                                        {errors.ingredient && touched.ingredient ? (
+                                            <div className='text-red-500'>{errors.ingredient}</div>
+                                        ) : null}
+                                    </div>
+                                    <label htmlFor='quantity'>
+                                        Quantità
+                                    </label>
+                                    <div className='grid grid-cols-1' >
+                                        <Field type='number' className='text-sm rounded-lg focus:ring-green-500 block w-full p-2.5 border-2 border-green-500 rounded-lg h-10' id='quantity' name='quantity' />
+                                        {errors.quantity && touched.quantity ? (
+                                            <div className='text-red-500'>{errors.quantity}</div>
+                                        ) : null}
+                                    </div>
+
+                                    <label htmlFor='lot'>
+                                        Lotto
+                                    </label>
+                                    <div className='grid grid-cols-1' >
+                                        <Field className='text-sm rounded-lg focus:ring-green-500 block w-full p-2.5 border-2 border-green-500 rounded-lg h-10' id='lot' name='lot' placeholder="Lotto" />
+                                        {errors.lot && touched.lot ? (
+                                            <div className='text-red-500'>{errors.lot}</div>
+                                        ) : null}
+                                    </div>
+                                    <label htmlFor='supplier'>
+                                        Fornitore
+                                    </label>
+                                    <div className='grid grid-cols-1' >
+                                        <Field className='text-sm rounded-lg focus:ring-green-500 block w-full p-2.5 border-2 border-green-500 rounded-lg h-10' id='supplier' name='supplier' placeholder="Fornitore" />
+                                        {errors.supplier && touched.supplier ? (
+                                            <div className='text-red-500'>{errors.supplier}</div>
+                                        ) : null}
+                                    </div>
+                                </div>
+
+                                <div className='mt-8 p-5 flex flex-row-reverse'>
+                                    <button type='submit' className='text-base hover:scale-110 focus:outline-none flex justify-center px-3 py-3 rounded font-bold cursor-pointer 
+                                    hover:bg-green-300  
+                                    bg-green-200 
+                                    text-green-800 
+                                    border duration-200 ease-in-out 
+                                    border-green-700 transition'>
+                                        <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </Form>)}
+                    </Formik>
+
+                    <div className="overflow-x-auto relative mb-20">
+                        {ingredients.length > 0 &&
+
+                            <table className="w-full text-sm text-center text-black">
+                                <thead className="text-xs text-green-600 uppercase bg-gray-800">
+                                    <tr>
+                                        <th scope="col" className="py-3 px-6">
+                                            Ingrediente utilizzato
+                                        </th>
+                                        <th scope="col" className="py-3 px-6">
+                                            Quantità
+                                        </th>
+                                        <th scope="col" className="py-3 px-6">
+                                            Lotto
+                                        </th>
+                                        <th scope="col" className="py-3 px-6">
+                                            Fornitore
+                                        </th>
+                                        <th scope="col" className="py-3 px-6">
+                                            Azioni
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {ingredients.map((value, index) => {
+                                        return (
+                                            <tr key={index} className={index % 2 === 0 ? 'bg-gray-200 border-b border-gray-200' : 'border-b border-gray-200 bg-gray-100'}>
+                                                <td className="py-3 px-6">
+                                                    <div className="flex justify-center items-center">
+                                                        <span className="font-bold text-green-700">{value.ingredient}</span>
+                                                    </div>
+                                                </td>
+                                                <td className="py-3 px-6">
+                                                    <div className="flex justify-center items-center">
+                                                        <span className="font-bold text-green-700">{value.quantity}</span>
+                                                    </div>
+                                                </td>
+                                                <td className="py-3 px-6">
+                                                    <div className="flex justify-center items-center">
+                                                        <span className="font-bold text-green-700">{value.lot}</span>
+                                                    </div>
+                                                </td>
+                                                <td className="py-3 px-6">
+                                                    <div className="flex justify-center items-center">
+                                                        <span className="font-bold text-green-700">{value.supplier}</span>
+                                                    </div>
+                                                </td>
+                                                <td className="py-3 px-6">
+                                                    <div className="flex justify-center items-center">
+                                                        <button className="hover:scale-110 focus:outline-none flex justify-center px-4 py-2 cursor-pointer text-red-600 duration-200 ease-in-out"
+                                                            onClick={() => {
+                                                                const newInsertedValues = [...ingredients];
+                                                                newInsertedValues.splice(index, 1);
+                                                                setIngredients(newInsertedValues);
+                                                            }}
+                                                        >
+                                                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        )
+                                    })}
+                                </tbody>
+                            </table>
+                        }
+                    </div>
+                </div>
+
+            }
 
             <div className='h-20 bg-green-800 w-full fixed bottom-0' >
                 <div className='p-5'>

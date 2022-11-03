@@ -64,7 +64,7 @@ function PhaseTwo() {
                                 Tipo di coltivazione presente
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 border-green-500 rounded-lg h-10 p-2.5' id='type' name='type' />
+                                <Field className='border-2 border-green-500 rounded-lg h-10 p-2.5' id='type' name='type' placeholder="Tipo coltivazione" />
                                 {errors.type && touched.type ? (
                                     <div className='text-red-500'>{errors.type}</div>
                                 ) : null}
@@ -89,7 +89,7 @@ function PhaseTwo() {
                                 Lotto materia prima (prodotte)
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 border-green-500 rounded-lg h-10 p-2.5' id='lot' name='lot' />
+                                <Field className='border-2 border-green-500 rounded-lg h-10 p-2.5' id='lot' name='lot' placeholder="Lotto" />
                                 {errors.lot && touched.lot ? (
                                     <div className='text-red-500'>{errors.lot}</div>
                                 ) : null}

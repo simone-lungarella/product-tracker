@@ -21,8 +21,8 @@ function PhaseThree() {
                 initialValues={{
                     name: '',
                     lot: '',
-                    isCompliantTransformation: false,
-                    isCompliantAfter: false,
+                    isCompliantTransformation: true,
+                    isCompliantAfter: true,
                 }}
                 onSubmit={(values, { resetForm }) => {
                     if (values.plants !== '' && values.lot !== '') {
@@ -44,7 +44,7 @@ function PhaseThree() {
                                 Nome materia prima
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 border-green-500 rounded-lg h-10 p-2.5' id='name' name='name' />
+                                <Field className='border-2 border-green-500 rounded-lg h-10 p-2.5' id='name' name='name' placeholder="Materia prima" />
                                 {errors.name && touched.name ? (
                                     <div className='text-red-500'>{errors.name}</div>
                                 ) : null}
@@ -53,7 +53,7 @@ function PhaseThree() {
                                 Lotto materia prima
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 border-green-500 rounded-lg h-10 p-2.5' id='lot' name='lot' />
+                                <Field className='border-2 border-green-500 rounded-lg h-10 p-2.5' id='lot' name='lot' placeholder="Lotto" />
                                 {errors.lot && touched.lot ? (
                                     <div className='text-red-500'>{errors.lot}</div>
                                 ) : null}

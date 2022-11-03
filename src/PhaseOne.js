@@ -21,7 +21,7 @@ function PhaseOne() {
                 initialValues={{
                     plants: '',
                     lot: '',
-                    isCompliant: false,
+                    isCompliant: true,
                     kg: 0,
                 }}
                 onSubmit={(values, { resetForm }) => {
@@ -44,7 +44,7 @@ function PhaseOne() {
                                 Piante o semi acquistati
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 border-green-500 rounded-lg h-10 p-2.5' id='plants' name='plants' />
+                                <Field className='border-2 border-green-500 rounded-lg h-10 p-2.5' id='plants' name='plants' placeholder="Piante o semi" />
                                 {errors.plants && touched.plants ? (
                                     <div className='text-red-500'>{errors.plants}</div>
                                 ) : null}
@@ -53,7 +53,7 @@ function PhaseOne() {
                                 Lotto
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 border-green-500 rounded-lg h-10 p-2.5' id='lot' name='lot' />
+                                <Field className='border-2 border-green-500 rounded-lg h-10 p-2.5' id='lot' name='lot' placeholder="Lotto" />
                                 {errors.lot && touched.lot ? (
                                     <div className='text-red-500'>{errors.lot}</div>
                                 ) : null}
