@@ -30,7 +30,7 @@ function Homepage() {
                             text-green-800 
                             border duration-200 ease-in-out 
                             border-green-700 transition py-4 w-40'>
-                    <a href='/step-1'>Inizia</a>
+                    <a href='/#/step-1'>Inizia</a>
                 </button>
             </div>
 
