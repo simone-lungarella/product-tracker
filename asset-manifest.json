@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/simone-lungarella/product-tracker/static/css/main.1d6673cf.css",
-    "main.js": "/simone-lungarella/product-tracker/static/js/main.4d303393.js",
+    "main.js": "/simone-lungarella/product-tracker/static/js/main.a7a2b8b5.js",
     "static/js/496.6d1090c7.chunk.js": "/simone-lungarella/product-tracker/static/js/496.6d1090c7.chunk.js",
     "index.html": "/simone-lungarella/product-tracker/index.html",
     "main.1d6673cf.css.map": "/simone-lungarella/product-tracker/static/css/main.1d6673cf.css.map",
-    "main.4d303393.js.map": "/simone-lungarella/product-tracker/static/js/main.4d303393.js.map",
+    "main.a7a2b8b5.js.map": "/simone-lungarella/product-tracker/static/js/main.a7a2b8b5.js.map",
     "496.6d1090c7.chunk.js.map": "/simone-lungarella/product-tracker/static/js/496.6d1090c7.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1d6673cf.css",
-    "static/js/main.4d303393.js"
+    "static/js/main.a7a2b8b5.js"
   ]
 }
