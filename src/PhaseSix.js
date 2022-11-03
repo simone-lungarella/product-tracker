@@ -7,15 +7,15 @@ function PhaseSix() {
     const [insertedValues, setInsertedValues] = useState([]);
 
     return (
-        <div className='bg-green-50 h-screen'>
+        <div className='bg-green-50 md:h-screen sm:h-full'>
 
             <div className='grid place-content-center h-20 bg-green-500 w-full'>
                 <div className='text-center text-white text-2xl font-bold'>
-                    <h1 className='text-4xl font-bold' >Tracciabilità prodotto finito</h1>
+                    <h1 className='md:text-4xl sm:text-2xl font-bold' >Tracciabilità prodotto finito</h1>
                 </div>
             </div>
             <div className='grid place-content-center h-1 bg-green-800 w-full' />
-            <div className='h-10' />
+            <div className='md:h-10' />
 
             <Formik
                 initialValues={{
@@ -34,11 +34,11 @@ function PhaseSix() {
                 }}
                 validationSchema={Yup.object({
                     date: Yup.date().required('Data obbligatoria'),
-                    name: Yup.string().required('Descrizione obbligatoria'),
+                    name: Yup.string().required('Desc. obbligatoria'),
                     lot: Yup.string().required('Lotto obbligatorio'),
                     product: Yup.string().required('Prodotto obbligatorio'),
                     quantity: Yup.number().required('Quantità obbligatoria'),
-                    productLot: Yup.string().required('Lotto prodotto obbligatorio'),
+                    productLot: Yup.string().required('Lotto obbligatorio'),
                 })}
             >
                 {({ errors, touched }) => (
@@ -64,7 +64,7 @@ function PhaseSix() {
                                 Materia prima lavorato
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 border-green-500 rounded-lg h-10 p-2.5' id='name' name='name' />
+                                <Field className='border-2 border-green-500 rounded-lg h-10 p-2.5' id='name' name='name' placeholder='Materia prima' />
                                 {errors.name && touched.name ? (
                                     <div className='text-red-500'>{errors.name}</div>
                                 ) : null}
@@ -73,7 +73,7 @@ function PhaseSix() {
                                 Lotto materia prima
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 border-green-500 rounded-lg h-10 p-2.5' id='lot' name='lot' />
+                                <Field className='border-2 border-green-500 rounded-lg h-10 p-2.5' id='lot' name='lot' placeholder='Lotto materia prima' />
                                 {errors.lot && touched.lot ? (
                                     <div className='text-red-500'>{errors.lot}</div>
                                 ) : null}
@@ -82,7 +82,7 @@ function PhaseSix() {
                                 Prodotto ottenuto
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 border-green-500 rounded-lg h-10 p-2.5' id='product' name='product' />
+                                <Field className='border-2 border-green-500 rounded-lg h-10 p-2.5' id='product' name='product' placeholder='Prodotto' />
                                 {errors.product && touched.product ? (
                                     <div className='text-red-500'>{errors.product}</div>
                                 ) : null}
@@ -100,13 +100,14 @@ function PhaseSix() {
                                 Lotto prodotto finito
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 border-green-500 rounded-lg h-10 p-2.5' id='productLot' name='productLot' />
+                                <Field className='border-2 border-green-500 rounded-lg h-10 p-2.5' id='productLot' name='productLot' placeholder='Lotto prodotto' />
                                 {errors.productLot && touched.productLot ? (
                                     <div className='text-red-500'>{errors.productLot}</div>
                                 ) : null}
                             </div>
                         </div>
-                        <div className='mt-8 p-5 flex flex-row-reverse'>
+
+                        <div className='md:mt-8 p-5 flex flex-row-reverse'>
                             <button type='submit' className='text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer 
                             hover:bg-green-300  
                             bg-green-200 
@@ -118,89 +119,135 @@ function PhaseSix() {
                                 </svg>
                             </button>
                         </div>
+                        <div className='h-20' />
                     </Form>)}
             </Formik>
 
-            <div className="overflow-x-auto relative">
-                <table className="w-full text-sm text-center text-black mb-20">
-                    <thead className="text-xs text-green-600 uppercase bg-gray-800">
-                        <tr>
-                            <th scope="col" className="py-3 px-6">
-                                Data lavorazione
-                            </th>
-                            <th scope="col" className="py-3 px-6">
-                                Materia prima lavorato
-                            </th>
-                            <th scope="col" className="py-3 px-6">
-                                Lotto materia prima
-                            </th>
-                            <th scope="col" className="py-3 px-6">
-                                Prodotto ottenuto
-                            </th>
-                            <th scope="col" className="py-3 px-6">
-                                Kg prodotto finito ottenuti
-                            </th>
-                            <th scope="col" className="py-3 px-6">
-                                Lotto prodotto finito
-                            </th>
-                            <th scope="col" className="py-3 px-6">
-                                Azioni
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {insertedValues.map((value, index) => {
-                            return (
-                                <tr key={index} className={index % 2 === 0 ? 'bg-gray-200 border-b border-gray-200' : 'border-b border-gray-200 bg-gray-100'}>
-                                    <td className="py-3 px-6">
-                                        <div className="flex justify-center items-center">
-                                            <span className="font-bold text-green-700">{value.date}</span>
-                                        </div>
-                                    </td>
-                                    <td className="py-3 px-6">
-                                        <div className="flex justify-center items-center">
-                                            <span className="font-bold text-green-700">{value.name}</span>
-                                        </div>
-                                    </td>
-                                    <td className="py-3 px-6">
-                                        <div className="flex justify-center items-center">
-                                            <span className="font-bold text-green-700">{value.lot}</span>
-                                        </div>
-                                    </td>
-                                    <td className="py-3 px-6">
-                                        <div className="flex justify-center items-center">
-                                            <span className="font-bold text-green-700">{value.product}</span>
-                                        </div>
-                                    </td>
-                                    <td className="py-3 px-6">
-                                        <div className="flex justify-center items-center">
-                                            <span className="font-bold text-green-700">{value.quantity}</span>
-                                        </div>
-                                    </td>
-                                    <td className="py-3 px-6">
-                                        <div className="flex justify-center items-center">
-                                            <span className="font-bold text-green-700">{value.productLot}</span>
-                                        </div>
-                                    </td>
-                                    <td className="py-3 px-6">
-                                        <div className="flex justify-center items-center">
-                                            <button className="text-red-500 hover:text-red-700 font-bold py-1 px-3 rounded"
-                                                onClick={() => {
-                                                    const newInsertedValues = [...insertedValues];
-                                                    newInsertedValues.splice(index, 1);
-                                                    setInsertedValues(newInsertedValues);
-                                                }} >
-                                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </table>
+            <div className="overflow-x-auto relative hidden md:block">
+                {insertedValues.length > 0 && (
+                    <table className="w-full text-sm text-center text-black mb-20">
+                        <thead className="text-xs text-green-600 uppercase bg-gray-800">
+                            <tr>
+                                <th scope="col" className="py-3 px-6">
+                                    Data lavorazione
+                                </th>
+                                <th scope="col" className="py-3 px-6">
+                                    Materia prima lavorato
+                                </th>
+                                <th scope="col" className="py-3 px-6">
+                                    Lotto materia prima
+                                </th>
+                                <th scope="col" className="py-3 px-6">
+                                    Prodotto ottenuto
+                                </th>
+                                <th scope="col" className="py-3 px-6">
+                                    Kg prodotto finito ottenuti
+                                </th>
+                                <th scope="col" className="py-3 px-6">
+                                    Lotto prodotto finito
+                                </th>
+                                <th scope="col" className="py-3 px-6">
+                                    Azioni
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {insertedValues.map((value, index) => {
+                                return (
+                                    <tr key={index} className={index % 2 === 0 ? 'bg-gray-200 border-b border-gray-200' : 'border-b border-gray-200 bg-gray-100'}>
+                                        <td className="py-3 px-6">
+                                            <div className="flex justify-center items-center">
+                                                <span className="font-bold text-green-700">{value.date}</span>
+                                            </div>
+                                        </td>
+                                        <td className="py-3 px-6">
+                                            <div className="flex justify-center items-center">
+                                                <span className="font-bold text-green-700">{value.name}</span>
+                                            </div>
+                                        </td>
+                                        <td className="py-3 px-6">
+                                            <div className="flex justify-center items-center">
+                                                <span className="font-bold text-green-700">{value.lot}</span>
+                                            </div>
+                                        </td>
+                                        <td className="py-3 px-6">
+                                            <div className="flex justify-center items-center">
+                                                <span className="font-bold text-green-700">{value.product}</span>
+                                            </div>
+                                        </td>
+                                        <td className="py-3 px-6">
+                                            <div className="flex justify-center items-center">
+                                                <span className="font-bold text-green-700">{value.quantity}</span>
+                                            </div>
+                                        </td>
+                                        <td className="py-3 px-6">
+                                            <div className="flex justify-center items-center">
+                                                <span className="font-bold text-green-700">{value.productLot}</span>
+                                            </div>
+                                        </td>
+                                        <td className="py-3 px-6">
+                                            <div className="flex justify-center items-center">
+                                                <button className="text-red-500 hover:text-red-700 font-bold py-1 px-3 rounded"
+                                                    onClick={() => {
+                                                        const newInsertedValues = [...insertedValues];
+                                                        newInsertedValues.splice(index, 1);
+                                                        setInsertedValues(newInsertedValues);
+                                                    }} >
+                                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </table>
+                )}
+            </div>
+
+            <div className="overflow-x-auto relative md:hidden sm:block">
+                {insertedValues.length > 0 && (
+                    <table className="w-full text-sm text-center text-black mb-20">
+                        <thead className="text-xs text-green-600 uppercase bg-gray-800">
+                            <tr>
+                                <th scope="col" className="py-3 px-6">
+                                    Materia prima lavorato
+                                </th>
+                                <th scope="col" className="py-3 px-6">
+                                    Azioni
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {insertedValues.map((value, index) => {
+                                return (
+                                    <tr key={index} className={index % 2 === 0 ? 'bg-gray-200 border-b border-gray-200' : 'border-b border-gray-200 bg-gray-100'}>
+                                        <td className="py-3 px-6">
+                                            <div className="flex justify-center items-center">
+                                                <span className="font-bold text-green-700">{value.name}</span>
+                                            </div>
+                                        </td>
+                                        <td className="py-3 px-6">
+                                            <div className="flex justify-center items-center">
+                                                <button className="text-red-500 hover:text-red-700 font-bold py-1 px-3 rounded"
+                                                    onClick={() => {
+                                                        const newInsertedValues = [...insertedValues];
+                                                        newInsertedValues.splice(index, 1);
+                                                        setInsertedValues(newInsertedValues);
+                                                    }} >
+                                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>)
+                            })}
+                        </tbody>
+                    </table>
+                )}
             </div>
 
             <div className='h-20 bg-green-800 w-full fixed bottom-0' >

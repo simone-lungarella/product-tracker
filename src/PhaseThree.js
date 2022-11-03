@@ -11,7 +11,7 @@ function PhaseThree() {
 
             <div className='grid place-content-center h-20 bg-green-500 w-full'>
                 <div className='text-center text-white text-2xl font-bold'>
-                    <h1 className='text-4xl font-bold' >Checklist materie prime</h1>
+                    <h1 className='md:text-4xl sm:text-2xl font-bold' >Checklist materie prime</h1>
                 </div>
             </div>
             <div className='grid place-content-center h-1 bg-green-800 w-full' />
@@ -31,13 +31,13 @@ function PhaseThree() {
                     }
                 }}
                 validationSchema={Yup.object({
-                    name: Yup.string().required('Descrizione obbligatoria'),
+                    name: Yup.string().required('Desc. obbligatoria'),
                     lot: Yup.string().required('Lotto obbligatorio'),
                     isCompliantTransformation: Yup.boolean(),
                     isCompliantAfter: Yup.boolean(),
                 })}
             >
-                {({errors, touched}) => (
+                {({ errors, touched }) => (
                     <Form>
                         <div className='grid grid-cols-2 md:grid-cols-4 gap-4 p-4' >
                             <label htmlFor='name'>
@@ -83,71 +83,116 @@ function PhaseThree() {
                     </Form>)}
             </Formik>
 
-            <div className="overflow-x-auto relative">
-                <table className="w-full text-sm text-center text-black mb-20">
-                    <thead className="text-xs text-green-600 uppercase bg-gray-800">
-                        <tr>
-                            <th scope="col" className="py-3 px-6">
-                                Nome materia prima
-                            </th>
-                            <th scope="col" className="py-3 px-6">
-                                Lotto materia prima
-                            </th>
-                            <th scope="col" className="py-3 px-6">
-                                Conforme alla trasformazione
-                            </th>
-                            <th scope="col" className="py-3 px-6">
-                                Controllo post trasporto az. trasformazione
-                            </th>
-                            <th scope="col" className="py-3 px-6">
-                                Azioni
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {insertedValues.map((value, index) => {
-                            return (
-                                <tr key={index} className={index % 2 === 0 ? 'bg-gray-200 border-b border-gray-200' : 'border-b border-gray-200 bg-gray-100'}>
-                                    <td className="py-3 px-6">
-                                        <div className="flex justify-center items-center">
-                                            <span className="font-bold text-green-700">{value.name}</span>
-                                        </div>
-                                    </td>
-                                    <td className="py-3 px-6">
-                                        <div className="flex justify-center items-center">
-                                            <span className="font-bold text-green-700">{value.lot}</span>
-                                        </div>
-                                    </td>
-                                    <td className="py-3 px-6">
-                                        <div className="flex justify-center items-center">
-                                            <span className="font-bold text-green-700">{value.isCompliantTransformation ? 'Si' : 'No'}</span>
-                                        </div>
-                                    </td>
-                                    <td className="py-3 px-6">
-                                        <div className="flex justify-center items-center">
-                                            <span className="font-bold text-green-700">{value.isCompliantAfter ? 'Si' : 'No'}</span>
-                                        </div>
-                                    </td>
-                                    <td className="py-3 px-6">
-                                        <div className="flex justify-center items-center">
-                                            <button className="hover:scale-110 focus:outline-none flex justify-center px-4 py-2 cursor-pointer text-red-600 duration-200 ease-in-out"
-                                                onClick={() => {
-                                                    const newInsertedValues = [...insertedValues];
-                                                    newInsertedValues.splice(index, 1);
-                                                    setInsertedValues(newInsertedValues);
-                                                }}
-                                            >
-                                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </table>
+            <div className="overflow-x-auto relative hidden md:block">
+                {insertedValues.length > 0 && (
+                    <table className="w-full text-sm text-center text-black mb-20">
+                        <thead className="text-xs text-green-600 uppercase bg-gray-800">
+                            <tr>
+                                <th scope="col" className="py-3 px-6">
+                                    Nome materia prima
+                                </th>
+                                <th scope="col" className="py-3 px-6">
+                                    Lotto materia prima
+                                </th>
+                                <th scope="col" className="py-3 px-6">
+                                    Conforme alla trasformazione
+                                </th>
+                                <th scope="col" className="py-3 px-6">
+                                    Controllo post trasporto az. trasformazione
+                                </th>
+                                <th scope="col" className="py-3 px-6">
+                                    Azioni
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {insertedValues.map((value, index) => {
+                                return (
+                                    <tr key={index} className={index % 2 === 0 ? 'bg-gray-200 border-b border-gray-200' : 'border-b border-gray-200 bg-gray-100'}>
+                                        <td className="py-3 px-6">
+                                            <div className="flex justify-center items-center">
+                                                <span className="font-bold text-green-700">{value.name}</span>
+                                            </div>
+                                        </td>
+                                        <td className="py-3 px-6">
+                                            <div className="flex justify-center items-center">
+                                                <span className="font-bold text-green-700">{value.lot}</span>
+                                            </div>
+                                        </td>
+                                        <td className="py-3 px-6">
+                                            <div className="flex justify-center items-center">
+                                                <span className="font-bold text-green-700">{value.isCompliantTransformation ? 'Si' : 'No'}</span>
+                                            </div>
+                                        </td>
+                                        <td className="py-3 px-6">
+                                            <div className="flex justify-center items-center">
+                                                <span className="font-bold text-green-700">{value.isCompliantAfter ? 'Si' : 'No'}</span>
+                                            </div>
+                                        </td>
+                                        <td className="py-3 px-6">
+                                            <div className="flex justify-center items-center">
+                                                <button className="hover:scale-110 focus:outline-none flex justify-center px-4 py-2 cursor-pointer text-red-600 duration-200 ease-in-out"
+                                                    onClick={() => {
+                                                        const newInsertedValues = [...insertedValues];
+                                                        newInsertedValues.splice(index, 1);
+                                                        setInsertedValues(newInsertedValues);
+                                                    }}
+                                                >
+                                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </table>)}
+            </div>
+
+            <div className="overflow-x-auto relative md:hidden sm:block">
+                {insertedValues.length > 0 && (
+                    <table className="w-full text-sm text-center text-black mb-20">
+                        <thead className="text-xs text-green-600 uppercase bg-gray-800">
+                            <tr>
+                                <th scope="col" className="py-3 px-6">
+                                    Nome materia prima
+                                </th>
+                                <th scope="col" className="py-3 px-6">
+                                    Azioni
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {insertedValues.map((value, index) => {
+                                return (
+                                    <tr key={index} className={index % 2 === 0 ? 'bg-gray-200 border-b border-gray-200' : 'border-b border-gray-200 bg-gray-100'}>
+                                        <td className="py-3 px-6">
+                                            <div className="flex justify-center items-center">
+                                                <span className="font-bold text-green-700">{value.name}</span>
+                                            </div>
+                                        </td>
+                                        <td className="py-3 px-6">
+                                            <div className="flex justify-center items-center">
+                                                <button className="hover:scale-110 focus:outline-none flex justify-center px-4 py-2 cursor-pointer text-red-600 duration-200 ease-in-out"
+                                                    onClick={() => {
+                                                        const newInsertedValues = [...insertedValues];
+                                                        newInsertedValues.splice(index, 1);
+                                                        setInsertedValues(newInsertedValues);
+                                                    }}
+                                                >
+                                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </table>)}
             </div>
 
             <div className='h-20 bg-green-800 w-full fixed bottom-0' >

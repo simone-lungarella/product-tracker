@@ -10,15 +10,15 @@ function PhaseFour() {
     const [productEditable, setProductEditable] = useState(true);
 
     return (
-        <div className={productEditable ? 'bg-green-50 h-screen' : 'bg-green-50 h-full'}>
+        <div className={productEditable ? 'bg-green-50 md:h-screen sm:h-full' : 'bg-green-50 md:h-screen sm:h-full'}>
 
             <div className='grid place-content-center h-20 bg-green-500 w-full'>
                 <div className='text-center text-white text-2xl font-bold'>
-                    <h1 className='text-4xl font-bold' >Tracciabilità prodotto finito</h1>
+                    <h1 className='md:text-4xl sm:text-2xl font-bold' >Tracciabilità prodotto finito</h1>
                 </div>
             </div>
             <div className='grid place-content-center h-1 bg-green-800 w-full' />
-            <div className='h-10' />
+            <div className='md:h-10' />
 
             <Formik
                 initialValues={{
@@ -143,12 +143,10 @@ function PhaseFour() {
                                     after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600">
                                 </div>
                             </label>
-
-                            {/* <button type='submit' className={editable ? 'text-base hover:scale-110 focus:outline-none flex justify-center px-3 py-3 rounded font-bold cursor-pointer hover:bg-green-300 bg-green-200 text-green-800 border duration-200 ease-in-out border-green-700 transition'
-                                : ''}>
-                                Conferma
-                            </button> */}
                         </div>
+                        {productEditable && (
+                            <div className='h-20 mb-10' />
+                        )}
                     </Form>)}
             </Formik>
 
@@ -175,7 +173,7 @@ function PhaseFour() {
                             }
                         }}
                         validationSchema={Yup.object({
-                            ingredient: Yup.string().required('Descrizione obbligatoria'),
+                            ingredient: Yup.string().required('Desc. obbligatoria'),
                             quantity: Yup.string().required('Quantità obbligatoria'),
                             lot: Yup.string().required('Lotto obbligatorio'),
                             supplier: Yup.string().required('Fornitore obbligatorio'),
@@ -223,7 +221,7 @@ function PhaseFour() {
                                     </div>
                                 </div>
 
-                                <div className='mt-8 p-5 flex flex-row-reverse'>
+                                <div className='md:mt-8 p-5 flex flex-row-reverse'>
                                     <button type='submit' className='text-base hover:scale-110 focus:outline-none flex justify-center px-3 py-3 rounded font-bold cursor-pointer 
                                     hover:bg-green-300  
                                     bg-green-200 
@@ -235,12 +233,13 @@ function PhaseFour() {
                                         </svg>
                                     </button>
                                 </div>
+                                <div className='h-20' />
+
                             </Form>)}
                     </Formik>
 
-                    <div className="overflow-x-auto relative mb-20">
+                    <div className="overflow-x-auto relative mb-20 hidden md:block">
                         {ingredients.length > 0 &&
-
                             <table className="w-full text-sm text-center text-black">
                                 <thead className="text-xs text-green-600 uppercase bg-gray-800">
                                     <tr>
@@ -283,6 +282,51 @@ function PhaseFour() {
                                                 <td className="py-3 px-6">
                                                     <div className="flex justify-center items-center">
                                                         <span className="font-bold text-green-700">{value.supplier}</span>
+                                                    </div>
+                                                </td>
+                                                <td className="py-3 px-6">
+                                                    <div className="flex justify-center items-center">
+                                                        <button className="hover:scale-110 focus:outline-none flex justify-center px-4 py-2 cursor-pointer text-red-600 duration-200 ease-in-out"
+                                                            onClick={() => {
+                                                                const newInsertedValues = [...ingredients];
+                                                                newInsertedValues.splice(index, 1);
+                                                                setIngredients(newInsertedValues);
+                                                            }}
+                                                        >
+                                                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        )
+                                    })}
+                                </tbody>
+                            </table>
+                        }
+                    </div>
+
+                    <div className="overflow-x-auto relative mb-20 md:hidden sm:block">
+                        {ingredients.length > 0 &&
+                            <table className="w-full text-sm text-center text-black">
+                                <thead className="text-xs text-green-600 uppercase bg-gray-800">
+                                    <tr>
+                                        <th scope="col" className="py-3 px-6">
+                                            Ingrediente utilizzato
+                                        </th>
+                                        <th scope="col" className="py-3 px-6">
+                                            Azioni
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {ingredients.map((value, index) => {
+                                        return (
+                                            <tr key={index} className={index % 2 === 0 ? 'bg-gray-200 border-b border-gray-200' : 'border-b border-gray-200 bg-gray-100'}>
+                                                <td className="py-3 px-6">
+                                                    <div className="flex justify-center items-center">
+                                                        <span className="font-bold text-green-700">{value.ingredient}</span>
                                                     </div>
                                                 </td>
                                                 <td className="py-3 px-6">
