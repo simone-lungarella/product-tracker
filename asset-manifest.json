@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/simone-lungarella/product-tracker/static/css/main.ab28f916.css",
-    "main.js": "/simone-lungarella/product-tracker/static/js/main.5eb282a5.js",
+    "main.css": "/simone-lungarella/product-tracker/static/css/main.b7ee9046.css",
+    "main.js": "/simone-lungarella/product-tracker/static/js/main.6b11ffb6.js",
     "static/js/496.6d1090c7.chunk.js": "/simone-lungarella/product-tracker/static/js/496.6d1090c7.chunk.js",
     "index.html": "/simone-lungarella/product-tracker/index.html",
-    "main.ab28f916.css.map": "/simone-lungarella/product-tracker/static/css/main.ab28f916.css.map",
-    "main.5eb282a5.js.map": "/simone-lungarella/product-tracker/static/js/main.5eb282a5.js.map",
+    "main.b7ee9046.css.map": "/simone-lungarella/product-tracker/static/css/main.b7ee9046.css.map",
+    "main.6b11ffb6.js.map": "/simone-lungarella/product-tracker/static/js/main.6b11ffb6.js.map",
     "496.6d1090c7.chunk.js.map": "/simone-lungarella/product-tracker/static/js/496.6d1090c7.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ab28f916.css",
-    "static/js/main.5eb282a5.js"
+    "static/css/main.b7ee9046.css",
+    "static/js/main.6b11ffb6.js"
   ]
 }
