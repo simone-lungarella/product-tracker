@@ -62,7 +62,6 @@ function PhaseOne() {
                                 Conforme
                             </label>
                             <Field type="checkbox" className='border-green-500 text-green-600 bg-gray-100 form-checkbox focus:ring-green-500 rounded-lg h-10 w-10' id='isCompliant' name='isCompliant' />
-
                             <label htmlFor='kg'>
                                 Kg o colli acquistati
                             </label>
