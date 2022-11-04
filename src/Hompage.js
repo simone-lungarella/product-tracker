@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from './img/Logo.png';
 
 function Homepage() {
@@ -30,7 +31,7 @@ function Homepage() {
                             text-green-800 
                             border duration-200 ease-in-out 
                             border-green-700 transition py-4 w-40'>
-                    <a href='/#/step-1'>Inizia</a>
+                    <Link to='/step-1'>Inizia</Link>
                 </button>
             </div>
 

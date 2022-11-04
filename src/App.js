@@ -14,12 +14,12 @@ function App() {
     <div>
       <Routes>
         <Route exact path="/" element={<Homepage />} />
-        <Route exact path="/step-1" element={<PhaseOne />} />
-        <Route exact path="/step-2" element={<PhaseTwo />} />
-        <Route exact path="/step-3" element={<PhaseThree />} />
-        <Route exact path="/step-4" element={<PhaseFour />} />
-        <Route exact path="/step-5" element={<PhaseFive />} />
-        <Route exact path="/step-6" element={<PhaseSix />} />
+        <Route path="/step-1" element={<PhaseOne />} />
+        <Route path="/step-2" element={<PhaseTwo />} />
+        <Route path="/step-3" element={<PhaseThree />} />
+        <Route path="/step-4" element={<PhaseFour />} />
+        <Route path="/step-5" element={<PhaseFive />} />
+        <Route path="/step-6" element={<PhaseSix />} />
       </Routes>
     </div>
   );

@@ -1,5 +1,6 @@
 import { Field, Form, Formik } from 'formik';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 
 function PhaseOne() {
@@ -210,11 +211,11 @@ function PhaseOne() {
                             text-green-700 
                             border duration-200 ease-in-out 
                             border-green-600 transition" >
-                            <a href='/'>
+                            <Link to='/step-1'>
                                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                                 </svg>
-                            </a>
+                            </Link>
                         </button>
                     </div>
                     <div className='flex flex-row-reverse'>
@@ -224,11 +225,11 @@ function PhaseOne() {
                             text-green-700 
                             border duration-200 ease-in-out 
                             border-green-600 transition">
-                            <a href='/#/step-2'>
+                            <Link to='/step-2'>
                                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                                 </svg>
-                            </a>
+                            </Link>
                         </button>
                         <div className='w-10' />
                         <button type="button" className="text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer 
