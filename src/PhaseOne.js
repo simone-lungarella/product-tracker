@@ -21,6 +21,7 @@ function PhaseOne() {
             <Formik
                 initialValues={{
                     plants: '',
+                    origin: '',
                     lot: '',
                     isCompliant: true,
                     kg: 0,
@@ -33,6 +34,7 @@ function PhaseOne() {
                 }}
                 validationSchema={Yup.object({
                     plants: Yup.string().required('Desc. obbligatoria'),
+                    origin: Yup.string().required('Origine obbligatoria'),
                     lot: Yup.string().required('Lotto obbligatorio'),
                     isCompliant: Yup.boolean(),
                     kg: Yup.number().required('Quantità obbligatoria'),
@@ -42,13 +44,27 @@ function PhaseOne() {
                     <Form>
                         <div className='grid grid-cols-2 md:grid-cols-4 gap-4 p-4' >
                             <label htmlFor='plants'>
-                                Piante o semi acquistati
+                                Piante o semi
                             </label>
                             <div className='grid grid-cols-1' >
                                 <Field className='border-2 border-amber-500 rounded-lg h-10 p-2.5' id='plants' name='plants' placeholder="Piante o semi" />
                                 {errors.plants && touched.plants ? (
                                     <div className='text-red-500'>{errors.plants}</div>
                                 ) : null}
+                            </div>
+                            <label htmlFor='origin'>
+                                Provenienza
+                            </label>
+                            <div className='grid grid-cols-1' >
+                                <Field
+                                    className='border-2 border-amber-500 rounded-lg h-15 p-2.5'
+                                    component="select"
+                                    id="origin"
+                                    name="origin">
+                                    <option value="Autoprodotte">Autoproduzione</option>
+                                    <option value="Acquistate">Acquisto</option>
+                                    <option value="Piante da frutto esistenti">Piante da frutto preesistenti</option>
+                                </Field>
                             </div>
                             <label htmlFor='lot'>
                                 Lotto
@@ -63,7 +79,7 @@ function PhaseOne() {
                                 Conforme
                             </label>
                             <Field type="checkbox" className='border-amber-500 text-amber-600 bg-gray-100 form-checkbox focus:ring-amber-500 rounded-lg h-10 w-10' id='isCompliant' name='isCompliant' />
-                            
+
                             <label htmlFor='kg'>
                                 Kg o colli acquistati
                             </label>
@@ -98,6 +114,9 @@ function PhaseOne() {
                                     Piante o semi acquistati
                                 </th>
                                 <th scope="col" className="py-3 px-6">
+                                Provenienza
+                                </th>
+                                <th scope="col" className="py-3 px-6">
                                     Lotto
                                 </th>
                                 <th scope="col" className="py-3 px-6">
@@ -118,6 +137,11 @@ function PhaseOne() {
                                         <td className="py-3 px-6">
                                             <div className="flex justify-center items-center">
                                                 <span className="font-bold text-amber-700">{value.plants}</span>
+                                            </div>
+                                        </td>
+                                        <td className="py-3 px-6">
+                                            <div className="flex justify-center items-center">
+                                                <span className="font-bold text-amber-700">{value.origin}</span>
                                             </div>
                                         </td>
                                         <td className="py-3 px-6">
