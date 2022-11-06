@@ -24,7 +24,7 @@ function PhaseTwo() {
                     type: '',
                     date: '',
                     lot: '',
-                    quantity: 0,
+                    quantity: '',
                 }}
                 onSubmit={(values, { resetForm }) => {
                     if (values.name !== '' && values.type !== '' && values.date !== '' && values.lot !== '') {
@@ -37,7 +37,6 @@ function PhaseTwo() {
                     type: Yup.string().required('Tipologia obbligatoria'),
                     date: Yup.date().required('Data obbligatoria'),
                     lot: Yup.string().required('Lotto obbligatorio'),
-                    quantity: Yup.number().required('Quantità obbligatoria'),
                 })}
             >
                 {({ errors, touched }) => (
@@ -103,7 +102,7 @@ function PhaseTwo() {
                                 Kg raccolti
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field type='number' className='text-sm rounded-lg focus:ring-amber-500 block w-full p-2.5 border-2 border-amber-500 rounded-lg h-10' id='quantity' name='quantity' />
+                                <Field className='text-sm rounded-lg focus:ring-amber-500 block w-full p-2.5 border-2 border-amber-500 rounded-lg h-10' id='quantity' name='quantity' placeholder='Kg raccolti' />
                                 {errors.quantity && touched.quantity ? (
                                     <div className='text-red-500'>{errors.quantity}</div>
                                 ) : null}

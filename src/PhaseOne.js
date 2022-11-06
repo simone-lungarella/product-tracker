@@ -20,11 +20,11 @@ function PhaseOne() {
 
             <Formik
                 initialValues={{
-                    plants: '',
+                    plants: 'Autoproduzione',
                     origin: '',
                     lot: '',
                     isCompliant: true,
-                    kg: 0,
+                    kg: '',
                 }}
                 onSubmit={(values, { resetForm }) => {
                     if (values.plants !== '' && values.lot !== '') {
@@ -37,7 +37,6 @@ function PhaseOne() {
                     origin: Yup.string().required('Origine obbligatoria'),
                     lot: Yup.string().required('Lotto obbligatorio'),
                     isCompliant: Yup.boolean(),
-                    kg: Yup.number().required('Quantità obbligatoria'),
                 })}
             >
                 {({ errors, touched }) => (
@@ -84,7 +83,7 @@ function PhaseOne() {
                                 Kg o colli acquistati
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field type='number' className='text-sm rounded-lg focus:ring-amber-500 block w-full p-2.5 border-2 border-amber-500 rounded-lg h-10' id='kg' name='kg' />
+                                <Field className='text-sm rounded-lg focus:ring-amber-500 block w-full p-2.5 border-2 border-amber-500 rounded-lg h-10' id='kg' name='kg' placeholder='Kg o colli' />
                                 {errors.kg && touched.kg ? (
                                     <div className='text-red-500'>{errors.kg}</div>
                                 ) : null}

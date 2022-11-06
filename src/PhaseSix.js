@@ -24,7 +24,7 @@ function PhaseSix() {
                     name: '',
                     lot: '',
                     product: '',
-                    quantity: 0,
+                    quantity: '',
                     productLot: '',
                 }}
                 onSubmit={(values, { resetForm }) => {
@@ -38,7 +38,7 @@ function PhaseSix() {
                     name: Yup.string().required('Desc. obbligatoria'),
                     lot: Yup.string().required('Lotto obbligatorio'),
                     product: Yup.string().required('Prodotto obbligatorio'),
-                    quantity: Yup.number().required('Quantità obbligatoria'),
+                    quantity: Yup.string().required('Quantità obbligatoria'),
                     productLot: Yup.string().required('Lotto obbligatorio'),
                 })}
             >
@@ -95,9 +95,9 @@ function PhaseSix() {
                                 Kg prodotto finito ottenuti
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field type='number' className='text-sm rounded-lg focus:ring-amber-500 block w-full p-2.5 border-2 border-amber-500 rounded-lg h-10' id='quantity' name='quantity' />
-                                {errors.number && touched.number ? (
-                                    <div className='text-red-500'>{errors.number}</div>
+                                <Field className='text-sm rounded-lg focus:ring-amber-500 block w-full p-2.5 border-2 border-amber-500 rounded-lg h-10' id='quantity' name='quantity' placeholder='Kg prodotto' />
+                                {errors.quantity && touched.quantity ? (
+                                    <div className='text-red-500'>{errors.quantity}</div>
                                 ) : null}
                             </div>
                             <label htmlFor='productLot'>
