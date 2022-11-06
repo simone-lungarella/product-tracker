@@ -44,7 +44,7 @@ function PhaseFive() {
     const [selectedDay, setSelectedDay] = useState(1);
 
     return (
-        <div className='bg-sky-50 h-full'>
+        <div className='bg-amber-50 h-full'>
             {modalOpen &&
                 <div className="grid place-content-center overflow-y-auto fixed z-50 w-auto md:inset-0 h-full p-4 bg-black bg-opacity-50">
                     <div className="relative bg-white rounded-lg shadow">
@@ -98,7 +98,7 @@ function PhaseFive() {
                                                                     </label>
                                                                 </div>
                                                                 <div className="grid place-items-end mr-5">
-                                                                    <Field type="checkbox" name="description" value={value} className="place-items-end border-sky-500 text-sky-600 bg-gray-100 form-checkbox focus:ring-sky-500 rounded-md h-5 w-5" />
+                                                                    <Field type="checkbox" name="description" value={value} className="place-items-end border-amber-500 text-amber-600 bg-gray-100 form-checkbox focus:ring-amber-500 rounded-md h-5 w-5" />
                                                                 </div>
                                                             </div>
                                                         )
@@ -109,11 +109,11 @@ function PhaseFive() {
                                                     <button
                                                         type="submit"
                                                         className="text-base hover:scale-110 focus:outline-none flex justify-center px-14 py-6 rounded font-bold cursor-pointer 
-                                                                hover:bg-sky-300  
-                                                                bg-sky-200 
-                                                                text-sky-800 
+                                                                hover:bg-amber-300  
+                                                                bg-amber-200 
+                                                                text-amber-800 
                                                                 border duration-200 ease-in-out 
-                                                                border-sky-700 transition py-4 w-40" >
+                                                                border-amber-700 transition py-4 w-40" >
                                                         Conferma
                                                     </button>
                                                 </div>
@@ -126,16 +126,16 @@ function PhaseFive() {
                     </div>
                 </div>
             }
-            <div className='grid place-content-center h-20 bg-sky-500 w-full'>
+            <div className='grid place-content-center h-20 bg-amber-300 w-full'>
                 <div className='text-center text-white text-2xl font-bold'>
                     <h1 className='md:text-4xl sm:text-2xl font-bold' >Controllo Pulizie</h1>
                 </div>
             </div>
-            <div className='grid place-content-center h-1 bg-sky-800 w-full' />
+            <div className='grid place-content-center h-1 bg-amber-600 w-full' />
 
             <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
                 <table className="w-full text-sm text-center text-gray-500">
-                    <thead className="md:text-xl text-sky-700 uppercase bg-sky-50">
+                    <thead className="md:text-xl text-amber-700 uppercase bg-amber-50">
                         <tr>
                             <th scope="col" className="py-3 px-6">
                                 Giorno
@@ -151,11 +151,11 @@ function PhaseFive() {
                     <tbody>
                         {insertedValues.map((value, index) => {
                             return (
-                                <tr key={index} className={index % 2 === 0 ? 'bg-sky-100 border-b border-gray-200' : 'border-b border-gray-200 bg-sky-200'}>
+                                <tr key={index} className={index % 2 === 0 ? 'bg-amber-100 border-b border-gray-200' : 'border-b border-gray-200'}>
                                     <td className="py-3 px-6">
                                         <div className="flex justify-center items-center">
                                             <div className="mr-2">
-                                                <span className="font-bold text-sky-700">{value.day}</span>
+                                                <span className="font-bold text-amber-700">{value.day}</span>
                                             </div>
                                         </div>
                                     </td>
@@ -165,11 +165,11 @@ function PhaseFive() {
                                                 {value.description && value.description.map((description, index) => {
                                                     if (index === value.description.length - 1) {
                                                         return (
-                                                            <span key={index} className="font-bold text-sky-700">{description}</span>
+                                                            <span key={index} className="font-bold text-amber-700">{description}</span>
                                                         )
                                                     } else {
                                                         return (
-                                                            <span key={index} className="font-bold text-sky-700">{description}, </span>
+                                                            <span key={index} className="font-bold text-amber-700">{description}, </span>
                                                         )
                                                     }
                                                 })}
@@ -179,7 +179,7 @@ function PhaseFive() {
                                     <td className="py-3 px-6">
                                         <div className="flex justify-center items-center">
                                             <div className="md:mr-2 grid place-items-center md:grid-cols-3 sm:grid-cols-1">
-                                                <button className='text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 cursor-pointer text-sky-800 duration-200 ease-in-out'
+                                                <button className='text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 cursor-pointer text-amber-800 duration-200 ease-in-out'
                                                     onClick={() => {
                                                         setModalOpen(true);
                                                         setSelectedDay(value.day);
@@ -188,7 +188,7 @@ function PhaseFive() {
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                                                     </svg>
                                                 </button>
-                                                <button className='text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 cursor-pointer text-sky-800 duration-200 ease-in-out'
+                                                <button className='text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 cursor-pointer text-amber-800 duration-200 ease-in-out'
                                                     onClick={
                                                         () => {
                                                             setLastCopiedDescription(value.description);
@@ -198,7 +198,7 @@ function PhaseFive() {
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
                                                     </svg>
                                                 </button>
-                                                <button className='text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 cursor-pointer text-sky-800 duration-200 ease-in-out'
+                                                <button className='text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 cursor-pointer text-amber-800 duration-200 ease-in-out'
                                                     onClick={
                                                         () => {
                                                             let newInsertedValues = [...insertedValues];
@@ -222,15 +222,15 @@ function PhaseFive() {
 
             <div className='h-20' />
 
-            <div className='h-20 bg-sky-800 w-full fixed bottom-0' >
+            <div className='h-20 bg-amber-600 w-full fixed bottom-0' >
                 <div className='p-5'>
                     <div className='fixed'>
                         <button type="button" className="text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer 
-                            hover:bg-sky-200  
-                            bg-sky-100 
-                            text-sky-700 
+                            hover:bg-amber-200  
+                            bg-amber-100 
+                            text-amber-700 
                             border duration-200 ease-in-out 
-                            border-sky-600 transition" >
+                            border-amber-600 transition" >
                             <Link to='/step-4'>
                                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
@@ -240,11 +240,11 @@ function PhaseFive() {
                     </div>
                     <div className='flex flex-row-reverse'>
                         <button type="button" className="text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer 
-                            hover:bg-sky-200  
-                            bg-sky-100 
-                            text-sky-700 
+                            hover:bg-amber-200  
+                            bg-amber-100 
+                            text-amber-700 
                             border duration-200 ease-in-out 
-                            border-sky-600 transition">
+                            border-amber-600 transition">
                             <Link to='/step-6'>
                                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
@@ -253,11 +253,11 @@ function PhaseFive() {
                         </button>
                         <div className='w-10' />
                         <button type="submit" className="text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer 
-                            hover:bg-sky-200  
-                            bg-sky-100 
-                            text-sky-700 
+                            hover:bg-amber-200  
+                            bg-amber-100 
+                            text-amber-700 
                             border duration-200 ease-in-out 
-                            border-sky-600 transition"
+                            border-amber-600 transition"
                             onClick={handleSubmit}>
                             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
