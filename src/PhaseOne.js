@@ -20,8 +20,8 @@ function PhaseOne() {
 
             <Formik
                 initialValues={{
-                    plants: 'Autoproduzione',
-                    origin: '',
+                    plants: '',
+                    origin: 'Autoproduzione',
                     lot: '',
                     isCompliant: true,
                     kg: '',
