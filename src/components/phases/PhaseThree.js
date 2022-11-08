@@ -12,11 +12,10 @@ function PhaseThree() {
 
             <div className='grid place-content-center h-20 bg-amber-300 w-full'>
                 <div className='text-center text-white text-2xl font-bold'>
-                    <h1 className='md:text-4xl sm:text-2xl font-bold' >Checklist materie prime</h1>
+                    <h1 className='md:text-4xl text-2xl font-bold' >Checklist materie prime</h1>
                 </div>
             </div>
             <div className='grid place-content-center h-1 bg-amber-600 w-full' />
-            <div className='h-10' />
 
             <Formik
                 initialValues={{
@@ -45,7 +44,7 @@ function PhaseThree() {
                                 Nome materia prima
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 border-amber-500 rounded-lg h-10 p-2.5' id='name' name='name' placeholder="Materia prima" />
+                                <Field className='border-2 focus:border-amber-500 rounded-lg h-10 p-2.5' id='name' name='name' placeholder="Materia prima" />
                                 {errors.name && touched.name ? (
                                     <div className='text-red-500'>{errors.name}</div>
                                 ) : null}
@@ -54,7 +53,7 @@ function PhaseThree() {
                                 Lotto materia prima
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 border-amber-500 rounded-lg h-10 p-2.5' id='lot' name='lot' placeholder="Lotto" />
+                                <Field className='border-2 focus:border-amber-500 rounded-lg h-10 p-2.5' id='lot' name='lot' placeholder="Lotto" />
                                 {errors.lot && touched.lot ? (
                                     <div className='text-red-500'>{errors.lot}</div>
                                 ) : null}
@@ -152,7 +151,7 @@ function PhaseThree() {
                     </table>)}
             </div>
 
-            <div className="overflow-x-auto relative md:hidden sm:block">
+            <div className="overflow-x-auto relative md:hidden block">
                 {insertedValues.length > 0 && (
                     <table className="w-full text-sm text-center text-black mb-20">
                         <thead className="text-xs text-amber-600 uppercase bg-gray-800">

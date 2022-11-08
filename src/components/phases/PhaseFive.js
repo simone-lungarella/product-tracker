@@ -53,7 +53,7 @@ function PhaseFive() {
     return (
         <div className='bg-amber-50 h-full'>
             {modalOpen &&
-                <div className="grid place-content-center overflow-y-auto fixed z-50 w-auto md:inset-0 h-full p-4 bg-black bg-opacity-50">
+                <div className="backdrop-blur-sm grid place-content-center overflow-y-auto fixed z-50 w-auto md:inset-0 h-full p-4 bg-black bg-opacity-50">
                     <div className="relative bg-white rounded-lg shadow">
                         <button type="button" className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
                             onClick={() => { setModalOpen(false) }} >
@@ -105,7 +105,7 @@ function PhaseFive() {
                                                                     </label>
                                                                 </div>
                                                                 <div className="grid place-items-end mr-5">
-                                                                    <Field type="checkbox" name="description" value={value} className="place-items-end border-amber-500 text-amber-600 bg-gray-100 form-checkbox focus:ring-amber-500 rounded-md h-5 w-5" />
+                                                                    <Field type="checkbox" name="description" value={value} className="place-items-end focus:border-amber-500 text-amber-600 bg-gray-100 form-checkbox focus:ring-amber-500 rounded-md h-5 w-5" />
                                                                 </div>
                                                             </div>
                                                         )
@@ -135,12 +135,12 @@ function PhaseFive() {
             }
             <div className='grid place-content-center h-20 bg-amber-300 w-full'>
                 <div className='text-center text-white text-2xl font-bold'>
-                    <h1 className='md:text-4xl sm:text-2xl font-bold' >Controllo Pulizie</h1>
+                    <h1 className='md:text-4xl text-2xl font-bold' >Controllo Pulizie</h1>
                 </div>
             </div>
             <div className='grid place-content-center h-1 bg-amber-600 w-full' />
 
-            <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
+            <div className="overflow-x-auto relative shadow-md rounded-lg">
                 <table className="w-full text-sm text-center text-gray-500">
                     <thead className="md:text-xl text-amber-700 uppercase bg-amber-50">
                         <tr>
@@ -185,7 +185,7 @@ function PhaseFive() {
                                     </td>
                                     <td className="py-3 px-6">
                                         <div className="flex justify-center items-center">
-                                            <div className="md:mr-2 grid place-items-center md:grid-cols-3 sm:grid-cols-1">
+                                            <div className="md:mr-2 grid place-items-center md:grid-cols-3 grid-cols-1">
                                                 <button className='text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 cursor-pointer text-amber-800 duration-200 ease-in-out'
                                                     onClick={() => {
                                                         setModalOpen(true);

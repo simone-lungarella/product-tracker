@@ -12,7 +12,7 @@ function PhaseSix() {
 
             <div className='grid place-content-center h-20 bg-amber-300 w-full'>
                 <div className='text-center text-white text-2xl font-bold'>
-                    <h1 className='md:text-4xl sm:text-2xl font-bold' >Tracciabilità prodotto finito</h1>
+                    <h1 className='md:text-4xl text-2xl font-bold' >Tracciabilità prodotto finito</h1>
                 </div>
             </div>
             <div className='grid place-content-center h-1 bg-amber-600 w-full' />
@@ -56,7 +56,7 @@ function PhaseSix() {
                                         </svg>
                                     </div>
 
-                                    <Field className='bg-amber-50 border border-amber-300 text-amber-900 sm:text-sm rounded-lg focus:ring-amber-500 focus:border-amber-500 block w-full pl-10 p-2.5' id='date' name='date' type='date' />
+                                    <Field className='bg-amber-50 border-2 border-gray-300 text-amber-900 md:text-md text-sm rounded-lg focus:ring-amber-500 focus:border-amber-500 block w-full pl-10 p-2.5' id='date' name='date' type='date' />
                                 </div>
                                 {errors.date && touched.date ? (
                                     <div className='text-red-500'>{errors.date}</div>
@@ -66,7 +66,7 @@ function PhaseSix() {
                                 Materia prima lavorato
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 border-amber-500 rounded-lg h-10 p-2.5' id='name' name='name' placeholder='Materia prima' />
+                                <Field className='border-2 focus:border-amber-500 rounded-lg h-10 p-2.5' id='name' name='name' placeholder='Materia prima' />
                                 {errors.name && touched.name ? (
                                     <div className='text-red-500'>{errors.name}</div>
                                 ) : null}
@@ -75,7 +75,7 @@ function PhaseSix() {
                                 Lotto materia prima
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 border-amber-500 rounded-lg h-10 p-2.5' id='lot' name='lot' placeholder='Lotto materia prima' />
+                                <Field className='border-2 focus:border-amber-500 rounded-lg h-10 p-2.5' id='lot' name='lot' placeholder='Lotto materia prima' />
                                 {errors.lot && touched.lot ? (
                                     <div className='text-red-500'>{errors.lot}</div>
                                 ) : null}
@@ -84,7 +84,7 @@ function PhaseSix() {
                                 Prodotto ottenuto
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 border-amber-500 rounded-lg h-10 p-2.5' id='product' name='product' placeholder='Prodotto' />
+                                <Field className='border-2 focus:border-amber-500 rounded-lg h-10 p-2.5' id='product' name='product' placeholder='Prodotto' />
                                 {errors.product && touched.product ? (
                                     <div className='text-red-500'>{errors.product}</div>
                                 ) : null}
@@ -93,7 +93,7 @@ function PhaseSix() {
                                 Kg prodotto finito ottenuti
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='text-sm rounded-lg focus:ring-amber-500 block w-full p-2.5 border-2 border-amber-500 rounded-lg h-10' id='quantity' name='quantity' placeholder='Kg prodotto' />
+                                <Field className='text-sm rounded-lg focus:ring-amber-500 block w-full p-2.5 border-2 focus:border-amber-500 rounded-lg h-10' id='quantity' name='quantity' placeholder='Kg prodotto' />
                                 {errors.quantity && touched.quantity ? (
                                     <div className='text-red-500'>{errors.quantity}</div>
                                 ) : null}
@@ -102,7 +102,7 @@ function PhaseSix() {
                                 Lotto prodotto finito
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 border-amber-500 rounded-lg h-10 p-2.5' id='productLot' name='productLot' placeholder='Lotto prodotto' />
+                                <Field className='border-2 focus:border-amber-500 rounded-lg h-10 p-2.5' id='productLot' name='productLot' placeholder='Lotto prodotto' />
                                 {errors.productLot && touched.productLot ? (
                                     <div className='text-red-500'>{errors.productLot}</div>
                                 ) : null}
@@ -209,7 +209,7 @@ function PhaseSix() {
                 )}
             </div>
 
-            <div className="overflow-x-auto relative md:hidden sm:block">
+            <div className="overflow-x-auto relative md:hidden block">
                 {insertedValues.length > 0 && (
                     <table className="w-full text-sm text-center text-black mb-20">
                         <thead className="text-xs text-amber-600 uppercase bg-gray-800">

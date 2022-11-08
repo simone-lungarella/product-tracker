@@ -18,11 +18,11 @@ function PhaseFour() {
     }, [])
 
     return (
-        <div className={productEditable ? 'bg-amber-50 md:h-screen sm:h-full' : 'bg-amber-50 h-full'}>
+        <div className={productEditable ? 'bg-amber-50 md:h-screen h-full' : 'bg-amber-50 h-full'}>
 
             <div className='grid place-content-center h-20 bg-amber-300 w-full'>
                 <div className='text-center text-white text-2xl font-bold'>
-                    <h1 className='md:text-4xl sm:text-2xl font-bold' >Tracciabilità prodotto finito</h1>
+                    <h1 className='md:text-4xl text-2xl font-bold' >Tracciabilità prodotto finito</h1>
                 </div>
             </div>
             <div className='grid place-content-center h-1 bg-amber-600 w-full' />
@@ -62,17 +62,17 @@ function PhaseFour() {
                                     </svg>
                                 </div>
 
-                                <Field disabled={!productEditable} className='bg-amber-50 border border-amber-300 text-amber-900 sm:text-sm rounded-lg focus:ring-amber-500 focus:border-amber-500 block w-full pl-10 p-2.5' id='date' name='date' type='date' />
+                                <Field disabled={!productEditable} className='border-gray-300 bg-amber-50 border-2 text-amber-900 text-sm rounded-lg focus:ring-amber-500 focus:border-amber-500 block w-full pl-10 p-2.5' id='date' name='date' type='date' />
                             </div>
                             <label htmlFor='name'>
                                 Tipo di prodotto
                             </label>
-                            <Field disabled={!productEditable} className='border-2 border-amber-500 rounded-lg h-10 p-2.5' id='name' name='name' placeholder="Tipo prodotto" />
+                            <Field disabled={!productEditable} className='border-2 focus:border-amber-500 rounded-lg h-10 p-2.5' id='name' name='name' placeholder="Tipo prodotto" />
                             <label htmlFor='cookingType'>
                                 Trattamento termico
                             </label>
                             <Field
-                                className='border-2 border-amber-500 rounded-lg h-15 p-2.5 disabled:bg-amber-50'
+                                className='border-gray-300 border-2 focus:border-amber-500 focus:ring-amber-500 rounded-lg h-15 p-2.5 disabled:bg-amber-50'
                                 component="select"
                                 id="cookingType"
                                 name="cookingType"
@@ -82,29 +82,29 @@ function PhaseFour() {
                                 <option value="Essiccazione">Essiccazione</option>
                             </Field>
                             <label htmlFor='cookingTime'>
-                                Tempo di cottura
+                                Tempo di cottura (min)
                             </label>
-                            <Field type="number" className='border-2 border-amber-500 rounded-lg h-10 p-2.5 disabled:bg-amber-50' id='cookingTime' name='cookingTime' disabled={!productEditable} />
+                            <Field type="number" className='border-gray-300 border-2 focus:border-amber-500 focus:ring-amber-500 rounded-lg h-10 p-2.5 disabled:bg-amber-50' id='cookingTime' name='cookingTime' disabled={!productEditable} />
                             <label htmlFor='temperature'>
-                                Temperatura
+                                Temperatura (&#8451;)
                             </label>
-                            <Field type="number" className='border-2 border-amber-500 rounded-lg h-10 p-2.5 disabled:bg-amber-50' id='temperature' name='temperature' disabled={!productEditable} />
+                            <Field type="number" className='border-gray-300 border-2 focus:border-amber-500 focus:ring-amber-500 rounded-lg h-10 p-2.5 disabled:bg-amber-50' id='temperature' name='temperature' disabled={!productEditable} />
                             <label htmlFor='coverLot'>
                                 Lotto tappi o coperchi
                             </label>
-                            <Field className='border-2 border-amber-500 rounded-lg h-10 p-2.5 disabled:bg-amber-50' id='coverLot' name='coverLot' placeholder="Lotto" disabled={!productEditable} />
+                            <Field className='border-2 focus:border-amber-500 rounded-lg h-10 p-2.5 disabled:bg-amber-50' id='coverLot' name='coverLot' placeholder="Lotto" disabled={!productEditable} />
                             <label htmlFor='size'>
-                                Formato da g/ml
+                                Formato (g/ml)
                             </label>
-                            <Field className='border-2 border-amber-500 rounded-lg h-10 p-2.5 disabled:bg-amber-50' id='size' name='size' placeholder="Formato" disabled={!productEditable} />
+                            <Field className='border-2 focus:border-amber-500 rounded-lg h-10 p-2.5 disabled:bg-amber-50' id='size' name='size' placeholder="Formato" disabled={!productEditable} />
                             <label htmlFor='productLot'>
                                 Lotto prodotto finito
                             </label>
-                            <Field className='border-2 border-amber-500 rounded-lg h-10 p-2.5 disabled:bg-amber-50' id='productLot' name='productLot' placeholder="Lotto prodotto" disabled={!productEditable} />
+                            <Field className='border-2 focus:border-amber-500 rounded-lg h-10 p-2.5 disabled:bg-amber-50' id='productLot' name='productLot' placeholder="Lotto prodotto" disabled={!productEditable} />
                             <label htmlFor='numberPacks'>
                                 N. confezioni ottenute
                             </label>
-                            <Field type="number" className='border-2 border-amber-500 rounded-lg h-10 p-2.5 disabled:bg-amber-50' id='numberPacks' name='numberPacks' disabled={!productEditable} />
+                            <Field type="number" className='border-gray-300 border-2 focus:border-amber-500 focus:ring-amber-500 rounded-lg h-10 p-2.5 disabled:bg-amber-50' id='numberPacks' name='numberPacks' disabled={!productEditable} />
                             <label htmlFor='expirationDate'>
                                 Data di scadenza
                             </label>
@@ -114,16 +114,16 @@ function PhaseFour() {
                                         <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd"></path>
                                     </svg>
                                 </div>
-                                <Field className='bg-amber-50 border border-amber-300 text-amber-900 sm:text-sm rounded-lg focus:ring-amber-500 focus:border-amber-500 block w-full pl-10 p-2.5' id='expirationDate' name='expirationDate' type='date' disabled={!productEditable} />
+                                <Field className='border-gray-300 bg-amber-50 border-2 border-amber-300 text-amber-900 md:text-md text-sm rounded-lg focus:ring-amber-500 focus:border-amber-500 block w-full pl-10 p-2.5' id='expirationDate' name='expirationDate' type='date' disabled={!productEditable} />
                             </div>
                             <label htmlFor='lotBottles'>
                                 Lotto bottiglie o vasetti
                             </label>
-                            <Field className='border-2 border-amber-500 rounded-lg h-10 p-2.5' id='lotBottles' name='lotBottles' placeholder="Lotto bottiglie" disabled={!productEditable} />
+                            <Field className='border-2 focus:border-amber-500 rounded-lg h-10 p-2.5' id='lotBottles' name='lotBottles' placeholder="Lotto bottiglie" disabled={!productEditable} />
                             <label htmlFor='notes'>
                                 Note
                             </label>
-                            <textarea id="notes" rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-amber-500 focus:border-amber-500" placeholder="Note..." disabled={!productEditable} />
+                            <textarea id="notes" rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-2 border-gray-300 focus:ring-amber-500 focus:border-amber-500" placeholder="Note..." disabled={!productEditable} />
                         </div>
                         <div className='flex justify-center mt-20'>
 
@@ -149,7 +149,7 @@ function PhaseFour() {
                                     }
                                 } />
                                 <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-amber-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] 
-                                    after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-600">
+                                    after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border-2 after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-600">
                                 </div>
                             </label>
                         </div>
@@ -195,7 +195,7 @@ function PhaseFour() {
                                         Ingrediente utilizzato
                                     </label>
                                     <div className='grid grid-cols-1' >
-                                        <Field className='text-sm rounded-lg focus:ring-amber-500 block w-full p-2.5 border-2 border-amber-500 rounded-lg h-10' id='ingredient' name='ingredient' placeholder="Ingrediente" />
+                                        <Field className='text-sm rounded-lg focus:ring-amber-500 block w-full p-2.5 border-2 focus:border-amber-500 rounded-lg h-10' id='ingredient' name='ingredient' placeholder="Ingrediente" />
                                         {errors.ingredient && touched.ingredient ? (
                                             <div className='text-red-500'>{errors.ingredient}</div>
                                         ) : null}
@@ -204,7 +204,7 @@ function PhaseFour() {
                                         Quantità
                                     </label>
                                     <div className='grid grid-cols-1' >
-                                        <Field type='number' className='text-sm rounded-lg focus:ring-amber-500 block w-full p-2.5 border-2 border-amber-500 rounded-lg h-10' id='quantity' name='quantity' />
+                                        <Field type='number' className='border-gray-300 text-sm rounded-lg focus:ring-amber-500 block w-full p-2.5 border-2 focus:border-amber-500 rounded-lg h-10' id='quantity' name='quantity' />
                                         {errors.quantity && touched.quantity ? (
                                             <div className='text-red-500'>{errors.quantity}</div>
                                         ) : null}
@@ -214,7 +214,7 @@ function PhaseFour() {
                                         Lotto
                                     </label>
                                     <div className='grid grid-cols-1' >
-                                        <Field className='text-sm rounded-lg focus:ring-amber-500 block w-full p-2.5 border-2 border-amber-500 rounded-lg h-10' id='lot' name='lot' placeholder="Lotto" />
+                                        <Field className='text-sm rounded-lg focus:ring-amber-500 block w-full p-2.5 border-2 focus:border-amber-500 rounded-lg h-10' id='lot' name='lot' placeholder="Lotto" />
                                         {errors.lot && touched.lot ? (
                                             <div className='text-red-500'>{errors.lot}</div>
                                         ) : null}
@@ -223,7 +223,7 @@ function PhaseFour() {
                                         Fornitore
                                     </label>
                                     <div className='grid grid-cols-1' >
-                                        <Field className='text-sm rounded-lg focus:ring-amber-500 block w-full p-2.5 border-2 border-amber-500 rounded-lg h-10' id='supplier' name='supplier' placeholder="Fornitore" />
+                                        <Field className='text-sm rounded-lg focus:ring-amber-500 block w-full p-2.5 border-2 focus:border-amber-500 rounded-lg h-10' id='supplier' name='supplier' placeholder="Fornitore" />
                                         {errors.supplier && touched.supplier ? (
                                             <div className='text-red-500'>{errors.supplier}</div>
                                         ) : null}
@@ -316,7 +316,7 @@ function PhaseFour() {
                         }
                     </div>
 
-                    <div className="overflow-x-auto relative mb-20 md:hidden sm:block">
+                    <div className="overflow-x-auto relative mb-20 md:hidden block">
                         {ingredients.length > 0 &&
                             <table className="w-full text-sm text-center text-black">
                                 <thead className="text-xs text-amber-600 uppercase bg-gray-800">

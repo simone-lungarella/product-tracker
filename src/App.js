@@ -1,12 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Homepage from './Hompage';
-import PhaseFive from './PhaseFive';
-import PhaseFour from './PhaseFour';
-import PhaseOne from './PhaseOne';
-import PhaseSix from './PhaseSix';
-import PhaseThree from './PhaseThree';
-import PhaseTwo from './PhaseTwo';
+import PhaseOne from './components/phases/PhaseOne';
+import PhaseTwo from './components/phases/PhaseTwo';
+import PhaseThree from './components/phases/PhaseThree';
+import PhaseFour from './components/phases/PhaseFour';
+import PhaseFive from './components/phases/PhaseFive';
+import PhaseSix from './components/phases/PhaseSix';
 
 
 function App() {
