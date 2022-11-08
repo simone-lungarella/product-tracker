@@ -1,4 +1,4 @@
-import { React, useRef, useState } from 'react';
+import { React, useRef, useState, useEffect } from 'react';
 import { Field, Form, Formik } from 'formik';
 import { Link } from 'react-router-dom';
 
@@ -42,6 +42,13 @@ function PhaseFive() {
 
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedDay, setSelectedDay] = useState(1);
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }, [])
 
     return (
         <div className='bg-amber-50 h-full'>

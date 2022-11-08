@@ -1,11 +1,11 @@
 import { Field, Form, Formik } from 'formik';
-import React from 'react';
+import {React, useState} from 'react';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 
 function PhaseThree() {
 
-    const [insertedValues, setInsertedValues] = React.useState([]);
+    const [insertedValues, setInsertedValues] = useState([]);
 
     return (
         <div className='bg-amber-50 h-screen'>
