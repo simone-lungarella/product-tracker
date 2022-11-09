@@ -2,10 +2,21 @@ import { Field, Form, Formik } from 'formik';
 import { React, useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
+import PdfService from '../../service/PdfService';
+import rawMaterials from '../../service/xslt-templates/rawMaterials.xslt';
 
 function PhaseTwo() {
 
     const [insertedValues, setInsertedValues] = useState([]);
+
+    const downloadPdf = () => {
+        if (insertedValues.length > 0) {
+            const file = new File([rawMaterials], 'rawMaterials.xslt', { type: 'application/xml' });
+            PdfService.getPhaseTwoPdf(insertedValues, file);
+        } else {
+            console.log("Cannot download pdf, no data inserted");
+        }
+    }
 
     return (
         <div className='bg-amber-50 h-screen'>
@@ -41,13 +52,13 @@ function PhaseTwo() {
             >
                 {({ errors, touched }) => (
                     <Form>
-                        <div className='grid grid-cols-2 md:grid-cols-4 gap-4 p-4' >
+                        <div className='grid grid-cols-2 md:grid-cols-5 gap-4 p-4' >
                             <label htmlFor='name'>
                                 Appezzamento
                             </label>
                             <div className='grid grid-cols-1' >
                                 <Field
-                                    className='border-2 border-gray-300 focus:ring-amber-300 focus:border-amber-500 rounded-lg h-15 p-2.5 text-amber-800'
+                                    className='border-2 border-gray-300 focus:ring-amber-300 focus:border-amber-300 rounded-lg h-15 p-2.5 text-amber-800'
                                     component="select"
                                     id="name"
                                     name="name">
@@ -60,11 +71,13 @@ function PhaseTwo() {
                                     <div className='text-red-500'>{errors.name}</div>
                                 ) : null}
                             </div>
+                            <div className='hidden md:block w-20'/>
+
                             <label htmlFor='type'>
                                 Tipo di coltivazione presente
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 focus:border-amber-500 rounded-lg h-10 p-2.5' id='type' name='type' placeholder="Tipo coltivazione" />
+                                <Field className='border-2 focus:border-amber-300 rounded-lg h-10 p-2.5' id='type' name='type' placeholder="Tipo coltivazione" />
                                 {errors.type && touched.type ? (
                                     <div className='text-red-500'>{errors.type}</div>
                                 ) : null}
@@ -80,17 +93,19 @@ function PhaseTwo() {
                                         </svg>
                                     </div>
 
-                                    <Field className='border-gray-300 bg-amber-50 border-2 text-amber-900 md:text-md text-sm rounded-lg focus:ring-amber-500 focus:border-amber-500 block w-full pl-10 p-2.5' id='date' name='date' type='date' />
+                                    <Field className='border-gray-300 bg-amber-50 border-2 text-amber-900 md:text-md text-sm rounded-lg focus:ring-amber-500 focus:border-amber-300 block w-full pl-10 p-2.5' id='date' name='date' type='date' />
                                 </div>
                                 {errors.date && touched.date ? (
                                     <div className='text-red-500'>{errors.date}</div>
                                 ) : null}
                             </div>
+                            <div className='hidden md:block w-20'/>
+
                             <label htmlFor='lot'>
                                 Lotto materia prima (prodotte)
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 focus:border-amber-500 rounded-lg h-10 p-2.5' id='lot' name='lot' placeholder="Lotto" />
+                                <Field className='border-2 focus:border-amber-300 rounded-lg h-10 p-2.5' id='lot' name='lot' placeholder="Lotto" />
                                 {errors.lot && touched.lot ? (
                                     <div className='text-red-500'>{errors.lot}</div>
                                 ) : null}
@@ -100,7 +115,7 @@ function PhaseTwo() {
                                 Kg raccolti
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='text-sm rounded-lg focus:ring-amber-500 block w-full p-2.5 border-2 focus:border-amber-500 rounded-lg h-10' id='quantity' name='quantity' placeholder='Kg raccolti' />
+                                <Field className='text-sm rounded-lg focus:ring-amber-500 block w-full p-2.5 border-2 focus:border-amber-300 rounded-lg h-10' id='quantity' name='quantity' placeholder='Kg raccolti' />
                                 {errors.quantity && touched.quantity ? (
                                     <div className='text-red-500'>{errors.quantity}</div>
                                 ) : null}
@@ -280,7 +295,8 @@ function PhaseTwo() {
                             bg-amber-100 
                             text-amber-700 
                             border duration-200 ease-in-out 
-                            border-amber-600 transition">
+                            border-amber-600 transition"
+                            onClick={downloadPdf}>
                             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
                             </svg>

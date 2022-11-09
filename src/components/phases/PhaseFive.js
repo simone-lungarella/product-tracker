@@ -1,6 +1,8 @@
 import { React, useRef, useState, useEffect } from 'react';
 import { Field, Form, Formik } from 'formik';
 import { Link } from 'react-router-dom';
+import PdfService from '../../service/PdfService';
+import cleaningProcess from '../../service/xslt-templates/cleaningProcess.xslt';
 
 const selectableValues = [
     "Contenitori rifiuti",
@@ -23,12 +25,6 @@ function PhaseFive() {
 
     const formRef = useRef()
 
-    const handleSubmit = () => {
-        if (formRef.current) {
-            formRef.current.handleSubmit()
-        }
-    }
-
     let daysOfMonth = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
     const valuesToInsert = daysOfMonth.map((day) => {
         return {
@@ -42,6 +38,15 @@ function PhaseFive() {
 
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedDay, setSelectedDay] = useState(1);
+
+    const downloadPdf = () => {
+        if (insertedValues.length > 0) {
+            const file = new File([cleaningProcess], 'cleaningProcess.xslt', { type: 'application/xml' });
+            PdfService.getPhaseFivePdf(insertedValues, file);
+        } else {
+            console.log("Cannot download pdf, no data inserted");
+        }
+    }
 
     useEffect(() => {
         window.scrollTo({
@@ -93,8 +98,8 @@ function PhaseFive() {
                                             setModalOpen(false);
                                         }}
                                     >
-                                        {({ handleSubmit }) => (
-                                            <Form ref={formRef} onSubmit={handleSubmit}>
+                                        {() => (
+                                            <Form ref={formRef}>
                                                 <div className="grid place-content-center">
                                                     {selectableValues.map((value) => {
                                                         return (
@@ -105,7 +110,7 @@ function PhaseFive() {
                                                                     </label>
                                                                 </div>
                                                                 <div className="grid place-items-end mr-5">
-                                                                    <Field type="checkbox" name="description" value={value} className="place-items-end focus:border-amber-500 text-amber-600 bg-gray-100 form-checkbox focus:ring-amber-500 rounded-md h-5 w-5" />
+                                                                    <Field type="checkbox" name="description" value={value} className="place-items-end focus:border-amber-300 text-amber-600 bg-gray-100 form-checkbox focus:ring-amber-500 rounded-md h-5 w-5" />
                                                                 </div>
                                                             </div>
                                                         )
@@ -265,7 +270,7 @@ function PhaseFive() {
                             text-amber-700 
                             border duration-200 ease-in-out 
                             border-amber-600 transition"
-                            onClick={handleSubmit}>
+                            onClick={downloadPdf}>
                             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
                             </svg>

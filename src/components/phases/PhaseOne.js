@@ -2,10 +2,21 @@ import { Field, Form, Formik } from 'formik';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
+import PdfService from '../../service/PdfService';
+import seedTracking from '../../service/xslt-templates/seedTracking.xslt';
 
 function PhaseOne() {
 
     const [insertedValues, setInsertedValues] = React.useState([]);
+
+    const downloadPdf = () => {
+        if (insertedValues.length > 0) {
+            const file = new File([seedTracking], 'seedTracking.xslt', { type: 'application/xml' });
+            PdfService.getPhaseOnePdf(insertedValues, file);
+        } else {
+            console.log("Cannot download pdf, no data inserted");
+        }
+    }
 
     return (
         <div className='bg-amber-50 h-screen'>
@@ -41,22 +52,24 @@ function PhaseOne() {
             >
                 {({ errors, touched }) => (
                     <Form>
-                        <div className='grid grid-cols-2 md:grid-cols-4 gap-4 p-4' >
+                        <div className='grid grid-cols-2 md:grid-cols-5 gap-4 p-4' >
                             <label htmlFor='plants'>
                                 Piante o semi
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 focus:border-amber-500 rounded-lg h-10 p-2.5' id='plants' name='plants' placeholder="Piante o semi" />
+                                <Field className='border-2 focus:border-amber-300 rounded-lg h-10 p-2.5' id='plants' name='plants' placeholder="Piante o semi" />
                                 {errors.plants && touched.plants ? (
                                     <div className='text-red-500'>{errors.plants}</div>
                                 ) : null}
                             </div>
+                            <div className='hidden md:block w-20' />
+
                             <label htmlFor='origin'>
                                 Provenienza
                             </label>
                             <div className='grid grid-cols-1' >
                                 <Field
-                                    className='border-2 border-gray-300 focus:border-amber-500 focus:ring-amber-300 rounded-lg h-15 p-2.5'
+                                    className='border-2 border-gray-300 focus:border-amber-300 focus:ring-amber-300 rounded-lg h-15 p-2.5'
                                     component="select"
                                     id="origin"
                                     name="origin">
@@ -69,11 +82,13 @@ function PhaseOne() {
                                 Lotto
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 focus:border-amber-500 rounded-lg h-10 p-2.5' id='lot' name='lot' placeholder="Lotto" />
+                                <Field className='border-2 focus:border-amber-300 rounded-lg h-10 p-2.5' id='lot' name='lot' placeholder="Lotto" />
                                 {errors.lot && touched.lot ? (
                                     <div className='text-red-500'>{errors.lot}</div>
                                 ) : null}
                             </div>
+                            <div className='hidden md:block w-20' />
+
                             <label htmlFor='isCompliant'>
                                 Conforme
                             </label>
@@ -83,7 +98,7 @@ function PhaseOne() {
                                 Kg o colli acquistati
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='text-sm rounded-lg focus:ring-amber-500 block w-full p-2.5 border-2 focus:border-amber-500 rounded-lg h-10' id='kg' name='kg' placeholder='Kg o colli' />
+                                <Field className='text-sm rounded-lg focus:ring-amber-500 block w-full p-2.5 border-2 focus:border-amber-300 rounded-lg h-10' id='kg' name='kg' placeholder='Kg o colli' />
                                 {errors.kg && touched.kg ? (
                                     <div className='text-red-500'>{errors.kg}</div>
                                 ) : null}
@@ -261,7 +276,8 @@ function PhaseOne() {
                             bg-amber-100 
                             text-amber-700 
                             border duration-200 ease-in-out 
-                            border-amber-600 transition">
+                            border-amber-600 transition"
+                            onClick={downloadPdf} >
                             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
                             </svg>

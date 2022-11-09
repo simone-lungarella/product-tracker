@@ -2,10 +2,21 @@ import { Field, Form, Formik } from 'formik';
 import {React, useState} from 'react';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
+import PdfService from '../../service/PdfService';
+import rawMaterialsChecklist from '../../service/xslt-templates/rawMaterialsChecklist.xslt';
 
 function PhaseThree() {
 
     const [insertedValues, setInsertedValues] = useState([]);
+
+    const downloadPdf = () => {
+        if (insertedValues.length > 0) {
+            const file = new File([rawMaterialsChecklist], 'rawMaterialsChecklist.xslt', { type: 'application/xml' });
+            PdfService.getPhaseThreePdf(insertedValues, file);
+        } else {
+            console.log("Cannot download pdf, no data inserted");
+        }
+    }
 
     return (
         <div className='bg-amber-50 h-screen'>
@@ -16,6 +27,7 @@ function PhaseThree() {
                 </div>
             </div>
             <div className='grid place-content-center h-1 bg-amber-600 w-full' />
+            <div className='md:h-10' />
 
             <Formik
                 initialValues={{
@@ -39,21 +51,23 @@ function PhaseThree() {
             >
                 {({ errors, touched }) => (
                     <Form>
-                        <div className='grid grid-cols-2 md:grid-cols-4 gap-4 p-4' >
+                        <div className='grid grid-cols-2 md:grid-cols-5 gap-4 p-4' >
                             <label htmlFor='name'>
                                 Nome materia prima
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 focus:border-amber-500 rounded-lg h-10 p-2.5' id='name' name='name' placeholder="Materia prima" />
+                                <Field className='border-2 focus:border-amber-300 rounded-lg h-10 p-2.5' id='name' name='name' placeholder="Materia prima" />
                                 {errors.name && touched.name ? (
                                     <div className='text-red-500'>{errors.name}</div>
                                 ) : null}
                             </div>
+                            <div className='hidden md:block w-20'/>
+
                             <label htmlFor='lot'>
                                 Lotto materia prima
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 focus:border-amber-500 rounded-lg h-10 p-2.5' id='lot' name='lot' placeholder="Lotto" />
+                                <Field className='border-2 focus:border-amber-300 rounded-lg h-10 p-2.5' id='lot' name='lot' placeholder="Lotto" />
                                 {errors.lot && touched.lot ? (
                                     <div className='text-red-500'>{errors.lot}</div>
                                 ) : null}
@@ -62,7 +76,7 @@ function PhaseThree() {
                                 Conforme alla trasformazione
                             </label>
                             <Field type="checkbox" className='border-amber-500 text-amber-600 bg-gray-100 form-checkbox focus:ring-amber-500 rounded-lg h-10 w-10' id='isCompliantTransformation' name='isCompliantTransformation' />
-
+                            <div className='hidden md:block w-20'/>
                             <label htmlFor='isCompliantAfter'>
                                 Controllo post trasporto
                             </label>
@@ -230,7 +244,8 @@ function PhaseThree() {
                             bg-amber-100 
                             text-amber-700 
                             border duration-200 ease-in-out 
-                            border-amber-600 transition">
+                            border-amber-600 transition"
+                            onClick={downloadPdf}>
                             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
                             </svg>
