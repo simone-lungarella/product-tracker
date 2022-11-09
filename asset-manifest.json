@@ -1,15 +1,21 @@
 {
   "files": {
-    "main.css": "/product-tracker/static/css/main.a8e7f90f.css",
-    "main.js": "/product-tracker/static/js/main.962c8ef4.js",
+    "main.css": "/product-tracker/static/css/main.75418237.css",
+    "main.js": "/product-tracker/static/js/main.311985af.js",
     "static/js/496.6d1090c7.chunk.js": "/product-tracker/static/js/496.6d1090c7.chunk.js",
+    "static/media/cleaningProcess.xslt": "/product-tracker/static/media/cleaningProcess.3fa3c6fd73abe74fb0eb.xslt",
+    "static/media/productTracking.xslt": "/product-tracker/static/media/productTracking.3fa3c6fd73abe74fb0eb.xslt",
+    "static/media/rawMaterials.xslt": "/product-tracker/static/media/rawMaterials.3fa3c6fd73abe74fb0eb.xslt",
+    "static/media/rawMaterialsChecklist.xslt": "/product-tracker/static/media/rawMaterialsChecklist.3fa3c6fd73abe74fb0eb.xslt",
+    "static/media/seedTracking.xslt": "/product-tracker/static/media/seedTracking.3fa3c6fd73abe74fb0eb.xslt",
+    "static/media/workingProduct.xslt": "/product-tracker/static/media/workingProduct.3fa3c6fd73abe74fb0eb.xslt",
     "index.html": "/product-tracker/index.html",
-    "main.a8e7f90f.css.map": "/product-tracker/static/css/main.a8e7f90f.css.map",
-    "main.962c8ef4.js.map": "/product-tracker/static/js/main.962c8ef4.js.map",
+    "main.75418237.css.map": "/product-tracker/static/css/main.75418237.css.map",
+    "main.311985af.js.map": "/product-tracker/static/js/main.311985af.js.map",
     "496.6d1090c7.chunk.js.map": "/product-tracker/static/js/496.6d1090c7.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a8e7f90f.css",
-    "static/js/main.962c8ef4.js"
+    "static/css/main.75418237.css",
+    "static/js/main.311985af.js"
   ]
 }
