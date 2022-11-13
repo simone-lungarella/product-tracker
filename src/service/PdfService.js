@@ -1,51 +1,160 @@
 import axios from 'axios';
 
-const generatePdf = (json, file, filename) => {
+const generatePdf = (json, filename) => {
     const config = {
         headers: {
-            'Content-Type': 'multipart/form-data',
+            'Content-Type': 'application/json',
         },
+        responseType: 'blob',
     };
 
-    const formData = new FormData();
-    formData.append('json', JSON.stringify(json));
-    formData.append('file', file);
+    axios.post('http://localhost:8080/foptility/transform/json/generic-table', json, config).then((response) => {
+        const file = new Blob([response.data], {
+            type: "application/pdf",
+        });
 
-    axios.post('http://localhost:8080/foptility/transform/json', formData, config).then((response) => {
-        const blob = new Blob([response.data], { type: 'application/pdf' });
-        const url = window.URL.createObjectURL(new Blob([blob]));
+        const url = window.URL.createObjectURL(file);
         const link = document.createElement('a');
         link.href = url;
-        link.setAttribute('download', filename);
-        document.body.appendChild(link);
+        link.download = filename;
         link.click();
     }).catch((error) => {
         console.log(error);
     });
 }
 
-const getPhaseOnePdf = (json, file) => {
-    generatePdf(json, file, 'TracciabilitaPianteESemi.pdf');
+const getPhaseOnePdf = (formValues) => {
+
+    const filename = 'TracciabilitaPianteESemi.pdf';
+    const items = [];
+    Object.keys(formValues).forEach((key) => {
+        items.push({ item: formValues[key] });
+    });
+
+    const json = {
+        "parameters": {
+            "filename": filename,
+            "items": items,
+            "footer": {
+                "title": localStorage.getItem('title') || '',
+                "subtitle": localStorage.getItem('subtitle') || '',
+            }
+        },
+    }
+
+    generatePdf(json, filename);
 }
 
-const getPhaseTwoPdf = (json, file) => {
-    generatePdf(json, file, 'TracciabilitaMateriePrime.pdf');
+const getPhaseTwoPdf = (formValues, file) => {
+
+    const filename = 'TracciabilitaMateriePrime.pdf';
+    const items = [];
+    Object.keys(formValues).forEach((key) => {
+        items.push({ item: formValues[key] });
+    });
+
+    const json = {
+        "parameters": {
+            "filename": filename,
+            "items": items,
+            "footer": {
+                "title": localStorage.getItem('title') || '',
+                "subtitle": localStorage.getItem('subtitle') || '',
+            }
+        },
+    }
+
+    generatePdf(json, filename);
 }
 
-const getPhaseThreePdf = (json, file) => {
-    generatePdf(json, file, 'ChecklistMateriePrime.pdf');
+const getPhaseThreePdf = (formValues, file) => {
+
+    const filename = 'ChecklistMateriePrime.pdf';
+    const items = [];
+    Object.keys(formValues).forEach((key) => {
+        items.push({ item: formValues[key] });
+    });
+
+    const json = {
+        "parameters": {
+            "filename": filename,
+            "items": items,
+            "footer": {
+                "title": localStorage.getItem('title') || '',
+                "subtitle": localStorage.getItem('subtitle') || '',
+            }
+        },
+    }
+    
+    generatePdf(json, filename);
 }
 
-const getPhaseFourPdf = (json, file) => {
-    generatePdf(json, file, 'LavorazioneProdottoFinito.pdf');
+const getPhaseFourPdf = (formValues) => {
+
+    const filename = 'LavorazioneProdottoFinito.pdf';
+    const items = [];
+    Object.keys(formValues.ingredients).forEach((key) => {
+        items.push({ item: formValues.ingredients[key] });
+    });
+
+    const json = {
+        "parameters": {
+            "filename": filename,
+            "productInfo": formValues.productInfo,
+            "items": items,
+            "footer": {
+                "title": localStorage.getItem('title') || '',
+                "subtitle": localStorage.getItem('subtitle') || '',
+            }
+        },
+    }
+
+    generatePdf(json, filename);
 }
 
-const getPhaseFivePdf = (json, file) => {
-    generatePdf(json, file, 'ControlloPulizie.pdf');
+const getPhaseFivePdf = (formValues) => {
+
+    const filename = 'ControlloPulizie.pdf';
+    const items = [];
+
+    Object.keys(formValues).forEach((key) => {
+        items.push({ item: formValues[key] });
+    });
+
+    const json = {
+        "parameters": {
+            "filename": filename,
+            "items": items,
+            "footer": {
+                "title": localStorage.getItem('title') || '',
+                "subtitle": localStorage.getItem('subtitle') || '',
+            }
+        },
+    }
+
+    generatePdf(json, filename);
 }
 
-const getPhaseSixPdf = (json, file) => {
-    generatePdf(json, file, 'TracciabilitaProdottoFinito.pdf');
+const getPhaseSixPdf = (formValues) => {
+    const filename = 'TracciabilitaProdottoFinito.pdf';
+    const items = [];
+
+    Object.keys(formValues).forEach((key) => {
+        items.push({ item: formValues[key] });
+    });
+
+    const json = {
+        "parameters": {
+            "filename": filename,
+            "items": items,
+            "footer": {
+                "title": localStorage.getItem('title') || '',
+                "subtitle": localStorage.getItem('subtitle') || '',
+            }
+        },
+    }
+
+    generatePdf(json, filename);
 }
 
 const PdfService = {

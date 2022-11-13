@@ -2,7 +2,6 @@ import { React, useRef, useState, useEffect } from 'react';
 import { Field, Form, Formik } from 'formik';
 import { Link } from 'react-router-dom';
 import PdfService from '../../service/PdfService';
-import cleaningProcess from '../../service/xslt-templates/cleaningProcess.xslt';
 
 const selectableValues = [
     "Contenitori rifiuti",
@@ -41,8 +40,7 @@ function PhaseFive() {
 
     const downloadPdf = () => {
         if (insertedValues.length > 0) {
-            const file = new File([cleaningProcess], 'cleaningProcess.xslt', { type: 'application/xml' });
-            PdfService.getPhaseFivePdf(insertedValues, file);
+            PdfService.getPhaseFivePdf(insertedValues);
         } else {
             console.log("Cannot download pdf, no data inserted");
         }

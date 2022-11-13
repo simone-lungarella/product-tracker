@@ -3,7 +3,6 @@ import {React, useState} from 'react';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import PdfService from '../../service/PdfService';
-import rawMaterialsChecklist from '../../service/xslt-templates/rawMaterialsChecklist.xslt';
 
 function PhaseThree() {
 
@@ -11,8 +10,7 @@ function PhaseThree() {
 
     const downloadPdf = () => {
         if (insertedValues.length > 0) {
-            const file = new File([rawMaterialsChecklist], 'rawMaterialsChecklist.xslt', { type: 'application/xml' });
-            PdfService.getPhaseThreePdf(insertedValues, file);
+            PdfService.getPhaseThreePdf(insertedValues);
         } else {
             console.log("Cannot download pdf, no data inserted");
         }

@@ -3,7 +3,6 @@ import { React, useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import PdfService from '../../service/PdfService';
-import productTracking from '../../service/xslt-templates/productTracking.xslt';
 
 function PhaseSix() {
 
@@ -11,8 +10,7 @@ function PhaseSix() {
 
     const downloadPdf = () => {
         if (insertedValues.length > 0) {
-            const file = new File([productTracking], 'productTracking.xslt', { type: 'application/xml' });
-            PdfService.getPhaseSixPdf(insertedValues, file);
+            PdfService.getPhaseSixPdf(insertedValues);
         } else {
             console.log("Cannot download pdf, no data inserted");
         }

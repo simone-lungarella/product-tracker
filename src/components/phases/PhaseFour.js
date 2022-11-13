@@ -3,7 +3,6 @@ import { React, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import PdfService from '../../service/PdfService';
-import workingProduct from '../../service/xslt-templates/workingProduct.xslt';
 
 function PhaseFour() {
 
@@ -13,16 +12,14 @@ function PhaseFour() {
     const [productEditable, setProductEditable] = useState(true);
 
     const downloadPdf = () => {
-        if (ingredients.length > 0) {
-            const file = new File([workingProduct], 'workingProduct.xslt', { type: 'application/xml' });
+        if (ingredients.length > 0 && !productEditable) {
             const json = {
                 productInfo,
                 ingredients,
             };
-            console.log(json);
-            PdfService.getPhaseFourPdf(json, file);
+            PdfService.getPhaseFourPdf(json);
         } else {
-            console.log("Cannot download pdf, no data inserted");
+            console.log("Cannot download pdf, no data inserted or form unlocked");
         }
     }
 
@@ -80,7 +77,7 @@ function PhaseFour() {
 
                                 <Field disabled={!productEditable} className='border-gray-300 bg-amber-50 border-2 text-amber-900 text-sm rounded-lg focus:ring-amber-500 focus:border-amber-300 block w-full pl-10 p-2.5' id='date' name='date' type='date' />
                             </div>
-                            <div className='hidden md:block w-20'/>
+                            <div className='hidden md:block w-20' />
 
                             <label htmlFor='name'>
                                 Tipo di prodotto
@@ -99,7 +96,7 @@ function PhaseFour() {
                                 <option value="Scottatura">Scottatura</option>
                                 <option value="Essiccazione">Essiccazione</option>
                             </Field>
-                            <div className='hidden md:block w-20'/>
+                            <div className='hidden md:block w-20' />
 
                             <label htmlFor='cookingTime'>
                                 Tempo di cottura (min)
@@ -109,8 +106,8 @@ function PhaseFour() {
                                 Temperatura (&#8451;)
                             </label>
                             <Field type="number" className='border-gray-300 border-2 focus:border-amber-300 focus:ring-amber-500 rounded-lg h-10 p-2.5 disabled:bg-amber-50' id='temperature' name='temperature' disabled={!productEditable} />
-                            <div className='hidden md:block w-20'/>
-                            
+                            <div className='hidden md:block w-20' />
+
                             <label htmlFor='coverLot'>
                                 Lotto tappi o coperchi
                             </label>
@@ -119,8 +116,8 @@ function PhaseFour() {
                                 Formato (g/ml)
                             </label>
                             <Field className='border-2 focus:border-amber-300 rounded-lg h-10 p-2.5 disabled:bg-amber-50' id='size' name='size' placeholder="Formato" disabled={!productEditable} />
-                            <div className='hidden md:block w-20'/>
-                            
+                            <div className='hidden md:block w-20' />
+
                             <label htmlFor='productLot'>
                                 Lotto prodotto finito
                             </label>
@@ -129,8 +126,8 @@ function PhaseFour() {
                                 N. confezioni ottenute
                             </label>
                             <Field type="number" className='border-gray-300 border-2 focus:border-amber-300 focus:ring-amber-500 rounded-lg h-10 p-2.5 disabled:bg-amber-50' id='numberPacks' name='numberPacks' disabled={!productEditable} />
-                            <div className='hidden md:block w-20'/>
-                            
+                            <div className='hidden md:block w-20' />
+
                             <label htmlFor='expirationDate'>
                                 Data di scadenza
                             </label>
@@ -146,12 +143,12 @@ function PhaseFour() {
                                 Lotto bottiglie o vasetti
                             </label>
                             <Field className='border-2 focus:border-amber-300 rounded-lg h-10 p-2.5' id='lotBottles' name='lotBottles' placeholder="Lotto bottiglie" disabled={!productEditable} />
-                            <div className='hidden md:block w-20'/>
-                            
+                            <div className='hidden md:block w-20' />
+
                             <label htmlFor='notes'>
                                 Note
                             </label>
-                            <textarea id="notes" rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-2 border-gray-300 focus:ring-amber-500 focus:border-amber-300" placeholder="Note..." disabled={!productEditable} />
+                            <Field as="textarea" className='border-2 focus:border-amber-300 focus:ring-amber-300 rounded-lg h-20 p-2.5 disabled:bg-amber-50' id='notes' name='notes' placeholder="Note..." disabled={!productEditable} />
                         </div>
                         <div className='flex justify-center mt-20'>
 
@@ -227,7 +224,7 @@ function PhaseFour() {
                                             <div className='text-red-500'>{errors.ingredient}</div>
                                         ) : null}
                                     </div>
-                                    <div className='hidden md:block w-20'/>
+                                    <div className='hidden md:block w-20' />
 
                                     <label htmlFor='quantity'>
                                         Quantità
@@ -248,7 +245,7 @@ function PhaseFour() {
                                             <div className='text-red-500'>{errors.lot}</div>
                                         ) : null}
                                     </div>
-                                    <div className='hidden md:block w-20'/>
+                                    <div className='hidden md:block w-20' />
 
                                     <label htmlFor='supplier'>
                                         Fornitore
