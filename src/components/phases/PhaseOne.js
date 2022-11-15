@@ -3,6 +3,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import PdfService from '../../service/PdfService';
+import Button from '../common/Button';
+import Footer from '../common/Footer';
+import Header from '../common/Header';
 
 function PhaseOne() {
 
@@ -19,11 +22,8 @@ function PhaseOne() {
     return (
         <div className='bg-amber-50 h-screen'>
 
-            <div className='grid place-content-center h-20 bg-amber-300 w-full'>
-                <div className='text-center text-white text-2xl font-bold'>
-                    <h1 className='md:text-4xl text-2xl font-bold' >Tracciabilità piante e semi</h1>
-                </div>
-            </div>
+            <Header title='Tracciabilità piante e semi' />
+
             <div className='grid place-content-center h-1 bg-amber-600 w-full' />
             <div className='md:h-10' />
 
@@ -103,21 +103,15 @@ function PhaseOne() {
                             </div>
                         </div>
                         <div className='mt-8 p-5 flex flex-row-reverse'>
-                            <button type='submit' className='text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer 
-                            hover:bg-amber-300  
-                            bg-amber-200 
-                            text-amber-600 
-                            border duration-200 ease-in-out 
-                            border-amber-700 transition'>
-                                <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <Button type='submit'>
+                                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
-                            </button>
+                            </Button>
                         </div>
                     </Form>)}
             </Formik>
-
-            <div className="overflow-x-auto relative hidden md:block">
+            <div className="overflow-x-auto relative">
                 {insertedValues.length > 0 && (
                     <table className="w-full text-sm text-center text-black mb-20">
                         <thead className="text-xs text-amber-600 uppercase bg-gray-800">
@@ -239,50 +233,32 @@ function PhaseOne() {
                 )}
             </div>
 
-            <div className='h-20 bg-amber-600 w-full fixed bottom-0' >
-                <div className='p-5'>
-                    <div className='fixed'>
-                        <button type="button" className="text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer 
-                            hover:bg-amber-200  
-                            bg-amber-100 
-                            text-amber-700 
-                            border duration-200 ease-in-out 
-                            border-amber-600 transition" >
-                            <Link to='/'>
-                                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
-                                </svg>
-                            </Link>
-                        </button>
-                    </div>
-                    <div className='flex flex-row-reverse'>
-                        <button type="button" className="text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer 
-                            hover:bg-amber-200  
-                            bg-amber-100 
-                            text-amber-700 
-                            border duration-200 ease-in-out 
-                            border-amber-600 transition">
-                            <Link to='/step-2'>
-                                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                                </svg>
-                            </Link>
-                        </button>
-                        <div className='w-10' />
-                        <button type="button" className="text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer 
-                            hover:bg-amber-200  
-                            bg-amber-100 
-                            text-amber-700 
-                            border duration-200 ease-in-out 
-                            border-amber-600 transition"
-                            onClick={downloadPdf} >
+            <Footer>
+                <div className='fixed'>
+                    <Button>
+                        <Link to='/'>
                             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
                             </svg>
-                        </button>
-                    </div>
+                        </Link>
+                    </Button>
                 </div>
-            </div>
+                <div className='flex flex-row-reverse'>
+                    <Button>
+                        <Link to='/step-2'>
+                            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </Link>
+                    </Button>
+                    <div className='w-10' />
+                    <Button onClick={downloadPdf} >
+                        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
+                        </svg>
+                    </Button>
+                </div>
+            </Footer>
         </div >
     );
 }

@@ -3,6 +3,9 @@ import { React, useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import PdfService from '../../service/PdfService';
+import Button from '../common/Button';
+import Footer from '../common/Footer';
+import Header from '../common/Header';
 
 function PhaseSix() {
 
@@ -19,11 +22,8 @@ function PhaseSix() {
     return (
         <div className='bg-amber-50 h-screen'>
 
-            <div className='grid place-content-center h-20 bg-amber-300 w-full'>
-                <div className='text-center text-white text-2xl font-bold'>
-                    <h1 className='md:text-4xl text-2xl font-bold' >Tracciabilità prodotto finito</h1>
-                </div>
-            </div>
+            <Header title='Tracciabilità prodotto finito' />
+
             <div className='grid place-content-center h-1 bg-amber-600 w-full' />
             <div className='md:h-10' />
 
@@ -71,7 +71,7 @@ function PhaseSix() {
                                     <div className='text-red-500'>{errors.date}</div>
                                 ) : null}
                             </div>
-                            <div className='hidden md:block w-20'/>
+                            <div className='hidden md:block w-20' />
 
                             <label htmlFor='name'>
                                 Materia prima lavorato
@@ -91,7 +91,7 @@ function PhaseSix() {
                                     <div className='text-red-500'>{errors.lot}</div>
                                 ) : null}
                             </div>
-                            <div className='hidden md:block w-20'/>
+                            <div className='hidden md:block w-20' />
 
                             <label htmlFor='product'>
                                 Prodotto ottenuto
@@ -111,7 +111,7 @@ function PhaseSix() {
                                     <div className='text-red-500'>{errors.quantity}</div>
                                 ) : null}
                             </div>
-                            <div className='hidden md:block w-20'/>
+                            <div className='hidden md:block w-20' />
 
                             <label htmlFor='productLot'>
                                 Lotto prodotto finito
@@ -267,50 +267,32 @@ function PhaseSix() {
                 )}
             </div>
 
-            <div className='h-20 bg-amber-600 w-full fixed bottom-0' >
-                <div className='p-5'>
-                    <div className='fixed'>
-                        <button type="button" className="text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer 
-                            hover:bg-amber-200  
-                            bg-amber-100 
-                            text-amber-700 
-                            border duration-200 ease-in-out 
-                            border-amber-600 transition" >
-                            <Link to='/step-5'>
-                                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                                </svg>
-                            </Link>
-                        </button>
-                    </div>
-                    <div className='flex flex-row-reverse'>
-                        <button type="button" className="text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer 
-                            hover:bg-amber-200  
-                            bg-amber-100 
-                            text-amber-700 
-                            border duration-200 ease-in-out 
-                            border-amber-600 transition">
-                            <Link to='/step-1'>
-                                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0019 16V8a1 1 0 00-1.6-.8l-5.333 4zM4.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0011 16V8a1 1 0 00-1.6-.8l-5.334 4z"></path>
-                                </svg>
-                            </Link>
-                        </button>
-                        <div className="w-10" />
-                        <button type="button" className="text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer 
-                            hover:bg-amber-200  
-                            bg-amber-100 
-                            text-amber-700 
-                            border duration-200 ease-in-out 
-                            border-amber-600 transition"
-                            onClick={downloadPdf}>
+            <Footer>
+                <div className='fixed'>
+                    <Button>
+                        <Link to='/step-5'>
                             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                             </svg>
-                        </button>
-                    </div>
+                        </Link>
+                    </Button>
                 </div>
-            </div>
+                <div className='flex flex-row-reverse'>
+                    <Button>
+                        <Link to='/step-1'>
+                            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0019 16V8a1 1 0 00-1.6-.8l-5.333 4zM4.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0011 16V8a1 1 0 00-1.6-.8l-5.334 4z"></path>
+                            </svg>
+                        </Link>
+                    </Button>
+                    <div className="w-10" />
+                    <Button onClick={downloadPdf}>
+                        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
+                        </svg>
+                    </Button>
+                </div>
+            </Footer>
         </div >
     );
 }
