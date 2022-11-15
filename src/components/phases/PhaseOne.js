@@ -111,7 +111,7 @@ function PhaseOne() {
                         </div>
                     </Form>)}
             </Formik>
-            <div className="overflow-x-auto relative">
+            <div className="overflow-x-auto relative hidden md:block">
                 {insertedValues.length > 0 && (
                     <table className="w-full text-sm text-center text-black mb-20">
                         <thead className="text-xs text-amber-600 uppercase bg-gray-800">

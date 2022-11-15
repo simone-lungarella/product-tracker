@@ -148,7 +148,7 @@ function PhaseFour() {
                             <label htmlFor='notes'>
                                 Note
                             </label>
-                            <Field as="textarea" className='border-2 focus:border-amber-300 focus:ring-amber-300 rounded-lg h-20 p-2.5 disabled:bg-amber-50' id='notes' name='notes' placeholder="Note..." disabled={!productEditable} />
+                            <Field as="textarea" className='border-2 border-gray-300 focus:border-amber-300 focus:ring-amber-300 rounded-lg h-20 p-2.5 disabled:bg-amber-50' id='notes' name='notes' placeholder="Note..." disabled={!productEditable} />
                         </div>
                         <div className='flex justify-center mt-20'>
 
@@ -186,10 +186,9 @@ function PhaseFour() {
 
             {!productEditable &&
                 <div>
-                    <div className='h-10' />
-                    <div className='grid place-content-center h-1 bg-amber-600 w-full' />
+                    <div className='h-1 bg-gray-800 divider w-3/4 mx-auto shadow-inner mb-5 mt-5 rounded-full' />
                     <div className='text-center text-white text-2xl font-bold'>
-                        <h1 className='text-2xl font-bold text-amber-800 uppercase' >Ingredienti</h1>
+                        <h1 className='text-2xl font-bold text-amber-800 uppercase' >Ingredienti ({ingredients.length})</h1>
                     </div>
                     <div className='h-10' />
 

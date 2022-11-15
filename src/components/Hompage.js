@@ -32,14 +32,6 @@ function Homepage() {
                                 </svg>
                             </Link>
                         </MenuButton>
-                        {/* TODO: Dark mode button */}
-                        <div className='divide-x border bg-amber-200 mt-10 mb-10'/>
-                        <MenuButton>
-                            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707M16.95 16.95l-.707-.707M7.05 7.05l-.707-.707M16.243 7.757l.707.707M6.343 17.657l.707.707M17.657 6.343l-.707.707M7.757 16.243l-.707.707"></path>
-                            </svg>
-                        </MenuButton>
-
                     </div>
                 </div>
                 {
