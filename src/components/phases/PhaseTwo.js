@@ -45,18 +45,19 @@ function PhaseTwo() {
                     name: Yup.string().required('Appezzamento obbligatorio'),
                     type: Yup.string().required('Tipologia obbligatoria'),
                     date: Yup.date().required('Data obbligatoria'),
+                    quantity: Yup.string().required('Quantità obbligatoria'),
                     lot: Yup.string().required('Lotto obbligatorio'),
                 })}
             >
                 {({ errors, touched }) => (
                     <Form>
-                        <div className='grid grid-cols-2 md:grid-cols-5 gap-4 p-4' >
+                        <div className='grid grid-cols-2 md:grid-cols-5 gap-4 p-4 flex items-center' >
                             <label htmlFor='name'>
                                 Appezzamento
                             </label>
                             <div className='grid grid-cols-1' >
                                 <Field
-                                    className='border-2 border-gray-300 focus:ring-amber-300 focus:border-amber-300 rounded-lg h-15 p-2.5 text-amber-800'
+                                    type="text"
                                     component="select"
                                     id="name"
                                     name="name">
@@ -65,9 +66,6 @@ function PhaseTwo() {
                                     <option value="C">C</option>
                                     <option value="D">D</option>
                                 </Field>
-                                {errors.name && touched.name ? (
-                                    <div className='text-red-500'>{errors.name}</div>
-                                ) : null}
                             </div>
                             <div className='hidden md:block w-20' />
 
@@ -75,10 +73,7 @@ function PhaseTwo() {
                                 Tipo di coltivazione presente
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 focus:border-amber-300 rounded-lg h-10 p-2.5' id='type' name='type' placeholder="Tipo coltivazione" />
-                                {errors.type && touched.type ? (
-                                    <div className='text-red-500'>{errors.type}</div>
-                                ) : null}
+                                <Field type="text" id='type' name='type' placeholder="Tipo coltivazione" className={errors.type && touched.type ? 'border-red-500' : ''} />
                             </div>
                             <label htmlFor='date'>
                                 Data raccolta
@@ -90,12 +85,8 @@ function PhaseTwo() {
                                             <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd"></path>
                                         </svg>
                                     </div>
-
-                                    <Field className='border-gray-300 bg-amber-50 border-2 text-amber-900 md:text-md text-sm rounded-lg focus:ring-amber-500 focus:border-amber-300 block w-full pl-10 p-2.5' id='date' name='date' type='date' />
+                                    <Field id='date' name='date' type='date' className={errors.date && touched.date ? 'border-red-500' : ''} />
                                 </div>
-                                {errors.date && touched.date ? (
-                                    <div className='text-red-500'>{errors.date}</div>
-                                ) : null}
                             </div>
                             <div className='hidden md:block w-20' />
 
@@ -103,33 +94,22 @@ function PhaseTwo() {
                                 Lotto materia prima (prodotte)
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 focus:border-amber-300 rounded-lg h-10 p-2.5' id='lot' name='lot' placeholder="Lotto" />
-                                {errors.lot && touched.lot ? (
-                                    <div className='text-red-500'>{errors.lot}</div>
-                                ) : null}
+                                <Field type='text' id='lot' name='lot' placeholder="Lotto" className={errors.lot && touched.lot ? 'border-red-500' : ''} />
                             </div>
 
                             <label htmlFor='quantity'>
                                 Kg raccolti
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='text-sm rounded-lg focus:ring-amber-500 block w-full p-2.5 border-2 focus:border-amber-300 rounded-lg h-10' id='quantity' name='quantity' placeholder='Kg raccolti' />
-                                {errors.quantity && touched.quantity ? (
-                                    <div className='text-red-500'>{errors.quantity}</div>
-                                ) : null}
+                                <Field type='text' id='quantity' name='quantity' placeholder='Kg raccolti' className={errors.quantity && touched.quantity ? 'border-red-500' : ''} />
                             </div>
                         </div>
                         <div className='mt-8 p-5 flex flex-row-reverse'>
-                            <button type='submit' className='text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer 
-                            hover:bg-amber-300  
-                            bg-amber-200 
-                            text-amber-800 
-                            border duration-200 ease-in-out 
-                            border-amber-700 transition'>
-                                <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <Button type='submit' >
+                                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
-                            </button>
+                            </Button>
                         </div>
                         <div className='h-20' />
                     </Form>)}

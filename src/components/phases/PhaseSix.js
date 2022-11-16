@@ -53,7 +53,7 @@ function PhaseSix() {
             >
                 {({ errors, touched }) => (
                     <Form>
-                        <div className='grid grid-cols-2 md:grid-cols-5 gap-4 p-4' >
+                        <div className='grid grid-cols-2 md:grid-cols-5 gap-4 p-4 flex items-center' >
                             <label htmlFor='date'>
                                 Data lavorazione
                             </label>
@@ -65,11 +65,8 @@ function PhaseSix() {
                                         </svg>
                                     </div>
 
-                                    <Field className='bg-amber-50 border-2 border-gray-300 text-amber-900 md:text-md text-sm rounded-lg focus:ring-amber-500 focus:border-amber-300 block w-full pl-10 p-2.5' id='date' name='date' type='date' />
+                                    <Field id='date' name='date' type='date' className={errors.date && touched.date ? 'border-red-500' : ''} />
                                 </div>
-                                {errors.date && touched.date ? (
-                                    <div className='text-red-500'>{errors.date}</div>
-                                ) : null}
                             </div>
                             <div className='hidden md:block w-20' />
 
@@ -77,19 +74,13 @@ function PhaseSix() {
                                 Materia prima lavorato
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 focus:border-amber-300 rounded-lg h-10 p-2.5' id='name' name='name' placeholder='Materia prima' />
-                                {errors.name && touched.name ? (
-                                    <div className='text-red-500'>{errors.name}</div>
-                                ) : null}
+                                <Field type='text' id='name' name='name' placeholder='Materia prima' className={errors.name && touched.name ? 'border-red-500' : ''} />
                             </div>
                             <label htmlFor='lot'>
                                 Lotto materia prima
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 focus:border-amber-300 rounded-lg h-10 p-2.5' id='lot' name='lot' placeholder='Lotto materia prima' />
-                                {errors.lot && touched.lot ? (
-                                    <div className='text-red-500'>{errors.lot}</div>
-                                ) : null}
+                                <Field type='text' id='lot' name='lot' placeholder='Lotto materia prima' className={errors.lot && touched.lot ? 'border-red-500' : ''} />
                             </div>
                             <div className='hidden md:block w-20' />
 
@@ -97,19 +88,13 @@ function PhaseSix() {
                                 Prodotto ottenuto
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 focus:border-amber-300 rounded-lg h-10 p-2.5' id='product' name='product' placeholder='Prodotto' />
-                                {errors.product && touched.product ? (
-                                    <div className='text-red-500'>{errors.product}</div>
-                                ) : null}
+                                <Field type='text' id='product' name='product' placeholder='Prodotto' className={errors.product && touched.product ? 'border-red-500' : ''} />
                             </div>
                             <label htmlFor='quantity'>
                                 Kg prodotto finito ottenuti
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='text-sm rounded-lg focus:ring-amber-500 block w-full p-2.5 border-2 focus:border-amber-300 rounded-lg h-10' id='quantity' name='quantity' placeholder='Kg prodotto' />
-                                {errors.quantity && touched.quantity ? (
-                                    <div className='text-red-500'>{errors.quantity}</div>
-                                ) : null}
+                                <Field type='text' id='quantity' name='quantity' placeholder='Kg prodotto' className={errors.quantity && touched.quantity ? 'border-red-500' : ''} />
                             </div>
                             <div className='hidden md:block w-20' />
 
@@ -117,24 +102,16 @@ function PhaseSix() {
                                 Lotto prodotto finito
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 focus:border-amber-300 rounded-lg h-10 p-2.5' id='productLot' name='productLot' placeholder='Lotto prodotto' />
-                                {errors.productLot && touched.productLot ? (
-                                    <div className='text-red-500'>{errors.productLot}</div>
-                                ) : null}
+                                <Field type='text' id='productLot' name='productLot' placeholder='Lotto prodotto' className={errors.productLot && touched.productLot ? 'border-red-500' : ''} />
                             </div>
                         </div>
 
                         <div className='md:mt-8 p-5 flex flex-row-reverse'>
-                            <button type='submit' className='text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer 
-                            hover:bg-amber-300  
-                            bg-amber-200 
-                            text-amber-800 
-                            border duration-200 ease-in-out 
-                            border-amber-700 transition'>
-                                <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <Button type='submit'>
+                                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
-                            </button>
+                            </Button>
                         </div>
                         <div className='h-20' />
                     </Form>)}

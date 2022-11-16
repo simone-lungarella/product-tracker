@@ -112,7 +112,7 @@ function PhaseFive() {
                                                                     </label>
                                                                 </div>
                                                                 <div className="grid place-items-end mr-5">
-                                                                    <Field type="checkbox" name="description" value={value} className="place-items-end focus:border-amber-300 text-amber-600 bg-gray-100 form-checkbox focus:ring-amber-500 rounded-md h-5 w-5" />
+                                                                    <Field type="checkbox" name="description" value={value} className="place-items-end h-5 w-5" />
                                                                 </div>
                                                             </div>
                                                         )

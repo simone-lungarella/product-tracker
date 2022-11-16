@@ -60,11 +60,12 @@ function PhaseFour() {
                     date: Yup.date().required('Data obbligatoria'),
                     name: Yup.string().required('Tipo obbligatorio'),
                     productLot: Yup.string().required('Lotto prodotto obbligatorio'),
+                    expirationDate: Yup.date().required('Data di scadenza obbligatoria'),
                 })}
             >
                 {({ errors, touched, values }) => (
                     <Form>
-                        <div className='grid grid-cols-2 md:grid-cols-5 gap-4 p-4' >
+                        <div className='grid grid-cols-2 md:grid-cols-5 gap-4 p-4 flex items-center' >
                             <label htmlFor='date'>
                                 Data di produzione
                             </label>
@@ -75,19 +76,19 @@ function PhaseFour() {
                                     </svg>
                                 </div>
 
-                                <Field disabled={!productEditable} className='border-gray-300 bg-amber-50 border-2 text-amber-900 text-sm rounded-lg focus:ring-amber-500 focus:border-amber-300 block w-full pl-10 p-2.5' id='date' name='date' type='date' />
+                                <Field disabled={!productEditable} id='date' name='date' type='date' className={errors.date && touched.date ? 'border-red-500' : ''} />
                             </div>
                             <div className='hidden md:block w-20' />
 
                             <label htmlFor='name'>
                                 Tipo di prodotto
                             </label>
-                            <Field disabled={!productEditable} className='border-2 focus:border-amber-300 rounded-lg h-10 p-2.5' id='name' name='name' placeholder="Tipo prodotto" />
+                            <Field disabled={!productEditable} type='text' id='name' name='name' placeholder="Tipo prodotto" className={errors.name && touched.name ? 'border-red-500' : ''} />
                             <label htmlFor='cookingType'>
                                 Trattamento termico
                             </label>
                             <Field
-                                className='border-gray-300 border-2 focus:border-amber-300 focus:ring-amber-500 rounded-lg h-15 p-2.5 disabled:bg-amber-50'
+                                type='text'
                                 component="select"
                                 id="cookingType"
                                 name="cookingType"
@@ -101,31 +102,31 @@ function PhaseFour() {
                             <label htmlFor='cookingTime'>
                                 Tempo di cottura (min)
                             </label>
-                            <Field type="number" className='border-gray-300 border-2 focus:border-amber-300 focus:ring-amber-500 rounded-lg h-10 p-2.5 disabled:bg-amber-50' id='cookingTime' name='cookingTime' disabled={!productEditable} />
+                            <Field type="number" id='cookingTime' name='cookingTime' disabled={!productEditable} />
                             <label htmlFor='temperature'>
                                 Temperatura (&#8451;)
                             </label>
-                            <Field type="number" className='border-gray-300 border-2 focus:border-amber-300 focus:ring-amber-500 rounded-lg h-10 p-2.5 disabled:bg-amber-50' id='temperature' name='temperature' disabled={!productEditable} />
+                            <Field type="number" id='temperature' name='temperature' disabled={!productEditable} />
                             <div className='hidden md:block w-20' />
 
                             <label htmlFor='coverLot'>
                                 Lotto tappi o coperchi
                             </label>
-                            <Field className='border-2 focus:border-amber-300 rounded-lg h-10 p-2.5 disabled:bg-amber-50' id='coverLot' name='coverLot' placeholder="Lotto" disabled={!productEditable} />
+                            <Field type='text' id='coverLot' name='coverLot' placeholder="Lotto" disabled={!productEditable} />
                             <label htmlFor='size'>
                                 Formato (g/ml)
                             </label>
-                            <Field className='border-2 focus:border-amber-300 rounded-lg h-10 p-2.5 disabled:bg-amber-50' id='size' name='size' placeholder="Formato" disabled={!productEditable} />
+                            <Field type='text' id='size' name='size' placeholder="Formato" disabled={!productEditable} />
                             <div className='hidden md:block w-20' />
 
                             <label htmlFor='productLot'>
                                 Lotto prodotto finito
                             </label>
-                            <Field className='border-2 focus:border-amber-300 rounded-lg h-10 p-2.5 disabled:bg-amber-50' id='productLot' name='productLot' placeholder="Lotto prodotto" disabled={!productEditable} />
+                            <Field type='text' id='productLot' name='productLot' placeholder="Lotto prodotto" disabled={!productEditable} className={errors.productLot && touched.productLot ? 'border-red-500' : ''} />
                             <label htmlFor='numberPacks'>
                                 N. confezioni ottenute
                             </label>
-                            <Field type="number" className='border-gray-300 border-2 focus:border-amber-300 focus:ring-amber-500 rounded-lg h-10 p-2.5 disabled:bg-amber-50' id='numberPacks' name='numberPacks' disabled={!productEditable} />
+                            <Field type="number" id='numberPacks' name='numberPacks' disabled={!productEditable} />
                             <div className='hidden md:block w-20' />
 
                             <label htmlFor='expirationDate'>
@@ -137,18 +138,18 @@ function PhaseFour() {
                                         <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd"></path>
                                     </svg>
                                 </div>
-                                <Field className='border-gray-300 bg-amber-50 border-2 focus:border-amber-300 text-amber-900 md:text-md text-sm rounded-lg focus:ring-amber-500 block w-full pl-10 p-2.5' id='expirationDate' name='expirationDate' type='date' disabled={!productEditable} />
+                                <Field id='expirationDate' name='expirationDate' type='date' disabled={!productEditable} className={errors.expirationDate && touched.expirationDate ? 'border-red-500' : ''} />
                             </div>
                             <label htmlFor='lotBottles'>
                                 Lotto bottiglie o vasetti
                             </label>
-                            <Field className='border-2 focus:border-amber-300 rounded-lg h-10 p-2.5' id='lotBottles' name='lotBottles' placeholder="Lotto bottiglie" disabled={!productEditable} />
+                            <Field type='text' id='lotBottles' name='lotBottles' placeholder="Lotto bottiglie" disabled={!productEditable} />
                             <div className='hidden md:block w-20' />
 
                             <label htmlFor='notes'>
                                 Note
                             </label>
-                            <Field as="textarea" className='border-2 border-gray-300 focus:border-amber-300 focus:ring-amber-300 rounded-lg h-20 p-2.5 disabled:bg-amber-50' id='notes' name='notes' placeholder="Note..." disabled={!productEditable} />
+                            <Field as="textarea" type='textarea' name='notes' placeholder="Note..." disabled={!productEditable} />
                         </div>
                         <div className='flex justify-center mt-20'>
 
@@ -186,7 +187,7 @@ function PhaseFour() {
 
             {!productEditable &&
                 <div>
-                    <div className='h-1 bg-gray-800 divider w-3/4 mx-auto shadow-inner mb-5 mt-5 rounded-full' />
+                    <div className='h-1 bg-amber-300 divider w-3/4 mx-auto shadow-inner mb-5 mt-5 rounded-full' />
                     <div className='text-center text-white text-2xl font-bold'>
                         <h1 className='text-2xl font-bold text-amber-800 uppercase' >Ingredienti ({ingredients.length})</h1>
                     </div>
@@ -213,15 +214,12 @@ function PhaseFour() {
                         })}>
                         {({ errors, touched }) => (
                             <Form>
-                                <div className='grid grid-cols-2 md:grid-cols-5 gap-4 p-4' >
+                                <div className='grid grid-cols-2 md:grid-cols-5 gap-4 p-4 flex items-center' >
                                     <label htmlFor='ingredient'>
                                         Ingrediente utilizzato
                                     </label>
                                     <div className='grid grid-cols-1' >
-                                        <Field className='text-sm rounded-lg focus:ring-amber-500 block w-full p-2.5 border-2 focus:border-amber-300 rounded-lg h-10' id='ingredient' name='ingredient' placeholder="Ingrediente" />
-                                        {errors.ingredient && touched.ingredient ? (
-                                            <div className='text-red-500'>{errors.ingredient}</div>
-                                        ) : null}
+                                        <Field type='text' id='ingredient' name='ingredient' placeholder="Ingrediente" className={errors.ingredient && touched.ingredient ? 'border-red-500' : ''} />
                                     </div>
                                     <div className='hidden md:block w-20' />
 
@@ -229,20 +227,14 @@ function PhaseFour() {
                                         Quantità
                                     </label>
                                     <div className='grid grid-cols-1' >
-                                        <Field type='number' className='border-gray-300 text-sm rounded-lg focus:ring-amber-500 block w-full p-2.5 border-2 focus:border-amber-300 rounded-lg h-10' id='quantity' name='quantity' />
-                                        {errors.quantity && touched.quantity ? (
-                                            <div className='text-red-500'>{errors.quantity}</div>
-                                        ) : null}
+                                        <Field type='text' id='quantity' name='quantity' placeholder='0' className={errors.quantity && touched.quantity ? 'border-red-500' : ''} />
                                     </div>
 
                                     <label htmlFor='lot'>
                                         Lotto
                                     </label>
                                     <div className='grid grid-cols-1' >
-                                        <Field className='text-sm rounded-lg focus:ring-amber-500 block w-full p-2.5 border-2 focus:border-amber-300 rounded-lg h-10' id='lot' name='lot' placeholder="Lotto" />
-                                        {errors.lot && touched.lot ? (
-                                            <div className='text-red-500'>{errors.lot}</div>
-                                        ) : null}
+                                        <Field type='text' id='lot' name='lot' placeholder="Lotto" className={errors.lot && touched.lot ? 'border-red-500' : ''} />
                                     </div>
                                     <div className='hidden md:block w-20' />
 
@@ -250,27 +242,18 @@ function PhaseFour() {
                                         Fornitore
                                     </label>
                                     <div className='grid grid-cols-1' >
-                                        <Field className='text-sm rounded-lg focus:ring-amber-500 block w-full p-2.5 border-2 focus:border-amber-300 rounded-lg h-10' id='supplier' name='supplier' placeholder="Fornitore" />
-                                        {errors.supplier && touched.supplier ? (
-                                            <div className='text-red-500'>{errors.supplier}</div>
-                                        ) : null}
+                                        <Field type='text' id='supplier' name='supplier' placeholder="Fornitore" className={errors.supplier && touched.supplier ? 'border-red-500' : ''} />
                                     </div>
                                 </div>
 
                                 <div className='md:mt-8 p-5 flex flex-row-reverse'>
-                                    <button type='submit' className='text-base hover:scale-110 focus:outline-none flex justify-center px-3 py-3 rounded font-bold cursor-pointer 
-                                    hover:bg-amber-300  
-                                    bg-amber-200 
-                                    text-amber-800 
-                                    border duration-200 ease-in-out 
-                                    border-amber-700 transition'>
-                                        <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <Button type='submit'>
+                                        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                         </svg>
-                                    </button>
+                                    </Button>
                                 </div>
                                 <div className='h-20' />
-
                             </Form>)}
                     </Formik>
 

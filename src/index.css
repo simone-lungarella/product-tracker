@@ -2,16 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer base {
+  [type='text'],
+  [type='email'],
+  [type='password'],
+  [type='tel'],
+  [type='url'],
+  [type='number'],
+  [type='datetime-local'],
+  [type='month'],
+  [type='search'],
+  [type='time'],
+  [type='week'],
+  [multiple],
+  select {
+    @apply appearance-none border-2 border-gray-300 focus:border-amber-300 focus:ring-amber-300 rounded-lg h-12 w-full;
+  }
+  [type='checkbox'],
+  [type='radio'] {
+    @apply border-amber-500 text-amber-600 bg-gray-100 form-checkbox focus:ring-amber-500 rounded-lg h-10 w-10;
+  }
+  [type='date'] {
+    @apply appearance-none border-2 border-gray-300 focus:border-amber-300 focus:ring-amber-300 rounded-lg h-12 w-full pl-10;
+  }
+  textarea {
+    @apply appearance-none border-2 border-gray-300 focus:border-amber-300 focus:ring-amber-300 rounded-lg h-24 w-full;
+  }
 }

@@ -45,20 +45,18 @@ function PhaseOne() {
                     plants: Yup.string().required('Desc. obbligatoria'),
                     origin: Yup.string().required('Origine obbligatoria'),
                     lot: Yup.string().required('Lotto obbligatorio'),
+                    kg: Yup.string().required('Kg obbligatori'),
                     isCompliant: Yup.boolean(),
                 })}
             >
                 {({ errors, touched }) => (
                     <Form>
-                        <div className='grid grid-cols-2 md:grid-cols-5 gap-4 p-4' >
+                        <div className='grid grid-cols-2 md:grid-cols-5 gap-4 p-4 flex items-center'>
                             <label htmlFor='plants'>
                                 Piante o semi
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 focus:border-amber-300 rounded-lg h-10 p-2.5' id='plants' name='plants' placeholder="Piante o semi" />
-                                {errors.plants && touched.plants ? (
-                                    <div className='text-red-500'>{errors.plants}</div>
-                                ) : null}
+                                <Field id='plants' name='plants' placeholder="Piante o semi" type='text' className={errors.plants && touched.plants ? 'border-red-500' : ''} />
                             </div>
                             <div className='hidden md:block w-20' />
 
@@ -67,10 +65,10 @@ function PhaseOne() {
                             </label>
                             <div className='grid grid-cols-1' >
                                 <Field
-                                    className='border-2 border-gray-300 focus:border-amber-300 focus:ring-amber-300 rounded-lg h-15 p-2.5'
                                     component="select"
                                     id="origin"
-                                    name="origin">
+                                    name="origin"
+                                    type="text">
                                     <option value="Autoprodotte">Autoproduzione</option>
                                     <option value="Acquistate">Acquisto</option>
                                     <option value="Piante da frutto esistenti">Piante da frutto preesistenti</option>
@@ -80,26 +78,20 @@ function PhaseOne() {
                                 Lotto
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 focus:border-amber-300 rounded-lg h-10 p-2.5' id='lot' name='lot' placeholder="Lotto" />
-                                {errors.lot && touched.lot ? (
-                                    <div className='text-red-500'>{errors.lot}</div>
-                                ) : null}
+                                <Field type="text" id='lot' name='lot' placeholder="Lotto" className={errors.lot && touched.lot ? 'border-red-500' : ''} />
                             </div>
                             <div className='hidden md:block w-20' />
 
                             <label htmlFor='isCompliant'>
                                 Conforme
                             </label>
-                            <Field type="checkbox" className='border-amber-500 text-amber-600 bg-gray-100 form-checkbox focus:ring-amber-500 rounded-lg h-10 w-10' id='isCompliant' name='isCompliant' />
+                            <Field type="checkbox" id='isCompliant' name='isCompliant' />
 
                             <label htmlFor='kg'>
                                 Kg o colli acquistati
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='text-sm rounded-lg focus:ring-amber-500 block w-full p-2.5 border-2 focus:border-amber-300 rounded-lg h-10' id='kg' name='kg' placeholder='Kg o colli' />
-                                {errors.kg && touched.kg ? (
-                                    <div className='text-red-500'>{errors.kg}</div>
-                                ) : null}
+                                <Field type="text" id='kg' name='kg' placeholder='Kg o colli' className={errors.kg && touched.kg ? 'border-red-500' : ''} />
                             </div>
                         </div>
                         <div className='mt-8 p-5 flex flex-row-reverse'>

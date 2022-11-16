@@ -49,15 +49,12 @@ function PhaseThree() {
             >
                 {({ errors, touched }) => (
                     <Form>
-                        <div className='grid grid-cols-2 md:grid-cols-5 gap-4 p-4' >
+                        <div className='grid grid-cols-2 md:grid-cols-5 gap-4 p-4 flex items-center' >
                             <label htmlFor='name'>
                                 Nome materia prima
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 focus:border-amber-300 rounded-lg h-10 p-2.5' id='name' name='name' placeholder="Materia prima" />
-                                {errors.name && touched.name ? (
-                                    <div className='text-red-500'>{errors.name}</div>
-                                ) : null}
+                                <Field type='text' id='name' name='name' placeholder="Materia prima" className={errors.name && touched.name ? 'border-red-500' : ''} />
                             </div>
                             <div className='hidden md:block w-20' />
 
@@ -65,32 +62,24 @@ function PhaseThree() {
                                 Lotto materia prima
                             </label>
                             <div className='grid grid-cols-1' >
-                                <Field className='border-2 focus:border-amber-300 rounded-lg h-10 p-2.5' id='lot' name='lot' placeholder="Lotto" />
-                                {errors.lot && touched.lot ? (
-                                    <div className='text-red-500'>{errors.lot}</div>
-                                ) : null}
+                                <Field type='text' id='lot' name='lot' placeholder="Lotto" className={errors.lot && touched.lot ? 'border-red-500' : ''} />
                             </div>
                             <label htmlFor='isCompliantTransformation'>
                                 Conforme alla trasformazione
                             </label>
-                            <Field type="checkbox" className='border-amber-500 text-amber-600 bg-gray-100 form-checkbox focus:ring-amber-500 rounded-lg h-10 w-10' id='isCompliantTransformation' name='isCompliantTransformation' />
+                            <Field type="checkbox" id='isCompliantTransformation' name='isCompliantTransformation' />
                             <div className='hidden md:block w-20' />
                             <label htmlFor='isCompliantAfter'>
                                 Controllo post trasporto
                             </label>
-                            <Field type="checkbox" className='border-amber-500 text-amber-600 bg-gray-100 form-checkbox focus:ring-amber-500 rounded-lg h-10 w-10' id='isCompliantAfter' name='isCompliantAfter' />
+                            <Field type="checkbox" id='isCompliantAfter' name='isCompliantAfter' />
                         </div>
                         <div className='mt-8 p-5 flex flex-row-reverse'>
-                            <button type='submit' className='text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer 
-                            hover:bg-amber-300  
-                            bg-amber-200 
-                            text-amber-800 
-                            border duration-200 ease-in-out 
-                            border-amber-700 transition'>
-                                <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <Button type='submit'>
+                                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
-                            </button>
+                            </Button>
                         </div>
                     </Form>)}
             </Formik>
