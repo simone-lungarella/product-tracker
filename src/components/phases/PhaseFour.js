@@ -6,6 +6,7 @@ import PdfService from '../../service/PdfService';
 import Button from '../common/Button';
 import Footer from '../common/Footer';
 import Header from '../common/Header';
+import MenuButton from '../common/MenuButton';
 
 function PhaseFour() {
 
@@ -376,28 +377,28 @@ function PhaseFour() {
 
             <Footer>
                 <div className='fixed'>
-                    <Button>
+                    <MenuButton>
                         <Link to='/step-3'>
                             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                             </svg>
                         </Link>
-                    </Button>
+                    </MenuButton>
                 </div>
                 <div className='flex flex-row-reverse'>
-                    <Button>
+                    <MenuButton>
                         <Link to='/step-5'>
                             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                             </svg>
                         </Link>
-                    </Button>
+                    </MenuButton>
                     <div className='w-10' />
-                    <Button onClick={downloadPdf}>
+                    <MenuButton onClick={downloadPdf}>
                         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
                         </svg>
-                    </Button>
+                    </MenuButton>
                 </div>
             </Footer>
         </div >

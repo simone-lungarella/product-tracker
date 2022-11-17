@@ -1,5 +1,6 @@
 import { React, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Footer from './common/Footer';
 import MenuButton from './common/MenuButton';
 import Configuration from './misc/Configuration';
 
@@ -9,9 +10,9 @@ function Homepage() {
 
     return (
         <div>
-            <div className='bg-gradient-to-r from-amber-400 to-amber-600 h-screen'>
-                <div className="bg-gray-800 h-screen w-20 left-0 justify-center items-center flex flex-col">
-                    <div className="flex flex-col gap-2">
+            <div className='bg-gradient-to-bl from-amber-400 to-amber-600 h-screen'>
+                <Footer>
+                    <div className='fixed flex flex-row gap-10'>
                         <MenuButton>
                             <Link to='/help'>
                                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -25,6 +26,9 @@ function Homepage() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                             </svg>
                         </MenuButton>
+                    </div>
+
+                    <div className='flex flex-row-reverse'>
                         <MenuButton>
                             <Link to='/step-1'>
                                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -33,7 +37,7 @@ function Homepage() {
                             </Link>
                         </MenuButton>
                     </div>
-                </div>
+                </Footer>
                 {
                     configurationOpen &&
                     (<div className="z-10 inset-0 overflow-y-auto bg-amber-900 bg-opacity-25 fixed flex justify-center items-center"
@@ -42,6 +46,14 @@ function Homepage() {
                     </div>)
                 }
 
+                {/* TODO: To keep or not to keep? */}
+                <div className="w-20 h-20 absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                    <div className="fixed bg-rose-600 w-10 h-10 rounded-full blur-md top-1/4 left-1/4 transform translate(0px, 0px)" />
+                    <div className="fixed bg-violet-300 w-10 h-10 rounded-full blur-sm animate-blob top-1/4 left-1/4 transform translate(0px, 0px)" />
+                    <div className="fixed bg-violet-400 w-10 h-10 rounded-full blur-sm animate-mirrorBlob top-1/4 left-1/4 transform translate(0px, 0px) mix-blend-multiply" />
+                    <div className="fixed bg-violet-300 w-10 h-10 rounded-full blur-sm animate-invertedBlob top-1/4 left-1/4 transform translate(0px, 0px)" />
+                    <div className="fixed bg-violet-400 w-10 h-10 rounded-full blur-sm animate-invertedMirrorBlob top-1/4 left-1/4 transform translate(0px, 0px) mix-blend-multiply" />
+                </div >
             </div >
         </div >
 

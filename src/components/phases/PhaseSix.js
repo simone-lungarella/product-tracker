@@ -6,6 +6,7 @@ import PdfService from '../../service/PdfService';
 import Button from '../common/Button';
 import Footer from '../common/Footer';
 import Header from '../common/Header';
+import MenuButton from '../common/MenuButton';
 
 function PhaseSix() {
 
@@ -246,28 +247,28 @@ function PhaseSix() {
 
             <Footer>
                 <div className='fixed'>
-                    <Button>
+                    <MenuButton>
                         <Link to='/step-5'>
                             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                             </svg>
                         </Link>
-                    </Button>
+                    </MenuButton>
                 </div>
                 <div className='flex flex-row-reverse'>
-                    <Button>
+                    <MenuButton>
                         <Link to='/step-1'>
                             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0019 16V8a1 1 0 00-1.6-.8l-5.333 4zM4.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0011 16V8a1 1 0 00-1.6-.8l-5.334 4z"></path>
                             </svg>
                         </Link>
-                    </Button>
+                    </MenuButton>
                     <div className="w-10" />
-                    <Button onClick={downloadPdf}>
+                    <MenuButton onClick={downloadPdf}>
                         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
                         </svg>
-                    </Button>
+                    </MenuButton>
                 </div>
             </Footer>
         </div >
