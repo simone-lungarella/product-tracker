@@ -8,7 +8,7 @@ const generatePdf = (json, filename) => {
         responseType: 'blob',
     };
 
-    axios.post('http://localhost:8080/foptility/transform/json/generic-table', json, config).then((response) => {
+    axios.post('http://localhost:8080/foptility/transform/json', json, config).then((response) => {
         const file = new Blob([response.data], {
             type: "application/pdf",
         });
