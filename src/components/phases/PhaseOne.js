@@ -52,7 +52,7 @@ function PhaseOne() {
             >
                 {({ errors, touched }) => (
                     <Form>
-                        <div className='grid grid-cols-2 md:grid-cols-5 gap-4 p-4 flex items-center'>
+                        <div className='grid grid-cols-2 md:grid-cols-5 gap-4 p-4 items-center'>
                             <label htmlFor='plants'>
                                 Piante o semi
                             </label>
@@ -69,7 +69,7 @@ function PhaseOne() {
                                     component="select"
                                     id="origin"
                                     name="origin"
-                                    type="text">
+                                    type="select">
                                     <option value="Autoprodotte">Autoproduzione</option>
                                     <option value="Acquistate">Acquisto</option>
                                     <option value="Piante da frutto esistenti">Piante da frutto preesistenti</option>

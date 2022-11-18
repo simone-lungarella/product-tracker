@@ -52,13 +52,13 @@ function PhaseTwo() {
             >
                 {({ errors, touched }) => (
                     <Form>
-                        <div className='grid grid-cols-2 md:grid-cols-5 gap-4 p-4 flex items-center' >
+                        <div className='grid grid-cols-2 md:grid-cols-5 gap-4 p-4 items-center' >
                             <label htmlFor='name'>
                                 Appezzamento
                             </label>
                             <div className='grid grid-cols-1' >
                                 <Field
-                                    type="text"
+                                    type="select"
                                     component="select"
                                     id="name"
                                     name="name">

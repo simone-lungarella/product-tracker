@@ -66,7 +66,7 @@ function PhaseFour() {
             >
                 {({ errors, touched, values }) => (
                     <Form>
-                        <div className='grid grid-cols-2 md:grid-cols-5 gap-4 p-4 flex items-center' >
+                        <div className='grid grid-cols-2 md:grid-cols-5 gap-4 p-4 items-center' >
                             <label htmlFor='date'>
                                 Data di produzione
                             </label>
@@ -89,7 +89,7 @@ function PhaseFour() {
                                 Trattamento termico
                             </label>
                             <Field
-                                type='text'
+                                type='select'
                                 component="select"
                                 id="cookingType"
                                 name="cookingType"
@@ -215,7 +215,7 @@ function PhaseFour() {
                         })}>
                         {({ errors, touched }) => (
                             <Form>
-                                <div className='grid grid-cols-2 md:grid-cols-5 gap-4 p-4 flex items-center' >
+                                <div className='grid grid-cols-2 md:grid-cols-5 gap-4 p-4 items-center' >
                                     <label htmlFor='ingredient'>
                                         Ingrediente utilizzato
                                     </label>

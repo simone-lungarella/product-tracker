@@ -50,7 +50,7 @@ function PhaseThree() {
             >
                 {({ errors, touched }) => (
                     <Form>
-                        <div className='grid grid-cols-2 md:grid-cols-5 gap-4 p-4 flex items-center' >
+                        <div className='grid grid-cols-2 md:grid-cols-5 gap-4 p-4 items-center' >
                             <label htmlFor='name'>
                                 Nome materia prima
                             </label>

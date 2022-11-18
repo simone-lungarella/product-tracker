@@ -4,7 +4,7 @@ import MenuButton from '../common/MenuButton';
 function Configuration(props) {
 
     return (
-        <div className="grid place-content-center bg-amber-200 rounded-lg p-4">
+        <div className="grid place-content-center bg-gray-800 rounded p-4">
             <Formik
                 initialValues={{
                     title: localStorage.getItem('title') || '',
@@ -19,12 +19,12 @@ function Configuration(props) {
                     <Form>
                         <div className='grid grid-cols-1 md:p-4 gap-2' >
                             <div className='flex flex-col'>
-                                <label className='text-xl font-bold mb-2 text-gray-700' htmlFor='title'>Titolo</label>
+                                <label className='text-xl font-bold mb-2 text-white' htmlFor='title'>Titolo</label>
                                 <Field as="textarea" rows='2' cols='40' className='border-2 focus:border-amber-300 focus:ring-amber-300 rounded-lg h-20 p-2.5 disabled:bg-amber-50' id='title' name='title' placeholder="Titolo" />
                             </div>
 
                             <div className='flex flex-col'>
-                                <label className='text-xl font-bold mb-2 text-gray-700' htmlFor='title'>Sottotitolo</label>
+                                <label className='text-xl font-bold mb-2 text-white' htmlFor='title'>Sottotitolo</label>
                                 <Field as="textarea" rows='2' cols='40' className='border-2 focus:border-amber-300 focus:ring-amber-300 rounded-lg h-20 p-2.5 disabled:bg-amber-50' id='subtitle' name='subtitle' placeholder="Sottotitolo" />
                             </div>
                         </div>
