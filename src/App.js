@@ -8,6 +8,7 @@ import PhaseFour from './components/phases/PhaseFour';
 import PhaseFive from './components/phases/PhaseFive';
 import PhaseSix from './components/phases/PhaseSix';
 import HelpPage from './components/HelpPage';
+import EndPhase from './components/phases/EndPhase';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/step-4" element={<PhaseFour />} />
         <Route path="/step-5" element={<PhaseFive />} />
         <Route path="/step-6" element={<PhaseSix />} />
+        <Route path="/end" element={<EndPhase />} />
       </Routes>
     </div>
   );
