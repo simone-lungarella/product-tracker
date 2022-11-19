@@ -2,13 +2,17 @@ import axios from 'axios';
 
 const generatePdf = (json, filename) => {
     const config = {
+        method: 'POST',
+        url: 'https://foptility.herokuapp.com/foptility/transform/json',
         headers: {
             'Content-Type': 'application/json',
         },
         responseType: 'blob',
+        data: json,
     };
 
-    axios.post('http://localhost:8080/foptility/transform/json', json, config).then((response) => {
+
+    axios.request(config).then((response) => {
         const file = new Blob([response.data], {
             type: "application/pdf",
         });
@@ -85,7 +89,7 @@ const getPhaseThreePdf = (formValues, file) => {
             }
         },
     }
-    
+
     generatePdf(json, filename);
 }
 
