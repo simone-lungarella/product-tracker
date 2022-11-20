@@ -28,3 +28,7 @@ Currently are handled only 6 types of documents that are the following:
 Exists a page for each PDF and every page consent to input and validate data associated with the relative template and then download the PDF.
 
 The six phases pages are antecedent by a page that consent to input and validate data about with the footer. So the personalize each downloadable PDF.
+
+The application make use of a deployed Spring boot application deployed on Heroku: <a>https://foptility.herokuapp.com/openapi/ui</a> and the static page itself is deployed on another server. Both application are free to use and the code is open source, if you want help with the maintaining of the servers you can donate with:
+
+[![Paypal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://www.paypal.com/donate/?hosted_button_id=B4AGF9F8W7DHJ)
