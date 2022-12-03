@@ -36,7 +36,7 @@ function Homepage() {
                 </Footer>
                 {
                     configurationOpen &&
-                    (<div className="z-10 inset-0 overflow-y-auto bg-gradient-to-t from-gray-900/50 to-gray-800/50 fixed flex justify-center items-center">
+                    (<div className="z-10 inset-0 overflow-y-auto bg-gray-900/75 fixed flex justify-center items-center">
                         <Configuration handleClose={() => setConfigurationOpen(false)} />
                     </div>)
                 }

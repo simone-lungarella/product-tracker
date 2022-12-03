@@ -17,12 +17,12 @@ function EndPhase() {
             <div className='grid md:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-2 md:gap-8 p-4 md:p-8'>
 
                 <div className='px-4 uppercase font-bold py-4 rounded-xl shadow-xl bg-gradient-to-bl from-amber-50 to-amber-50/50 text-xl col-span-1 max-w-xl md:max-w-none md:col-span-2 lg:col-span-3
-                hover:shadow-2xl hover:from-amber-100 hover:to-amber-100/50 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105'>
+                hover:shadow-2xl hover:from-amber-100 hover:to-amber-100/50 transition duration-500 ease-in-out transform hover:-translate-y-1'>
                     <h3>Tracciamento completato!</h3>
                 </div>
 
                 <div className='px-4 py-2 rounded-xl shadow-xl bg-gradient-to-bl from-amber-50 to-amber-50/50 max-w-xl md:max-w-xl relative h-20 md:h-32
-                hover:shadow-2xl hover:from-amber-100 hover:to-amber-100/50 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105'>
+                hover:shadow-2xl hover:from-amber-100 hover:to-amber-100/50 transition duration-500 ease-in-out transform hover:-translate-y-1'>
                     <h3 className='text-xl text-justify'>Ritorna alla pagina precedente relativa alla fase 6.</h3>
 
                     <div className='text-amber-800/20 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
@@ -33,7 +33,7 @@ function EndPhase() {
                 </div>
 
                 <div className='px-4 py-2 rounded-xl shadow-xl bg-gradient-to-bl from-amber-50 to-amber-50/50 text-xl text-justify max-w-xl md:max-w-xl relative h-32
-                hover:shadow-2xl hover:from-amber-100 hover:to-amber-100/50 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105'>
+                hover:shadow-2xl hover:from-amber-100 hover:to-amber-100/50 transition duration-500 ease-in-out transform hover:-translate-y-1'>
                     <h3>Procedi con il tracciamento di un nuovo prodotto ripartendo dalla fase 1.</h3>
 
                     <div className='text-amber-800/20 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
@@ -44,7 +44,7 @@ function EndPhase() {
                 </div>
 
                 <div className='px-4 py-2 rounded-xl shadow-xl bg-gradient-to-bl from-amber-50 to-amber-50/50 text-xl text-justify max-w-xl md:max-w-xl relative h-20 md:h-32
-                hover:shadow-2xl hover:from-amber-100 hover:to-amber-100/50 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105'>
+                hover:shadow-2xl hover:from-amber-100 hover:to-amber-100/50 transition duration-500 ease-in-out transform hover:-translate-y-1'>
                     <h3>Ritorna alla <strong>homepage</strong> per rivedere le configurazioni locali.</h3>
 
                     <div className='text-amber-800/20 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
@@ -54,7 +54,7 @@ function EndPhase() {
                     </div>
                 </div>
 
-                <div className='px-4 py-2 rounded-xl shadow-xl bg-gradient-to-bl from-amber-50 to-amber-50/50 text-xl text-justify max-w-xl md:max-w-xl relative md:h-32 lg:h-40'>
+                <div className='px-4 py-2 rounded-xl shadow-xl bg-gradient-to-bl from-amber-50 to-amber-50/50 text-xl text-justify max-w-xl md:max-w-xl relative md:h-32 lg:h-40 hover:shadow-2xl hover:from-amber-100 hover:to-amber-100/50 transition duration-500 ease-in-out transform hover:-translate-y-1'>
                     <h3>Contribuisci al mantenimento dei server attraverso una donazione.</h3>
                     <div className='grid grid-cols-1 place-content-center mx-4 mt-2'>
                         <Button onClick={handleDonation}>
