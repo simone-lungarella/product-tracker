@@ -25,7 +25,7 @@ function PhaseTwo() {
 
             <Header title='Tracciabilità materie prime' />
 
-            <div className='grid place-content-center h-1 bg-amber-600 w-full' />
+            <div className='grid place-content-center h-1 bg-gradient-to-b from-amber-600 to-amber-100 w-full' />
             <div className='md:h-10' />
 
             <Formik
@@ -56,7 +56,7 @@ function PhaseTwo() {
                             <label htmlFor='name'>
                                 Appezzamento
                             </label>
-                            <div className='grid grid-cols-1' >
+                            <div>
                                 <Field
                                     type="select"
                                     component="select"
@@ -73,36 +73,55 @@ function PhaseTwo() {
                             <label htmlFor='type'>
                                 Tipo di coltivazione presente
                             </label>
-                            <div className='grid grid-cols-1' >
-                                <Field type="text" id='type' name='type' placeholder="Tipo coltivazione" className={errors.type && touched.type ? 'border-red-500' : ''} />
+                            <div className='relative' >
+                                <Field type="text" id='type' name='type' placeholder="Coltivazione" className={errors.type && touched.type ? 'border-red-500' : ''} />
+                                {errors.type && touched.type ? (
+                                    <div className="pointer-events-none absolute top-1/2 transform -translate-y-1/2 right-3 text-red-600" >
+                                        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                                        </svg>
+                                    </div>
+                                ) : null}
                             </div>
                             <label htmlFor='date'>
                                 Data raccolta
                             </label>
-                            <div className='grid grid-cols-1' >
-                                <div className="relative">
-                                    <div className="flex absolute inset-y-0 left-0 items-center pl-3">
-                                        <svg aria-hidden="true" className="w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd"></path>
-                                        </svg>
-                                    </div>
-                                    <Field id='date' name='date' type='date' className={errors.date && touched.date ? 'border-red-500' : ''} />
+                            <div className="relative flex">
+                                <div className="flex md:hidden absolute inset-y-0 left-3 items-center">
+                                    <svg aria-hidden="true" className="w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd"></path>
+                                    </svg>
                                 </div>
+                                <Field id='date' name='date' type='date' className={errors.date && touched.date ? 'border-red-500' : 'pl-8'} />
                             </div>
                             <div className='hidden md:block w-20' />
 
                             <label htmlFor='lot'>
                                 Lotto materia prima (prodotte)
                             </label>
-                            <div className='grid grid-cols-1' >
+                            <div className='relative' >
                                 <Field type='text' id='lot' name='lot' placeholder="Lotto" className={errors.lot && touched.lot ? 'border-red-500' : ''} />
+                                {errors.lot && touched.lot ? (
+                                    <div className="pointer-events-none absolute top-1/2 transform -translate-y-1/2 right-3 text-red-600" >
+                                        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                                        </svg>
+                                    </div>
+                                ) : null}
                             </div>
 
                             <label htmlFor='quantity'>
                                 Kg raccolti
                             </label>
-                            <div className='grid grid-cols-1' >
+                            <div className='relative' >
                                 <Field type='text' id='quantity' name='quantity' placeholder='Kg raccolti' className={errors.quantity && touched.quantity ? 'border-red-500' : ''} />
+                                {errors.quantity && touched.quantity ? (
+                                    <div className="pointer-events-none absolute top-1/2 transform -translate-y-1/2 right-3 text-red-600" >
+                                        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                                        </svg>
+                                    </div>
+                                ) : null}
                             </div>
                         </div>
                         <div className='mt-8 p-5 flex flex-row-reverse'>

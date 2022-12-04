@@ -11,7 +11,7 @@ function Homepage() {
 
     return (
         <div>
-            <div className='bg-gradient-to-bl from-amber-400 to-amber-600 h-screen md:h-fill'>
+            <div className='bg-gradient-to-br from-amber-50/95 to-amber-100 h-screen md:h-fill'>
 
                 <div className='flex flex-col items-center justify-center'>
                     <HelpPage />

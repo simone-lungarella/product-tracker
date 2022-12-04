@@ -137,7 +137,7 @@ function PhaseFive() {
 
             <Header title='Controllo Pulizie' />
 
-            <div className='grid place-content-center h-1 bg-amber-600 w-full' />
+            <div className='grid place-content-center h-1 bg-gradient-to-b from-amber-600 to-amber-100 w-full' />
 
             <div className="overflow-x-auto relative shadow-md rounded-lg">
                 <table className="w-full text-sm text-center text-gray-500">

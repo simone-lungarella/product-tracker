@@ -23,7 +23,7 @@
     @apply border-amber-500 text-amber-600 bg-gray-100 form-checkbox focus:ring-amber-500 rounded-lg h-10 w-10;
   }
   [type='date'] {
-    @apply appearance-none border-2 border-gray-300 focus:border-amber-300 focus:ring-amber-300 rounded-lg h-12 w-full pl-10;
+    @apply appearance-none border-2 border-gray-300 focus:border-amber-300 focus:ring-amber-300 rounded-lg h-12 w-full;
   }
   textarea {
     @apply appearance-none border-2 border-gray-300 focus:border-amber-300 focus:ring-amber-300 rounded-lg h-24 w-full;
