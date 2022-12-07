@@ -77,7 +77,7 @@ function PhaseFour() {
                                     </svg>
                                 </div>
 
-                                <Field disabled={!productEditable} id='date' name='date' type='date' className={errors.date && touched.date ? 'border-red-500' : ''} />
+                                <Field disabled={!productEditable} id='date' name='date' type='date' className={errors.date && touched.date ? 'border-red-500 pl-8' : 'pl-8'} />
                             </div>
                             <div className='hidden md:block w-20' />
 

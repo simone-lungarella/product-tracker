@@ -2,14 +2,9 @@ import { React } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../common/Footer';
 import MenuButton from '../common/MenuButton';
-import Button from '../common/Button';
 
 
 function EndPhase() {
-
-    const handleDonation = () => {
-        window.location.href = 'https://www.paypal.com/donate/?hosted_button_id=B4AGF9F8W7DHJ';
-    }
 
     return (
         <div className='bg-gradient-to-br from-amber-50/95 to-amber-100 h-screen md:h-fill'>
@@ -24,11 +19,7 @@ function EndPhase() {
                     <li>Ritornare alla pagina precedente relativa alla fase 6.</li>
                     <li>Procedere con il tracciamento di un nuovo prodotto ripartendo dalla fase 1.</li>
                     <li>Ritornare alla <strong>homepage</strong> per rivedere le configurazioni locali.</li>
-                    <li>Contribuire al mantenimento dei server attraverso una donazione: <div className='flex flex-row place-content-center'>
-                        <Button onClick={handleDonation}>
-                            Paypal
-                        </Button>
-                    </div></li>
+                    <li>Contribuire al mantenimento dei server attraverso una donazione: <a href='https://www.paypal.com/donate/?hosted_button_id=B4AGF9F8W7DHJ' target='_blank' rel='noreferrer'>Paypal</a></li>
                 </ul>
 
             </div>
