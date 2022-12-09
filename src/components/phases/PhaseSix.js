@@ -11,6 +11,8 @@ import MenuButton from '../common/MenuButton';
 function PhaseSix() {
 
     const [insertedValues, setInsertedValues] = useState([]);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [selectedItem, setSelectedItem] = useState('');
 
     const downloadPdf = () => {
         if (insertedValues.length > 0) {
@@ -22,6 +24,100 @@ function PhaseSix() {
 
     return (
         <div className='bg-amber-50 h-screen'>
+
+            {modalOpen &&
+                <div className="backdrop-blur-sm grid place-content-center overflow-y-auto fixed z-50 w-auto md:inset-0 h-full p-4 bg-black bg-opacity-50">
+                    <div className="relative bg-white rounded-lg shadow">
+                        <button type="button" className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                            onClick={() => { setModalOpen(false) }} >
+                            <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path>
+                            </svg>
+                        </button>
+                        <div className="p-4">
+                            <div className="flex flex-col items-center">
+                                <div className="flex flex-col items-center">
+                                    <div className="text-center">
+                                        <h1 className="text-2xl font-bold ml-10 mr-10">Modifica</h1>
+                                    </div>
+                                </div>
+                                <div className="h-10" />
+                                <div className="grid place-content-center">
+                                    <Formik
+                                        initialValues={{
+                                            date: selectedItem.date,
+                                            name: selectedItem.name,
+                                            lot: selectedItem.lot,
+                                            product: selectedItem.product,
+                                            quantity: selectedItem.quantity,
+                                            productLot: selectedItem.productLot,
+                                        }}
+                                        onSubmit={(values) => {
+                                            const index = insertedValues.indexOf(selectedItem);
+                                            insertedValues[index] = values;
+                                            setInsertedValues(insertedValues);
+                                            setModalOpen(false);
+                                        }}>
+                                        {({ errors, touched }) => (
+                                            <Form>
+                                                <div className='grid grid-cols-2 md:grid-cols-5 gap-4 p-4 items-center' >
+                                                    <label htmlFor='date'>
+                                                        Data lavorazione
+                                                    </label>
+                                                    <div className='grid grid-cols-1' >
+                                                        <div className="relative">
+                                                            <div className="flex md:hidden absolute inset-y-0 left-3 items-center">
+                                                                <svg aria-hidden="true" className="w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd"></path>
+                                                                </svg>
+                                                            </div>
+
+                                                            <Field id='date' name='date' type='date' className={errors.date && touched.date ? 'border-red-500 pl-8 md:pl-2' : 'pl-8 md:pl-2'} />
+                                                        </div>
+                                                    </div>
+                                                    <div className='hidden md:block w-20' />
+
+                                                    <label htmlFor='name'>
+                                                        Materia prima lavorato
+                                                    </label>
+                                                    <Field type='text' id='name' name='name' placeholder='Materia prima' className={errors.name && touched.name ? 'border-red-500' : ''} />
+                                                    <label htmlFor='lot'>
+                                                        Lotto materia prima
+                                                    </label>
+                                                    <Field type='text' id='lot' name='lot' placeholder='Lotto' className={errors.lot && touched.lot ? 'border-red-500' : ''} />
+                                                    <div className='hidden md:block w-20' />
+
+                                                    <label htmlFor='product'>
+                                                        Prodotto ottenuto
+                                                    </label>
+                                                    <Field type='text' id='product' name='product' placeholder='Prodotto' className={errors.product && touched.product ? 'border-red-500' : ''} />
+                                                    <label htmlFor='quantity'>
+                                                        Kg prodotto finito ottenuti
+                                                    </label>
+                                                    <Field type='text' id='quantity' name='quantity' placeholder='Kg prodotto' className={errors.quantity && touched.quantity ? 'border-red-500' : ''} />
+
+                                                    <div className='hidden md:block w-20' />
+
+                                                    <label htmlFor='productLot'>
+                                                        Lotto prodotto finito
+                                                    </label>
+                                                    <Field type='text' id='productLot' name='productLot' placeholder='Lotto prodotto' className={errors.productLot && touched.productLot ? 'border-red-500' : ''} />
+                                                </div>
+
+                                                <div className='grid place-content-center'>
+                                                    <Button type='submit' className='bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded'>
+                                                        Modifica
+                                                    </Button>
+                                                </div>
+                                                <div className='h-20' />
+                                            </Form>)}
+                                    </Formik>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
 
             <Header title='Tracciabilità prodotto finito' />
 
@@ -227,6 +323,16 @@ function PhaseSix() {
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                                                     </svg>
                                                 </button>
+                                                {/* Edit button */}
+                                                <button className="hover:scale-110 focus:outline-none flex justify-center px-4 py-2 cursor-pointer text-black-600 duration-200 ease-in-out"
+                                                    onClick={() => {
+                                                        setSelectedItem(value);
+                                                        setModalOpen(true);
+                                                    }}>
+                                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                                    </svg>
+                                                </button>
                                             </div>
                                         </td>
                                     </tr>
@@ -269,6 +375,16 @@ function PhaseSix() {
                                                     }} >
                                                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                                    </svg>
+                                                </button>
+                                                {/* Edit button */}
+                                                <button className="hover:scale-110 focus:outline-none flex justify-center px-4 py-2 cursor-pointer text-black-600 duration-200 ease-in-out"
+                                                    onClick={() => {
+                                                        setSelectedItem(value);
+                                                        setModalOpen(true);
+                                                    }}>
+                                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                                     </svg>
                                                 </button>
                                             </div>

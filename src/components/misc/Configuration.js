@@ -51,7 +51,6 @@ function Configuration(props) {
                     </Form>
                 )}
             </Formik>
-
         </div>
     );
 }
