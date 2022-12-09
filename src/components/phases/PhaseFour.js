@@ -35,7 +35,7 @@ function PhaseFour() {
     }, [])
 
     return (
-        <div className={productEditable ? 'bg-amber-50 md:h-screen h-full' : 'bg-amber-50 h-full'}>
+        <div className='bg-amber-50 h-full'>
 
             <Header title='Tracciabilità prodotto finito' />
 
