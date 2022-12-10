@@ -26,70 +26,72 @@ function PhaseThree() {
         <div className='bg-amber-50 h-screen'>
 
             {modalOpen &&
-                <div className="backdrop-blur-sm grid place-content-center overflow-y-auto fixed z-50 w-auto md:inset-0 h-full p-4 bg-black bg-opacity-50">
-                    <div className="relative bg-white rounded-lg shadow">
-                        <button type="button" className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
-                            onClick={() => { setModalOpen(false) }} >
-                            <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path>
-                            </svg>
-                        </button>
-                        <div className="p-4">
-                            <div className="flex flex-col items-center">
-                                <div className="flex flex-col items-center">
-                                    <div className="text-center">
-                                        <h1 className="text-2xl font-bold ml-10 mr-10">Modifica</h1>
-                                    </div>
-                                </div>
-                                <div className="h-10" />
-                                <div className="grid place-content-center">
-                                    <Formik
-                                        initialValues={{
-                                            name: selectedItem.name,
-                                            lot: selectedItem.lot,
-                                            isCompliantTransformation: selectedItem.isCompliantTransformation,
-                                            date: selectedItem.date,
-                                            isCompliantAfter: selectedItem.isCompliantAfter
-                                        }}
-                                        onSubmit={(values) => {
-                                            const index = insertedValues.indexOf(selectedItem);
-                                            insertedValues[index] = values;
-                                            setInsertedValues(insertedValues);
-                                            setModalOpen(false);
-                                        }}
-                                    >
-                                        {({ errors, touched }) => (
-                                            <Form>
-                                                <div className='grid grid-cols-2 md:grid-cols-5 gap-4 p-4 items-center' >
-                                                    <label htmlFor='name'>
-                                                        Nome materia prima
-                                                    </label>
-                                                    <Field type='text' id='name' name='name' placeholder="Materia prima" className={errors.name && touched.name ? 'border-red-500' : ''} />
+                <div className="backdrop-blur-sm grid place-content-center overflow-y-auto fixed z-50 w-auto md:inset-0 h-full p-2 bg-black bg-opacity-50">
+                    <div className="relative bg-amber-50 rounded shadow-lg border-4 p-4 border-white/75">
+                        <div className='grid grid-cols-2'>
 
-                                                    <div className='hidden md:block w-20' />
+                            <button type="button" className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                                onClick={() => { setModalOpen(false) }} >
+                                <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path>
+                                </svg>
+                            </button>
+                            <div className="flex flex-col font-bold text-2xl text-black">
+                                <h1>Modifica</h1>
+                            </div>
+                        </div>
+                        <div className='h-1 bg-black/75 rounded w-full m-4 mx-auto shadow-lg' />
 
-                                                    <label htmlFor='lot'>
-                                                        Lotto materia prima
-                                                    </label>
-                                                    <Field type='text' id='lot' name='lot' placeholder="Lotto" className={errors.lot && touched.lot ? 'border-red-500' : ''} />
-                                                    <label htmlFor='isCompliantTransformation'>
-                                                        Conforme alla trasformazione
-                                                    </label>
-                                                    <Field type="checkbox" id='isCompliantTransformation' name='isCompliantTransformation' />
-                                                    <div className='hidden md:block w-20' />
-                                                    <label htmlFor='isCompliantAfter'>
-                                                        Controllo post trasporto
-                                                    </label>
-                                                    <Field type="checkbox" id='isCompliantAfter' name='isCompliantAfter' />
-                                                </div>
-                                                <div className='grid place-content-center'>
-                                                    <Button type='submit' className='bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded'>
-                                                        Modifica
-                                                    </Button>
-                                                </div>
-                                            </Form>)}
-                                    </Formik>
-                                </div>
+                        <div className="flex flex-col items-center">
+
+                            <div className="h-10" />
+                            <div className="grid place-content-center">
+                                <Formik
+                                    initialValues={{
+                                        name: selectedItem.name,
+                                        lot: selectedItem.lot,
+                                        isCompliantTransformation: selectedItem.isCompliantTransformation,
+                                        date: selectedItem.date,
+                                        isCompliantAfter: selectedItem.isCompliantAfter
+                                    }}
+                                    onSubmit={(values) => {
+                                        const index = insertedValues.indexOf(selectedItem);
+                                        insertedValues[index] = values;
+                                        setInsertedValues(insertedValues);
+                                        setModalOpen(false);
+                                    }}
+                                >
+                                    {({ errors, touched }) => (
+                                        <Form>
+                                            <div className='grid grid-cols-2 md:grid-cols-5 gap-4 p-4 items-center' >
+                                                <label htmlFor='name'>
+                                                    Nome materia prima
+                                                </label>
+                                                <Field type='text' id='name' name='name' placeholder="Materia prima" className={errors.name && touched.name ? 'border-red-500' : ''} />
+
+                                                <div className='hidden md:block w-20' />
+
+                                                <label htmlFor='lot'>
+                                                    Lotto materia prima
+                                                </label>
+                                                <Field type='text' id='lot' name='lot' placeholder="Lotto" className={errors.lot && touched.lot ? 'border-red-500' : ''} />
+                                                <label htmlFor='isCompliantTransformation'>
+                                                    Conforme alla trasformazione
+                                                </label>
+                                                <Field type="checkbox" id='isCompliantTransformation' name='isCompliantTransformation' />
+                                                <div className='hidden md:block w-20' />
+                                                <label htmlFor='isCompliantAfter'>
+                                                    Controllo post trasporto
+                                                </label>
+                                                <Field type="checkbox" id='isCompliantAfter' name='isCompliantAfter' />
+                                            </div>
+                                            <div className='grid place-content-center mt-5'>
+                                                <Button type='submit' className='bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded'>
+                                                    Conferma
+                                                </Button>
+                                            </div>
+                                        </Form>)}
+                                </Formik>
                             </div>
                         </div>
                     </div>
@@ -230,7 +232,7 @@ function PhaseThree() {
                                                     </svg>
                                                 </button>
                                                 {/* Edit button */}
-                                                <button className="hover:scale-110 focus:outline-none flex justify-center px-4 py-2 cursor-pointer text-black-600 duration-200 ease-in-out"
+                                                <button className="hover:scale-110 focus:outline-none flex justify-center px-4 py-2 cursor-pointer text-black duration-200 ease-in-out"
                                                     onClick={() => {
                                                         setSelectedItem(value);
                                                         setModalOpen(true);
@@ -283,7 +285,7 @@ function PhaseThree() {
                                                     </svg>
                                                 </button>
                                                 {/* Edit button */}
-                                                <button className="hover:scale-110 focus:outline-none flex justify-center px-4 py-2 cursor-pointer text-black-600 duration-200 ease-in-out"
+                                                <button className="hover:scale-110 focus:outline-none flex justify-center px-4 py-2 cursor-pointer text-black duration-200 ease-in-out"
                                                     onClick={() => {
                                                         setSelectedItem(value);
                                                         setModalOpen(true);
