@@ -39,8 +39,7 @@ function PhaseFour() {
     }, [])
 
     return (
-        <div
-            className='bg-amber-50 h-screen'>
+        <div className='bg-amber-50 h-screen'>
 
             {modalOpen &&
                 <div className="backdrop-blur-sm grid place-content-center overflow-y-auto fixed z-50 w-auto md:inset-0 h-full p-2 bg-black bg-opacity-50">

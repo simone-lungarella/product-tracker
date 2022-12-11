@@ -1,10 +1,10 @@
-import { React, useRef, useState, useEffect } from 'react';
 import { Field, Form, Formik } from 'formik';
+import { React, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PdfService from '../../service/PdfService';
-import Header from '../common/Header';
 import Button from '../common/Button';
 import Footer from '../common/Footer';
+import Header from '../common/Header';
 import MenuButton from '../common/MenuButton';
 
 const selectableValues = [
@@ -38,13 +38,17 @@ function PhaseFive() {
 
     const [insertedValues, setInsertedValues] = useState(valuesToInsert);
     const [lastCopiedDescription, setLastCopiedDescription] = useState('');
+    const [editable, setEditable] = useState(true);
+
+    const [month, setMonth] = useState('');
+    const [year, setYear] = useState('');
 
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedDay, setSelectedDay] = useState(1);
 
     const downloadPdf = () => {
         if (insertedValues.length > 0) {
-            PdfService.getPhaseFivePdf(insertedValues);
+            PdfService.getPhaseFivePdf(insertedValues, year, month);
         } else {
             console.log("Cannot download pdf, no data inserted");
         }
@@ -58,8 +62,7 @@ function PhaseFive() {
     }, [])
 
     return (
-        <div
-            className='bg-amber-50 h-screen'>
+        <div className='bg-amber-50 h-screen'>
             {modalOpen &&
                 <div className="backdrop-blur-sm grid place-content-center overflow-y-auto fixed z-50 w-auto md:inset-0 h-full p-4 bg-black bg-opacity-50">
                     <div className="relative bg-white rounded-lg shadow">
@@ -139,92 +142,148 @@ function PhaseFive() {
 
             <div className='grid place-content-center h-1 bg-gradient-to-b from-amber-600 to-amber-100 w-full' />
 
-            <div className="overflow-x-auto relative shadow-md rounded-lg">
-                <table className="w-full text-sm text-center text-gray-500">
-                    <thead className="md:text-xl text-amber-700 uppercase bg-amber-50">
-                        <tr>
-                            <th scope="col" className="py-3 px-6">
-                                Giorno
-                            </th>
-                            <th scope="col" className="py-3 px-6">
-                                Attrezzature e locali
-                            </th>
-                            <th scope="col" className="py-3 px-6">
-                                Azioni
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {insertedValues.map((value, index) => {
-                            return (
-                                <tr key={index} className={index % 2 === 0 ? 'bg-amber-100 border-b border-gray-200' : 'border-b border-gray-200'}>
-                                    <td className="py-3 px-6">
-                                        <div className="flex justify-center items-center">
-                                            <div className="mr-2">
-                                                <span className="font-bold text-amber-700">{value.day}</span>
+            <Formik
+                initialValues={{
+                    year: '',
+                    month: ''
+                }} >
+                {({ errors, touched, values }) => (
+                    <Form>
+                        <div className='grid grid-cols-2 md:grid-cols-5 gap-4 p-4 items-center'>
+                            <label htmlFor='month'>
+                                Mese
+                            </label>
+                            <Field id='month' name='month' placeholder="Mese" type='text' className={errors.month && touched.month ? 'border-red-500' : ''} disabled={!editable} />
+                            <div className='hidden md:block w-20' />
+
+                            <label htmlFor='year'>
+                                Anno
+                            </label>
+                            <Field type="text" id='year' name='year' placeholder="Anno" className={errors.year && touched.year ? 'border-red-500' : ''} disabled={!editable} />
+                            <div className='hidden md:block w-20' />
+                        </div>
+                        <div className='flex justify-center mt-10'>
+
+                            {!editable &&
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                </svg>
+                            }
+                            {editable &&
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"></path>
+                                </svg>
+                            }
+                            <div className='w-5' />
+                            <label htmlFor="toggle" className="inline-flex relative items-center cursor-pointer">
+                                <input type="checkbox" id="toggle" className="sr-only peer" onChange={
+                                    () => {
+                                        setEditable(!editable);
+
+                                        setYear(values.year);
+                                        setMonth(values.month);
+                                        console.log(year, month);
+                                    }
+                                } />
+                                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-amber-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] 
+                                    after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border-2 after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-600">
+                                </div>
+                            </label>
+                        </div>
+                        <div className='h-20' />
+                    </Form>
+                )}
+            </Formik>
+
+            {!editable && (
+
+                <div className="overflow-x-auto relative shadow-md rounded-lg">
+                    <table className="w-full text-sm text-center text-gray-500">
+                        <thead className="md:text-xl text-amber-700 uppercase bg-amber-50">
+                            <tr>
+                                <th scope="col" className="py-3 px-6">
+                                    Giorno
+                                </th>
+                                <th scope="col" className="py-3 px-6">
+                                    Attrezzature e locali
+                                </th>
+                                <th scope="col" className="py-3 px-6">
+                                    Azioni
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {insertedValues.map((value, index) => {
+                                return (
+                                    <tr key={index} className={index % 2 === 0 ? 'bg-amber-100 border-b border-gray-200' : 'border-b border-gray-200'}>
+                                        <td className="py-3 px-6">
+                                            <div className="flex justify-center items-center">
+                                                <div className="mr-2">
+                                                    <span className="font-bold text-amber-700">{value.day}</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td className="py-3 px-6">
-                                        <div className="flex justify-center items-center">
-                                            <div>
-                                                {value.description && value.description.map((description, index) => {
-                                                    if (index === value.description.length - 1) {
-                                                        return (
-                                                            <span key={index} className="font-bold text-amber-700">{description}</span>
-                                                        )
-                                                    } else {
-                                                        return (
-                                                            <span key={index} className="font-bold text-amber-700">{description}, </span>
-                                                        )
-                                                    }
-                                                })}
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td className="py-3 px-6">
-                                        <div className="flex justify-center items-center">
-                                            <div className="md:mr-2 grid place-items-center md:grid-cols-3 grid-cols-1">
-                                                <button className='text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 cursor-pointer text-amber-800 duration-200 ease-in-out'
-                                                    onClick={() => {
-                                                        setModalOpen(true);
-                                                        setSelectedDay(value.day);
-                                                    }} >
-                                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-                                                    </svg>
-                                                </button>
-                                                <button className='text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 cursor-pointer text-amber-800 duration-200 ease-in-out'
-                                                    onClick={
-                                                        () => {
-                                                            setLastCopiedDescription(value.description);
+                                        </td>
+                                        <td className="py-3 px-6">
+                                            <div className="flex justify-center items-center">
+                                                <div>
+                                                    {value.description && value.description.map((description, index) => {
+                                                        if (index === value.description.length - 1) {
+                                                            return (
+                                                                <span key={index} className="font-bold text-amber-700">{description}</span>
+                                                            )
+                                                        } else {
+                                                            return (
+                                                                <span key={index} className="font-bold text-amber-700">{description}, </span>
+                                                            )
                                                         }
-                                                    } >
-                                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-                                                    </svg>
-                                                </button>
-                                                <button className='text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 cursor-pointer text-amber-800 duration-200 ease-in-out'
-                                                    onClick={
-                                                        () => {
-                                                            let newInsertedValues = [...insertedValues];
-                                                            newInsertedValues[index].description = lastCopiedDescription;
-                                                            setInsertedValues(newInsertedValues);
-                                                        }
-                                                    } >
-                                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-7a2 2 0 012-2h2m3-4H9a2 2 0 00-2 2v7a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-1m-1 4l-3 3m0 0l-3-3m3 3V3"></path>
-                                                    </svg>
-                                                </button>
+                                                    })}
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </table>
-            </div>
+                                        </td>
+                                        <td className="py-3 px-6">
+                                            <div className="flex justify-center items-center">
+                                                <div className="md:mr-2 grid place-items-center md:grid-cols-3 grid-cols-1">
+                                                    <button className='text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 cursor-pointer text-amber-800 duration-200 ease-in-out'
+                                                        onClick={() => {
+                                                            setModalOpen(true);
+                                                            setSelectedDay(value.day);
+                                                        }} >
+                                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                                                        </svg>
+                                                    </button>
+                                                    <button className='text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 cursor-pointer text-amber-800 duration-200 ease-in-out'
+                                                        onClick={
+                                                            () => {
+                                                                setLastCopiedDescription(value.description);
+                                                            }
+                                                        } >
+                                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                                        </svg>
+                                                    </button>
+                                                    <button className='text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 cursor-pointer text-amber-800 duration-200 ease-in-out'
+                                                        onClick={
+                                                            () => {
+                                                                let newInsertedValues = [...insertedValues];
+                                                                newInsertedValues[index].description = lastCopiedDescription;
+                                                                setInsertedValues(newInsertedValues);
+                                                            }
+                                                        } >
+                                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-7a2 2 0 012-2h2m3-4H9a2 2 0 00-2 2v7a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-1m-1 4l-3 3m0 0l-3-3m3 3V3"></path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </table>
+                </div>
+            )}
 
             <div className='h-20' />
 

@@ -116,7 +116,7 @@ const getPhaseFourPdf = (formValues) => {
     generatePdf(json, filename);
 }
 
-const getPhaseFivePdf = (formValues) => {
+const getPhaseFivePdf = (formValues, year, month) => {
 
     const filename = 'ControlloPulizie.pdf';
     const items = [];
@@ -128,6 +128,8 @@ const getPhaseFivePdf = (formValues) => {
     const json = {
         "parameters": {
             "filename": filename,
+            "year": year,
+            "month": month,
             "items": items,
             "footer": {
                 "title": localStorage.getItem('title') || '',
@@ -135,7 +137,7 @@ const getPhaseFivePdf = (formValues) => {
             }
         },
     }
-
+    
     generatePdf(json, filename);
 }
 
