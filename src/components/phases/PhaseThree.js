@@ -173,7 +173,7 @@ function PhaseThree() {
                     </Form>)}
             </Formik>
 
-            <div className="overflow-x-auto relative hidden md:block">
+            <div className="overflow-x-auto relative">
                 {insertedValues.length > 0 && (
                     <table className="w-full text-sm text-center text-black mb-20">
                         <thead className="text-xs text-amber-600 uppercase bg-gray-800">
@@ -181,13 +181,13 @@ function PhaseThree() {
                                 <th scope="col" className="py-3 px-6">
                                     Nome materia prima
                                 </th>
-                                <th scope="col" className="py-3 px-6">
+                                <th scope="col" className="py-3 px-6 hidden md:table-cell">
                                     Lotto materia prima
                                 </th>
-                                <th scope="col" className="py-3 px-6">
+                                <th scope="col" className="py-3 px-6 hidden md:table-cell">
                                     Conforme alla trasformazione
                                 </th>
-                                <th scope="col" className="py-3 px-6">
+                                <th scope="col" className="py-3 px-6 hidden md:table-cell">
                                     Controllo post trasporto az. trasformazione
                                 </th>
                                 <th scope="col" className="py-3 px-6">
@@ -204,72 +204,19 @@ function PhaseThree() {
                                                 <span className="font-bold text-amber-700">{value.name}</span>
                                             </div>
                                         </td>
-                                        <td className="py-3 px-6">
+                                        <td className="py-3 px-6 hidden md:table-cell">
                                             <div className="flex justify-center items-center">
                                                 <span className="font-bold text-amber-700">{value.lot}</span>
                                             </div>
                                         </td>
-                                        <td className="py-3 px-6">
+                                        <td className="py-3 px-6 hidden md:table-cell">
                                             <div className="flex justify-center items-center">
                                                 <span className="font-bold text-amber-700">{value.isCompliantTransformation ? 'Si' : 'No'}</span>
                                             </div>
                                         </td>
-                                        <td className="py-3 px-6">
+                                        <td className="py-3 px-6 hidden md:table-cell">
                                             <div className="flex justify-center items-center">
                                                 <span className="font-bold text-amber-700">{value.isCompliantAfter ? 'Si' : 'No'}</span>
-                                            </div>
-                                        </td>
-                                        <td className="py-3 px-6">
-                                            <div className="flex justify-center items-center">
-                                                <button className="hover:scale-110 focus:outline-none flex justify-center px-4 py-2 cursor-pointer text-red-600 duration-200 ease-in-out"
-                                                    onClick={() => {
-                                                        const newInsertedValues = [...insertedValues];
-                                                        newInsertedValues.splice(index, 1);
-                                                        setInsertedValues(newInsertedValues);
-                                                    }}>
-                                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                                                    </svg>
-                                                </button>
-                                                {/* Edit button */}
-                                                <button className="hover:scale-110 focus:outline-none flex justify-center px-4 py-2 cursor-pointer text-black duration-200 ease-in-out"
-                                                    onClick={() => {
-                                                        setSelectedItem(value);
-                                                        setModalOpen(true);
-                                                    }}>
-                                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                )
-                            })}
-                        </tbody>
-                    </table>)}
-            </div>
-
-            <div className="overflow-x-auto relative md:hidden block">
-                {insertedValues.length > 0 && (
-                    <table className="w-full text-sm text-center text-black mb-20">
-                        <thead className="text-xs text-amber-600 uppercase bg-gray-800">
-                            <tr>
-                                <th scope="col" className="py-3 px-6">
-                                    Nome materia prima
-                                </th>
-                                <th scope="col" className="py-3 px-6">
-                                    Azioni
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {insertedValues.map((value, index) => {
-                                return (
-                                    <tr key={index} className={index % 2 === 0 ? 'bg-amber-100 border-b border-gray-200' : 'border-b border-gray-200 bg-amber-200'}>
-                                        <td className="py-3 px-6">
-                                            <div className="flex justify-center items-center">
-                                                <span className="font-bold text-amber-700">{value.name}</span>
                                             </div>
                                         </td>
                                         <td className="py-3 px-6">
