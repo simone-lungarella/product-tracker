@@ -6,7 +6,6 @@ import Header from '../common/Header';
 import Button from '../common/Button';
 import Footer from '../common/Footer';
 import MenuButton from '../common/MenuButton';
-import { motion } from 'framer-motion';
 
 const selectableValues = [
     "Contenitori rifiuti",
@@ -59,30 +58,8 @@ function PhaseFive() {
     }, [])
 
     return (
-        <motion.div
-            className='bg-amber-50 h-screen'
-            key='step-1'
-            initial={{
-                opacity: 0,
-                x: '100vw',
-            }}
-            animate={{
-                opacity: 1,
-                x: 0,
-                transition: {
-                    type: 'spring',
-                    mass: 0.4,
-                    damping: 8,
-                    when: 'beforeChildren',
-                    staggerChildren: 0.4,
-                },
-            }}
-            exit={{
-                x: '-100vw',
-                transition: {
-                    ease: 'easeInOut',
-                },
-            }}>
+        <div
+            className='bg-amber-50 h-screen'>
             {modalOpen &&
                 <div className="backdrop-blur-sm grid place-content-center overflow-y-auto fixed z-50 w-auto md:inset-0 h-full p-4 bg-black bg-opacity-50">
                     <div className="relative bg-white rounded-lg shadow">
@@ -277,7 +254,7 @@ function PhaseFive() {
                     </MenuButton>
                 </div>
             </Footer>
-        </motion.div>
+        </div>
     );
 }
 
