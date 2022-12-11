@@ -7,6 +7,7 @@ import Button from '../common/Button';
 import Footer from '../common/Footer';
 import Header from '../common/Header';
 import MenuButton from '../common/MenuButton';
+import { motion } from 'framer-motion';
 
 function PhaseFour() {
 
@@ -39,7 +40,30 @@ function PhaseFour() {
     }, [])
 
     return (
-        <div className='bg-amber-50 h-full'>
+        <motion.div
+            className='bg-amber-50 h-screen'
+            key='step-1'
+            initial={{
+                opacity: 0,
+                x: '100vw',
+            }}
+            animate={{
+                opacity: 1,
+                x: 0,
+                transition: {
+                    type: 'spring',
+                    mass: 0.4,
+                    damping: 8,
+                    when: 'beforeChildren',
+                    staggerChildren: 0.4,
+                },
+            }}
+            exit={{
+                x: '-100vw',
+                transition: {
+                    ease: 'easeInOut',
+                },
+            }}>
 
             {modalOpen &&
                 <div className="backdrop-blur-sm grid place-content-center overflow-y-auto fixed z-50 w-auto md:inset-0 h-full p-2 bg-black bg-opacity-50">
@@ -471,7 +495,7 @@ function PhaseFour() {
                     </MenuButton>
                 </div>
             </Footer>
-        </div >
+        </motion.div >
     );
 }
 

@@ -10,7 +10,11 @@ function Homepage() {
     const [configurationOpen, setConfigurationOpen] = useState(false);
 
     return (
-        <div>
+        <div animate={{
+            opacity: [0, 1],
+            transition: { duration: 2 }}}
+            initial={{ opacity: 0 }}>
+                
             <div className='bg-gradient-to-br from-amber-50/95 to-amber-100 h-screen md:h-fill'>
 
                 <div className='flex flex-col items-center justify-center'>

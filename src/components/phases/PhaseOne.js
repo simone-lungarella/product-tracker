@@ -1,4 +1,5 @@
 import { Field, Form, Formik } from 'formik';
+import { motion } from 'framer-motion';
 import { React, useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
@@ -23,7 +24,30 @@ function PhaseOne() {
     }
 
     return (
-        <div className='bg-amber-50 h-screen'>
+        <motion.div
+            className='bg-amber-50 h-screen'
+            key='step-1'
+            initial={{
+                opacity: 0,
+                x: '100vw',
+            }}
+            animate={{
+                opacity: 1,
+                x: 0,
+                transition: {
+                    type: 'spring',
+                    mass: 0.4,
+                    damping: 8,
+                    when: 'beforeChildren',
+                    staggerChildren: 0.4,
+                },
+            }}
+            exit={{
+                x: '-100vw',
+                transition: {
+                    ease: 'easeInOut',
+                },
+            }}>
 
             {modalOpen &&
                 <div className="backdrop-blur-sm grid place-content-center overflow-y-auto fixed z-50 w-auto md:inset-0 h-full bg-black bg-opacity-50 p-2">
@@ -328,7 +352,7 @@ function PhaseOne() {
                     </MenuButton>
                 </div>
             </Footer>
-        </div >
+        </motion.div >
     );
 }
 
