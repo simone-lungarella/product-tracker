@@ -3,7 +3,7 @@ import axios from 'axios';
 const generatePdf = (json, filename) => {
     const config = {
         method: 'POST',
-        url: 'https://foptility.herokuapp.com/foptility/transform/json',
+        url: 'http://localhost:8080/foptility/transform/json',
         headers: {
             'Content-Type': 'application/json',
         },
@@ -49,7 +49,7 @@ const getPhaseOnePdf = (formValues) => {
     generatePdf(json, filename);
 }
 
-const getPhaseTwoPdf = (formValues, file) => {
+const getPhaseTwoPdf = (formValues, lotDefinitions) => {
 
     const filename = 'TracciabilitaMateriePrime.pdf';
     const items = [];
@@ -61,6 +61,7 @@ const getPhaseTwoPdf = (formValues, file) => {
         "parameters": {
             "filename": filename,
             "items": items,
+            "lotDefinitions": lotDefinitions,
             "footer": {
                 "title": localStorage.getItem('title') || '',
                 "subtitle": localStorage.getItem('subtitle') || '',

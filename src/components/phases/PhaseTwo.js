@@ -14,9 +14,12 @@ function PhaseTwo() {
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState('');
 
+    const [modalLotEnabled, setModalLotEnabled] = useState(false);
+    const [lotDefinitions, setLotDefinitions] = useState([]);
+
     const downloadPdf = () => {
         if (insertedValues.length > 0) {
-            PdfService.getPhaseTwoPdf(insertedValues);
+            PdfService.getPhaseTwoPdf(insertedValues, lotDefinitions);
         } else {
             console.log("Cannot download pdf, no data inserted");
         }
@@ -109,6 +112,62 @@ function PhaseTwo() {
                     </div>
                 </div>
             }
+
+            {modalLotEnabled &&
+                <div className="backdrop-blur-sm grid place-content-center overflow-y-auto fixed z-50 w-auto md:inset-0 h-full p-2 bg-black bg-opacity-50">
+                    <div className="relative bg-amber-50 rounded shadow-lg border-4 p-4 border-white/75">
+                        <div className='grid grid-cols-2'>
+
+                            <button type="button" className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                                onClick={() => { setModalLotEnabled(false) }} >
+                                <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path>
+                                </svg>
+                            </button>
+                            <div className="flex flex-col font-bold text-2xl text-black">
+                                <h1>Appezzamenti</h1>
+                            </div>
+                        </div>
+                        <div className='h-1 bg-black/75 rounded w-full m-4 mx-auto shadow-lg' />
+
+                        <div className="flex flex-col items-center">
+                            <Formik
+                                initialValues={lotDefinitions.reduce((acc, item) => {
+                                    acc[item.name] = item.value
+                                    return acc
+                                }, {})}
+                                onSubmit={(values) => {
+                                    setLotDefinitions(lotDefinitions.map((item) => {
+                                        return {
+                                            name: item.name,
+                                            value: values[item.name]
+                                        }
+                                    }))
+                                    setModalLotEnabled(false)
+                                }}>
+                                {() => (<Form>
+                                    {lotDefinitions.map((item, index) => {
+                                        return (
+                                            <div key={index} className='grid grid-cols-1 items-center md:p-4 mt-2'>
+                                                <label className='text-md md:text-xl font-bold text-black' htmlFor={item.name}>
+                                                    {item.name}
+                                                </label>
+                                                <Field as="textarea" rows='2' cols='30' id={item.name} name={item.name} placeholder="Descrizione" />
+                                            </div>
+                                        )
+                                    })}
+                                    <div className='grid place-content-center mt-5'>
+                                        <Button type='submit' className='bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded'>
+                                            Conferma
+                                        </Button>
+                                    </div>
+                                </Form>)}
+                            </Formik>
+                        </div>
+                    </div>
+                </div>
+            }
+
             <Header title='Tracciabilità materie prime' />
 
             <div className='grid place-content-center h-1 bg-gradient-to-b from-amber-600 to-amber-100 w-full' />
@@ -126,6 +185,12 @@ function PhaseTwo() {
                     if (values.name !== '' && values.type !== '' && values.date !== '' && values.lot !== '') {
                         setInsertedValues([...insertedValues, values]);
                         resetForm();
+
+                        // Insert into lotDefinitions each name with value '' if not already present in lotDefinitions list
+                        const lotDefinitionsNames = lotDefinitions.map((item) => item.name);
+                        if (!lotDefinitionsNames.includes(values.name)) {
+                            setLotDefinitions([...lotDefinitions, { name: values.name, value: '' }])
+                        }
                     }
                 }}
                 validationSchema={Yup.object({
@@ -208,10 +273,18 @@ function PhaseTwo() {
                                 ) : null}
                             </div>
                         </div>
-                        <div className='mt-8 p-5 flex flex-row-reverse'>
+                        <div className='mt-8 p-5 flex flex-row-reverse gap-2'>
                             <Button type='submit' >
                                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </Button>
+                            <Button type='button' onClick={
+                                () => {
+                                    setModalLotEnabled(true);
+                                }}>
+                                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                                 </svg>
                             </Button>
                         </div>

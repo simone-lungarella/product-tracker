@@ -113,7 +113,7 @@ function PhaseOne() {
             <Header title='Tracciabilità piante e semi' />
 
             <div className='grid place-content-center h-1 bg-gradient-to-b from-amber-600 to-amber-100 w-full' />
-            <div className='md:h-10' />
+            <div className='h-10' />
 
             <Formik
                 initialValues={{
@@ -217,6 +217,7 @@ function PhaseOne() {
                     </Form>)}
             </Formik>
 
+            <div className='h-10' />
 
             <div className="overflow-x-auto relative">
                 {insertedValues.length > 0 && (
