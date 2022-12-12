@@ -3,7 +3,7 @@ import axios from 'axios';
 const generatePdf = (json, filename) => {
     const config = {
         method: 'POST',
-        url: 'http://localhost:8080/foptility/transform/json',
+        url: 'https://foptility.herokuapp.com/foptility/transform/json',
         headers: {
             'Content-Type': 'application/json',
         },
