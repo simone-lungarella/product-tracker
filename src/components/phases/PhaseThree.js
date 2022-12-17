@@ -44,7 +44,6 @@ function PhaseThree() {
 
                         <div className="flex flex-col items-center">
 
-                            <div className="h-10" />
                             <div className="grid place-content-center">
                                 <Formik
                                     initialValues={{

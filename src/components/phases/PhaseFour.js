@@ -39,7 +39,7 @@ function PhaseFour() {
     }, [])
 
     return (
-        <div className='bg-amber-50 h-screen'>
+        <div className='bg-amber-50 h-fill'>
 
             {modalOpen &&
                 <div className="backdrop-blur-sm grid place-content-center overflow-y-auto fixed z-50 w-auto md:inset-0 h-full p-2 bg-black bg-opacity-50">
@@ -60,7 +60,6 @@ function PhaseFour() {
 
                         <div className="flex flex-col items-center">
 
-                            <div className="h-10" />
                             <div className="grid place-content-center">
                                 <Formik
                                     initialValues={{

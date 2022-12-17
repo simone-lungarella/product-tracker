@@ -32,7 +32,6 @@ function PhaseTwo() {
                 <div className="backdrop-blur-sm grid place-content-center overflow-y-auto fixed z-50 w-auto md:inset-0 h-full p-2 bg-black bg-opacity-50">
                     <div className="relative bg-amber-50 rounded shadow-lg border-4 p-4 border-white/75">
                         <div className='grid grid-cols-2'>
-
                             <button type="button" className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
                                 onClick={() => { setModalOpen(false) }} >
                                 <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -46,7 +45,6 @@ function PhaseTwo() {
                         <div className='h-1 bg-black/75 rounded w-full m-4 mx-auto shadow-lg' />
 
                         <div className="flex flex-col items-center">
-                            <div className="h-10" />
                             <div className="grid place-content-center">
                                 <Formik
                                     initialValues={{
@@ -131,38 +129,43 @@ function PhaseTwo() {
                         <div className='h-1 bg-black/75 rounded w-full m-4 mx-auto shadow-lg' />
 
                         <div className="flex flex-col items-center">
-                            <Formik
-                                initialValues={lotDefinitions.reduce((acc, item) => {
-                                    acc[item.name] = item.value
-                                    return acc
-                                }, {})}
-                                onSubmit={(values) => {
-                                    setLotDefinitions(lotDefinitions.map((item) => {
-                                        return {
-                                            name: item.name,
-                                            value: values[item.name]
-                                        }
-                                    }))
-                                    setModalLotEnabled(false)
-                                }}>
-                                {() => (<Form>
-                                    {lotDefinitions.map((item, index) => {
-                                        return (
-                                            <div key={index} className='grid grid-cols-1 items-center md:p-4 mt-2'>
-                                                <label className='text-md md:text-xl font-bold text-black' htmlFor={item.name}>
-                                                    {item.name}
-                                                </label>
-                                                <Field as="textarea" rows='2' cols='30' id={item.name} name={item.name} placeholder="Descrizione" />
+                            {insertedValues.length > 0 &&
+                                (<Formik
+                                        initialValues={lotDefinitions.reduce((acc, item) => {
+                                            acc[item.name] = item.value
+                                            return acc
+                                        }, {})}
+                                        onSubmit={(values) => {
+                                            setLotDefinitions(lotDefinitions.map((item) => {
+                                                return {
+                                                    name: item.name,
+                                                    value: values[item.name]
+                                                }
+                                            }))
+                                            setModalLotEnabled(false)
+                                        }}>
+                                        {() => (<Form>
+                                            {lotDefinitions.map((item, index) => {
+                                                return (
+                                                    <div key={index} className='grid grid-cols-1 items-center md:p-4 mt-2'>
+                                                        <label className='text-md md:text-xl font-bold text-black' htmlFor={item.name}>
+                                                            {item.name}
+                                                        </label>
+                                                        <Field as="textarea" rows='2' cols='30' id={item.name} name={item.name} placeholder="Descrizione" />
+                                                    </div>
+                                                )
+                                            })}
+                                            <div className='grid place-content-center mt-5'>
+                                                <Button type='submit' className='bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded'>
+                                                    Conferma
+                                                </Button>
                                             </div>
-                                        )
-                                    })}
-                                    <div className='grid place-content-center mt-5'>
-                                        <Button type='submit' className='bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded'>
-                                            Conferma
-                                        </Button>
-                                    </div>
-                                </Form>)}
-                            </Formik>
+                                        </Form>)}
+                                    </Formik>
+                                )}
+                                {insertedValues.length === 0 &&
+                                    <h3 className='text-center'>Aggiungi almeno una materia prima per definirne l'appezzamento.</h3>
+                                }
                         </div>
                     </div>
                 </div>
