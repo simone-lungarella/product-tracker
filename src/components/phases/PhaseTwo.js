@@ -131,41 +131,41 @@ function PhaseTwo() {
                         <div className="flex flex-col items-center">
                             {insertedValues.length > 0 &&
                                 (<Formik
-                                        initialValues={lotDefinitions.reduce((acc, item) => {
-                                            acc[item.name] = item.value
-                                            return acc
-                                        }, {})}
-                                        onSubmit={(values) => {
-                                            setLotDefinitions(lotDefinitions.map((item) => {
-                                                return {
-                                                    name: item.name,
-                                                    value: values[item.name]
-                                                }
-                                            }))
-                                            setModalLotEnabled(false)
-                                        }}>
-                                        {() => (<Form>
-                                            {lotDefinitions.map((item, index) => {
-                                                return (
-                                                    <div key={index} className='grid grid-cols-1 items-center md:p-4 mt-2'>
-                                                        <label className='text-md md:text-xl font-bold text-black' htmlFor={item.name}>
-                                                            {item.name}
-                                                        </label>
-                                                        <Field as="textarea" rows='2' cols='30' id={item.name} name={item.name} placeholder="Descrizione" />
-                                                    </div>
-                                                )
-                                            })}
-                                            <div className='grid place-content-center mt-5'>
-                                                <Button type='submit' className='bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded'>
-                                                    Conferma
-                                                </Button>
-                                            </div>
-                                        </Form>)}
-                                    </Formik>
+                                    initialValues={lotDefinitions.reduce((acc, item) => {
+                                        acc[item.name] = item.value
+                                        return acc
+                                    }, {})}
+                                    onSubmit={(values) => {
+                                        setLotDefinitions(lotDefinitions.map((item) => {
+                                            return {
+                                                name: item.name,
+                                                value: values[item.name]
+                                            }
+                                        }))
+                                        setModalLotEnabled(false)
+                                    }}>
+                                    {() => (<Form>
+                                        {lotDefinitions.map((item, index) => {
+                                            return (
+                                                <div key={index} className='grid grid-cols-1 items-center md:p-4 mt-2'>
+                                                    <label className='text-md md:text-xl font-bold text-black' htmlFor={item.name}>
+                                                        {item.name}
+                                                    </label>
+                                                    <Field as="textarea" rows='2' cols='30' id={item.name} name={item.name} placeholder="Descrizione" />
+                                                </div>
+                                            )
+                                        })}
+                                        <div className='grid place-content-center mt-5'>
+                                            <Button type='submit' className='bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded'>
+                                                Conferma
+                                            </Button>
+                                        </div>
+                                    </Form>)}
+                                </Formik>
                                 )}
-                                {insertedValues.length === 0 &&
-                                    <h3 className='text-center'>Aggiungi almeno una materia prima per definirne l'appezzamento.</h3>
-                                }
+                            {insertedValues.length === 0 &&
+                                <h3 className='text-center'>Aggiungi almeno una materia prima per definirne l'appezzamento.</h3>
+                            }
                         </div>
                     </div>
                 </div>
@@ -282,14 +282,14 @@ function PhaseTwo() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
                             </Button>
-                            <Button type='button' onClick={
-                                () => {
-                                    setModalLotEnabled(true);
-                                }}>
+                            <button className='text-base hover:scale-105 focus:outline-none flex justify-center px-1 py-2 rounded
+                                        hover:bg-amber-100 bg-amber-50 text-amber-600 border duration-200 ease-in-out border-amber-600 transition'
+                                onClick={() => { setModalLotEnabled(true); }}
+                                type='button'>
                                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                                 </svg>
-                            </Button>
+                            </button>
                         </div>
                         <div className='h-20' />
                     </Form>)}

@@ -13,7 +13,8 @@ function EndPhase() {
                 <h1>
                     Tracciamento completato!
                 </h1>
-                <h2>Grazie per aver utilizzato l'app.</h2>
+                <h3>Grazie per aver utilizzato l'app.</h3>
+                
                 <p>Da questa sezione puoi decidere di: </p>
                 <ul>
                     <li>Ritornare alla pagina precedente relativa alla fase 6.</li>
